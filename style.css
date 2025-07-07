@@ -661,87 +661,111 @@ header.hide {
 }
 
 .cards-container {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    overflow: hidden;
-
-    .card {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-direction: column;
-        width: 250px;
-        height: 380px;
-        position: relative;
-        text-align: left;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.4s ease, transform 0.4s ease;
-
-        .product-img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            position: relative;
-            overflow: hidden;
-
-            img {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: opacity 0.5s ease, transform 0.5s ease;
-
-                &:nth-child(1) {
-                    opacity: 1;
-                    z-index: 1;
-                    transform: scale(1.5);
-                }
-
-                &:nth-child(2) {
-                    opacity: 0;
-                    z-index: 2;
-                    transform: scale(1.5);
-                }
-            }
-
-            &:hover {
-                img {
-                    &:nth-child(1) {
-                        opacity: 0;
-                    }
-
-                    &:nth-child(2) {
-                        opacity: 1;
-                        transform: scale(1.6);
-                    }
-                }
-            }
-        }
-
-        .product-info {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            align-self: self-start;
-
-            .product-title {
-                color: black;
-                text-decoration: none;
-            }
-        }
-    }
-
-    .card.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 250px;
+  height: 380px;
+  position: relative;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: scale(1.5);
+  opacity: 0;
+  z-index: 1;
+}
+
+.product-img img:first-of-type {
+  opacity: 1;
+  z-index: 1;
+}
+
+.product-img img:last-of-type {
+  z-index: 2;
+}
+
+.product-img:hover img:first-of-type {
+  opacity: 0;
+}
+
+.product-img:hover img:last-of-type {
+  opacity: 1;
+  transform: scale(1.6);
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #000;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 1s linear infinite;
+  z-index: 3;
+}
+
+.card.loading .product-img img {
+  opacity: 0 !important;
+}
+
+.card:not(.loading) .product-img .loader {
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-self: flex-start;
+}
+
+.product-title {
+  color: black;
+  text-decoration: none;
+}
+
 
 .bestsellers {
     h2 {
