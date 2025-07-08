@@ -152,9 +152,15 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#close-filters').addEventListener('click', (e) => {
     closeFilters();
   })
-  document.querySelector('.overlay').addEventListener('click', (e) => {
-    closeFilters();
-  })
+  document.querySelector('.overlay').addEventListener('click', () => {
+  closeFilters();
+
+  // Закрыть все открытые .filter-group
+  document.querySelectorAll('.filter-group.active').forEach(group => {
+    group.classList.remove('active');
+  });
+});
+
   document.querySelector('#filters-button').addEventListener('click', (e) => {
     openFilters();
   })
@@ -201,6 +207,18 @@ window.addEventListener('DOMContentLoaded', () => {
     const priceMax = params.get('priceMax');
     const search = params.get('search') || '';
 
+    if (sort === 'asc' || sort === 'desc') {
+  sortSelected.setAttribute('data-value', sort);
+
+  const optionEl = [...sortOptions].find(opt => opt.getAttribute('data-value') === sort);
+  if (optionEl) {
+    const textEl = sortSelected.querySelector('p');
+    if (textEl) textEl.textContent = optionEl.textContent;
+  }
+} else {
+  sortSelected.setAttribute('data-value', '');
+}
+
     brandGroup.querySelectorAll('input').forEach(i => (i.checked = selectedBrands.includes(i.value)));
     sizeGroup.querySelectorAll('input').forEach(i => (i.checked = selectedSizes.includes(i.value)));
     typeGroup.querySelectorAll('input').forEach(i => (i.checked = selectedTypes.includes(i.value)));
@@ -230,6 +248,9 @@ window.addEventListener('DOMContentLoaded', () => {
     fillPageInitially();
 
     updateTitles();
+    updateFilterButtonLabels();
+
+    
   }
 
 

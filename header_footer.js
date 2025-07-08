@@ -8,15 +8,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="dropdown">
                     <span class="dropdown-title">Бренди</span>
                     <div class="dropdown-menu">
-                        <a href="/balenciaga" class="underline-animated dd noto-sans-dd">Balenciaga</a>
-                        <a href="/vetements" class="underline-animated dd noto-sans-dd">Vetements</a>
+                        <a href="/catalog/?brand=Balenciaga" class="dd noto-sans-dd">Balenciaga</a>
+                        <a href="/catalog/?brand=Vetements" class="dd noto-sans-dd">Vetements</a>
+                        <a href="/catalog/?brand=Rick+Owens" class="dd noto-sans-dd">Rick Owens</a>
+                        <a href="/catalog/?brand=Acne+Studios" class="dd noto-sans-dd">Acne Studios</a>
+                        <a href="/catalog/?brand=Maison+Margiela" class="dd noto-sans-dd">Maison Margiela</a>
+                        <a href="/catalog/?brand=Enfants+Riches+Deprimes" class="dd noto-sans-dd">Enfants Riches Deprimes</a>
+                        <a href="/catalog/?brand=Project+GR" class="dd noto-sans-dd">Project GR</a>
+                        <a href="/catalog/?brand=Number+Nine" class="dd noto-sans-dd">Number Nine</a>
+                        <a href="/catalog/?brand=Mastermind" class="dd noto-sans-dd">Mastermind</a>
+                        <a href="/catalog/?brand=Undercover" class="dd noto-sans-dd">Undercover</a>
                     </div>
                 </div>
                 <div class="dropdown">
                     <span class="dropdown-title">Бренди</span>
                     <div class="dropdown-menu">
-                        <a href="/balenciaga" class="underline-animated dd noto-sans-dd">Футболки</a>
-                        <a href="/vetements" class="underline-animated dd noto-sans-dd">Шорти</a>
+                        <a href="/catalog/?type=tee" class="dd noto-sans-dd">Футболки</a>
+                        <a href="/catalog/?type=tank" class="dd noto-sans-dd">Майки</a>
+                        <a href="/catalog/?type=shorts" class="dd noto-sans-dd">Шорти</a>
                     </div>
                 </div>
                 <a href="https://kirito-sneakers.com" class="underline-animated">Кросівки</a>
