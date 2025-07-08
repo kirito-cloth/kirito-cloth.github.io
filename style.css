@@ -10,8 +10,9 @@ body {
 }
 
 body.no-scroll {
-  overflow: hidden;
-  touch-action: none; /* Для мобильных */
+    overflow: hidden;
+    touch-action: none;
+    /* Для мобильных */
 }
 
 main {
@@ -530,8 +531,9 @@ header.hide {
     max-width: unset;
     position: relative;
     height: 80vh;
-    background-image: url('https://www.lichtkunstlicht.com/wp-content/uploads/2021/08/04_bsp_2019_de_0-19.jpg');
+    background-image: url('https://th.hashtaglegend.com/th-storage/uploads/posts/2025/06/09/01JX9G9XAMMBXHY3GKHWHRVC2V.jpeg');
     background-position: center;
+    background-position-y: bottom;
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 0;
@@ -545,7 +547,7 @@ header.hide {
         height: 100%;
         position: absolute;
         background-color: #111;
-        opacity: 0.8;
+        opacity: 0.6;
         z-index: -1;
     }
 
@@ -1248,4 +1250,69 @@ header.hide {
         font-size: 20px;
         font-weight: 550;
     }
+}
+
+footer {
+    position: relative;
+    background-color: #1C1C1B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .footer-wrapper {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1300px;
+        width: 100%;
+        padding: 50px 100px;
+
+        .icons {
+            .kirito-logo {
+                filter: brightness(0) invert(1);
+                width: 70px;
+            }
+
+            .social-media {
+                margin-top: 30px;
+                display: flex;
+                gap: 10px;
+                a {
+                    position: relative;
+                    display: flex;
+                    width: 45px;
+                    height: 45px;
+                    border: 1px solid white;
+                    border-radius: 100%;
+                    padding: 9px;
+                    opacity: 0.6;
+                    img {
+                        filter: brightness(0) invert(1);
+                        width: 100%;
+                    }
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+            }
+        }
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            h4 {
+                color: white;
+                font-size: 18px;
+            }
+            a {
+                color: white;
+                text-decoration: none;
+                font-weight: 300;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
 }
