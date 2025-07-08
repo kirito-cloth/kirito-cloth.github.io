@@ -5313,7 +5313,7 @@
                 "id": 107,
                 "type": "tee",
                 "brand": "Vetements",
-                "name": "Vetements Logo T-Shirt in Black",
+                "name": "Vetements Oval Logo T-Shirt in Black",
                 "color": "black",
                 "sizes": {
                         "s": {
@@ -5342,14 +5342,14 @@
                         "https://i.ibb.co/Kj2dHrqy/v-1.webp",
                         "https://i.ibb.co/vC62MDMg/v-2.webp"
                 ],
-                "same": [106],
+                "same": [181, 106, 182],
                 "ready": false
         },
         {
                 "id": 106,
                 "type": "tee",
                 "brand": "Vetements",
-                "name": "Vetements Logo T-Shirt in White",
+                "name": "Vetements Oval Logo T-Shirt in White",
                 "color": "white",
                 "sizes": {
                         "s": {
@@ -5378,7 +5378,7 @@
                         "https://i.ibb.co/kVgNQ8cn/vwh-1.webp",
                         "https://i.ibb.co/gLV0vL8t/vwh-2.webp"
                 ],
-                "same": [107],
+                "same": [107, 181, 182],
                 "ready": false
         },
         {
@@ -5778,6 +5778,78 @@
                 "ready": false
         },
         {
+                "id": 138,
+                "type": "tee",
+                "brand": "Vetements",
+                "name": "Vetements Love Car T-Shirt in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 73,
+                                "chest": 112,
+                                "shoulder": 55
+                        },
+                        "m": {
+                                "length": 75,
+                                "chest": 116,
+                                "shoulder": 57
+                        },
+                        "l": {
+                                "length": 77,
+                                "chest": 120,
+                                "shoulder": 59
+                        },
+                        "xl": {
+                                "length": 79,
+                                "chest": 124,
+                                "shoulder": 61
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/TB9pkJdj/car-1.webp",
+                        "https://i.ibb.co/ZzxnqDHj/car-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 645,
+                "type": "tee",
+                "brand": "Vetements",
+                "name": "Vetements She Never Looked Nice T-Shirt in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 73,
+                                "chest": 110,
+                                "shoulder": 53
+                        },
+                        "m": {
+                                "length": 75,
+                                "chest": 114,
+                                "shoulder": 55
+                        },
+                        "l": {
+                                "length": 77,
+                                "chest": 118,
+                                "shoulder": 57
+                        },
+                        "xl": {
+                                "length": 79,
+                                "chest": 122,
+                                "shoulder": 59
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/Z6FdKjG6/2.webp",
+                        "https://i.ibb.co/BKyw6tGr/2-1.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
                 "id": 147,
                 "type": "tee",
                 "brand": "Vetements",
@@ -5811,78 +5883,6 @@
                         "https://i.ibb.co/1GZbMvy9/single-2.webp"
                 ],
                 "same": [],
-                "ready": false
-        },
-        {
-                "id": 591,
-                "type": "tank",
-                "brand": "Vetements",
-                "name": "Vetements Logo Tank Top in Black",
-                "color": "black",
-                "sizes": {
-                        "s": {
-                                "length": 74,
-                                "chest": 106,
-                                "shoulder": 41
-                        },
-                        "m": {
-                                "length": 76,
-                                "chest": 110,
-                                "shoulder": 43
-                        },
-                        "l": {
-                                "length": 78,
-                                "chest": 114,
-                                "shoulder": 45
-                        },
-                        "xl": {
-                                "length": 80,
-                                "chest": 118,
-                                "shoulder": 47
-                        }
-                },
-                "price": 1900,
-                "images": [
-                        "https://i.ibb.co/zVgyCZY5/tankblack-1.webp",
-                        "https://i.ibb.co/zTbyD6tQ/tankblack-2.webp"
-                ],
-                "same": [590],
-                "ready": false
-        },
-        {
-                "id": 590,
-                "type": "tank",
-                "brand": "Vetements",
-                "name": "Vetements Logo Tank Top in White",
-                "color": "white",
-                "sizes": {
-                        "s": {
-                                "length": 74,
-                                "chest": 106,
-                                "shoulder": 41
-                        },
-                        "m": {
-                                "length": 76,
-                                "chest": 110,
-                                "shoulder": 43
-                        },
-                        "l": {
-                                "length": 78,
-                                "chest": 114,
-                                "shoulder": 45
-                        },
-                        "xl": {
-                                "length": 80,
-                                "chest": 118,
-                                "shoulder": 47
-                        }
-                },
-                "price": 1900,
-                "images": [
-                        "https://i.ibb.co/QjDQmj8c/tankwh-1.webp",
-                        "https://i.ibb.co/1JmmbMzh/tankwh-2.webp"
-                ],
-                "same": [591],
                 "ready": false
         },
         {
@@ -5954,7 +5954,7 @@
                         "https://i.ibb.co/LDtQWRXK/gvasalia-1.webp",
                         "https://i.ibb.co/0jRjHS1Y/gvasalia-2.webp"
                 ],
-                "same": [173, 172],
+                "same": [173, 180, 172],
                 "ready": false
         },
         {
@@ -5990,7 +5990,7 @@
                         "https://i.ibb.co/TMbCd2XF/gva-1.webp",
                         "https://i.ibb.co/bgk0y7v5/gva-2.webp"
                 ],
-                "same": [644, 172],
+                "same": [180, 644, 172],
                 "ready": false
         },
         {
@@ -6026,7 +6026,7 @@
                         "https://i.ibb.co/FqY39b28/gvas-1.webp",
                         "https://i.ibb.co/q3Qt3zRF/gvas-2.webp"
                 ],
-                "same": [644, 173],
+                "same": [644, 173, 180],
                 "ready": false
         },
         {
@@ -6034,7 +6034,7 @@
                 "type": "tee",
                 "brand": "Vetements",
                 "name": "Vetements Clothing T-Shirt in Black/White",
-                "color": "Black",
+                "color": "black",
                 "sizes": {
                         "s": {
                                 "length": 78,
@@ -6070,7 +6070,7 @@
                 "type": "tee",
                 "brand": "Vetements",
                 "name": "Vetements Clothing T-Shirt in Black/Rainbow",
-                "color": "Black",
+                "color": "black",
                 "sizes": {
                         "s": {
                                 "length": 78,
@@ -6315,6 +6315,305 @@
                         "https://i.ibb.co/C5r35h41/logored-2.webp"
                 ],
                 "same": [111, 148, 150],
+                "ready": false
+        },
+        {
+                "id": 591,
+                "type": "tank",
+                "brand": "Vetements",
+                "name": "Vetements Logo Tank Top in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "length": 74,
+                                "chest": 106,
+                                "shoulder": 41
+                        },
+                        "m": {
+                                "length": 76,
+                                "chest": 110,
+                                "shoulder": 43
+                        },
+                        "l": {
+                                "length": 78,
+                                "chest": 114,
+                                "shoulder": 45
+                        },
+                        "xl": {
+                                "length": 80,
+                                "chest": 118,
+                                "shoulder": 47
+                        }
+                },
+                "price": 1900,
+                "images": [
+                        "https://i.ibb.co/zVgyCZY5/tankblack-1.webp",
+                        "https://i.ibb.co/zTbyD6tQ/tankblack-2.webp"
+                ],
+                "same": [590],
+                "ready": false
+        },
+        {
+                "id": 590,
+                "type": "tank",
+                "brand": "Vetements",
+                "name": "Vetements Logo Tank Top in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 74,
+                                "chest": 106,
+                                "shoulder": 41
+                        },
+                        "m": {
+                                "length": 76,
+                                "chest": 110,
+                                "shoulder": 43
+                        },
+                        "l": {
+                                "length": 78,
+                                "chest": 114,
+                                "shoulder": 45
+                        },
+                        "xl": {
+                                "length": 80,
+                                "chest": 118,
+                                "shoulder": 47
+                        }
+                },
+                "price": 1900,
+                "images": [
+                        "https://i.ibb.co/QjDQmj8c/tankwh-1.webp",
+                        "https://i.ibb.co/1JmmbMzh/tankwh-2.webp"
+                ],
+                "same": [591],
+                "ready": false
+        },
+        {
+                "id": 181,
+                "type": "shorts",
+                "brand": "Vetements",
+                "name": "Vetements Oval Logo Shorts in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "waist": 62,
+                                "length": 53,
+                                "hip": 96
+                        },
+                        "m": {
+                                "waist": 66,
+                                "length": 55,
+                                "hip": 100
+                        },
+                        "l": {
+                                "waist": 70,
+                                "length": 57,
+                                "hip": 104
+                        },
+                        "xl": {
+                                "waist": 74,
+                                "length": 59,
+                                "hip": 108
+                        }
+                },
+                "price": 2200,
+                "images": [
+                        "https://i.ibb.co/zh5g0xKC/ovallogobl-1.webp",
+                        "https://i.ibb.co/pj9vxXK8/ovallogobl-2.webp",
+                        "https://i.ibb.co/67N0k8wv/ovalbl.webp",
+                        "https://i.ibb.co/N6XmtB2s/oval.webp"
+                ],
+                "same": [107, 106, 182],
+                "ready": false
+        },
+        {
+                "id": 182,
+                "type": "shorts",
+                "brand": "Vetements",
+                "name": "Vetements Oval Logo Shorts in Beige",
+                "color": "beige",
+                "sizes": {
+                        "s": {
+                                "waist": 62,
+                                "length": 53,
+                                "hip": 96
+                        },
+                        "m": {
+                                "waist": 66,
+                                "length": 55,
+                                "hip": 100
+                        },
+                        "l": {
+                                "waist": 70,
+                                "length": 57,
+                                "hip": 104
+                        },
+                        "xl": {
+                                "waist": 74,
+                                "length": 59,
+                                "hip": 108
+                        }
+                },
+                "price": 2200,
+                "images": [
+                        "https://i.ibb.co/pvbzpf5c/ovallogo-1.webp",
+                        "https://i.ibb.co/fd0QZ3mh/ovallogo-2.webp",
+                        "https://i.ibb.co/sdWxBSbN/oavlb.webp",
+                        "https://i.ibb.co/nMbW8k2p/ovalb.webp"
+                ],
+                "same": [181, 107, 106],
+                "ready": false
+        },
+        {
+                "id": 180,
+                "type": "shorts",
+                "brand": "Vetements",
+                "name": "Vetements Gvasalia Shorts in Blue",
+                "color": "blue",
+                "sizes": {
+                        "s": {
+                                "waist": 62,
+                                "length": 59,
+                                "hip": 100
+                        },
+                        "m": {
+                                "waist": 66,
+                                "length": 61,
+                                "hip": 104
+                        },
+                        "l": {
+                                "waist": 70,
+                                "length": 63,
+                                "hip": 108
+                        },
+                        "xl": {
+                                "waist": 74,
+                                "length": 65,
+                                "hip": 112
+                        }
+                },
+                "price": 2200,
+                "images": [
+                        "https://i.ibb.co/Y46KDMmx/gvasaliash-2.webp",
+                        "https://i.ibb.co/8gmpY020/gvasaliash-2-1.webp",
+                        "https://i.ibb.co/1tmL9807/gvas.webp",
+                        "https://i.ibb.co/hFy9mQ7h/gvasa.webp"
+                ],
+                "same": [173, 644, 172],
+                "ready": false
+        },
+        {
+                "id": 178,
+                "type": "shorts",
+                "brand": "Vetements",
+                "name": "Vetements Logo Shorts in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "waist": 60,
+                                "length": 57,
+                                "hip": 100
+                        },
+                        "m": {
+                                "waist": 64,
+                                "length": 59,
+                                "hip": 104
+                        },
+                        "l": {
+                                "waist": 68,
+                                "length": 61,
+                                "hip": 108
+                        },
+                        "xl": {
+                                "waist": 72,
+                                "length": 63,
+                                "hip": 112
+                        }
+                },
+                "price": 2300,
+                "images": [
+                        "https://i.ibb.co/V0n3h7Gf/dsfl-1.webp",
+                        "https://i.ibb.co/s924nCVK/poffg-2.webp",
+                        "https://i.ibb.co/d4g3MJdM/black.webp",
+                        "https://i.ibb.co/sdhw54kv/balck.webp"
+                ],
+                "same": [179],
+                "ready": false
+        },
+        {
+                "id": 179,
+                "type": "shorts",
+                "brand": "Vetements",
+                "name": "Vetements Logo Shorts in Pink",
+                "color": "pink",
+                "sizes": {
+                        "s": {
+                                "waist": 60,
+                                "length": 57,
+                                "hip": 100
+                        },
+                        "m": {
+                                "waist": 64,
+                                "length": 59,
+                                "hip": 104
+                        },
+                        "l": {
+                                "waist": 68,
+                                "length": 61,
+                                "hip": 108
+                        },
+                        "xl": {
+                                "waist": 72,
+                                "length": 63,
+                                "hip": 112
+                        }
+                },
+                "price": 2300,
+                "images": [
+                        "https://i.ibb.co/d44tNbrN/logopink-1.webp",
+                        "https://i.ibb.co/Q7wNy3GF/logopink-2.webp",
+                        "https://i.ibb.co/7JR4sMCx/pink.webp",
+                        "https://i.ibb.co/R4b03vf5/pinkk.webp"
+                ],
+                "same": [178],
+                "ready": false
+        },
+        {
+                "id": 595,
+                "type": "shorts",
+                "brand": "Vetements",
+                "name": "Vetements Embroidered Logo Shorts in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "waist": 62,
+                                "length": 51,
+                                "hip": 102
+                        },
+                        "m": {
+                                "waist": 66,
+                                "length": 53,
+                                "hip": 106
+                        },
+                        "l": {
+                                "waist": 70,
+                                "length": 55,
+                                "hip": 110
+                        },
+                        "xl": {
+                                "waist": 74,
+                                "length": 57,
+                                "hip": 114
+                        }
+                },
+                "price": 2200,
+                "images": [
+                        "https://i.ibb.co/xxzbzND/looogo-1.webp",
+                        "https://i.ibb.co/fd82yTzP/looogo-2.webp",
+                        "https://i.ibb.co/dJQr2XmX/blackkp.webp"
+                ],
+                "same": [],
                 "ready": false
         }
 ]
