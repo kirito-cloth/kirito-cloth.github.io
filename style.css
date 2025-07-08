@@ -9,6 +9,11 @@ body {
     width: 100%;
 }
 
+body.no-scroll {
+  overflow: hidden;
+  touch-action: none; /* Для мобильных */
+}
+
 main {
     display: flex;
     flex-direction: column;

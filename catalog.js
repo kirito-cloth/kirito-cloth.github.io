@@ -139,16 +139,54 @@ window.addEventListener('DOMContentLoaded', () => {
       if (filterGroup) filterGroup.classList.remove('active');
     });
   });
-  function closeFilters() {
-    document.querySelector('.filters').classList.remove('active');
-    document.querySelector('.overlay').classList.remove('active');
-    document.querySelector('header').classList.remove('filters-opened');
+
+  function getScrollbarWidth() {
+  const scrollDiv = document.createElement("div");
+  scrollDiv.style.visibility = "hidden";
+  scrollDiv.style.overflow = "scroll";
+  scrollDiv.style.position = "absolute";
+  scrollDiv.style.top = "-9999px";
+  scrollDiv.style.width = "100px";
+  document.body.appendChild(scrollDiv);
+
+  const innerDiv = document.createElement("div");
+  innerDiv.style.width = "100%";
+  scrollDiv.appendChild(innerDiv);
+
+  const scrollbarWidth = scrollDiv.offsetWidth - innerDiv.offsetWidth;
+
+  scrollDiv.remove();
+  return scrollbarWidth;
+}
+
+function openFilters() {
+  document.querySelector('.filters').classList.add('active');
+  document.querySelector('.overlay').classList.add('active');
+  document.querySelector('header').classList.add('filters-opened');
+  document.body.classList.add('no-scroll');
+
+  const scrollbarWidth = getScrollbarWidth();
+  if (scrollbarWidth > 0) {
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+    document.querySelector('header').style.paddingRight = `${scrollbarWidth}px`;
   }
-  function openFilters() {
-    document.querySelector('.filters').classList.add('active');
-    document.querySelector('.overlay').classList.add('active');
-    document.querySelector('header').classList.add('filters-opened');
-  }
+}
+
+function closeFilters() {
+  document.querySelector('.filters').classList.remove('active');
+  document.querySelector('.overlay').classList.remove('active');
+  document.querySelector('header').classList.remove('filters-opened');
+  document.body.classList.remove('no-scroll');
+
+  document.body.style.paddingRight = '';
+  document.querySelector('header').style.paddingRight = '';
+
+  document.querySelectorAll('.filter-group.active').forEach(group => {
+    group.classList.remove('active');
+  });
+}
+
+
   document.querySelector('#close-filters').addEventListener('click', (e) => {
     closeFilters();
   })
