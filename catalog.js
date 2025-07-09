@@ -1,5 +1,7 @@
 import { createProductCard } from '/productCard.js';
 import { revealOnScroll } from '/scrollReveal.js';
+import { getFavorites, setFavorites, toggleFavorite } from '/favorites.js';
+
 
 window.addEventListener('DOMContentLoaded', () => {
   let allProducts = [];
@@ -35,6 +37,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const applyColorBtn = document.getElementById('apply-color-btn');
 
   const noProductsMsg = document.getElementById('no-products-msg');
+
+  const filtersHeader = document.querySelector('div.filters-header');
 
   let priceMinGlobal = 0;
   let priceMaxGlobal = 10000;
@@ -203,6 +207,17 @@ function closeFilters() {
     openFilters();
   })
 
+function updateFiltersHeaderVisibility() {
+  if (!filtersHeader) return;
+  if (showFavorites) {
+    filtersHeader.classList.add('hidden');
+  } else {
+    filtersHeader.classList.remove('hidden');
+  }
+}
+
+
+
   function populateFilters(products) {
     const brands = new Set();
     const sizes = new Set();
@@ -234,6 +249,8 @@ function closeFilters() {
     selectedFilters.priceMax = currentMax;
   }
 
+  let showFavorites = false;
+
   function applyFiltersFromURL() {
     const params = new URLSearchParams(window.location.search);
     const selectedBrands = params.getAll('brand');
@@ -244,6 +261,9 @@ function closeFilters() {
     const priceMin = params.get('priceMin');
     const priceMax = params.get('priceMax');
     const search = params.get('search') || '';
+    showFavorites = params.get('favorites') === 'true';
+
+    updateFiltersHeaderVisibility();
 
     if (sort === 'asc' || sort === 'desc') {
   sortSelected.setAttribute('data-value', sort);
@@ -313,46 +333,61 @@ function closeFilters() {
 
 
   function filterAndRender(reset = false) {
-    if (reset) {
-      renderedCount = 0;
-      container.innerHTML = '';
-      initialRenderDone = false;
-    }
-
-    filteredProducts = [...allProducts];
-
-    if (selectedFilters.brand.length)
-      filteredProducts = filteredProducts.filter(p => selectedFilters.brand.includes(p.brand));
-
-    if (selectedFilters.size.length)
-      filteredProducts = filteredProducts.filter(p => Object.keys(p.sizes).some(s => selectedFilters.size.includes(s.toUpperCase())));
-
-    if (selectedFilters.type.length)
-      filteredProducts = filteredProducts.filter(p => selectedFilters.type.includes(p.type));
-
-    if (selectedFilters.color.length)
-      filteredProducts = filteredProducts.filter(p => p.color && selectedFilters.color.includes(p.color.toLowerCase()));
-
-    if (priceFilterActive) {
-      filteredProducts = filteredProducts.filter(p =>
-        p.price >= selectedFilters.priceMin && p.price <= selectedFilters.priceMax
-      );
-    }
-
-    if (searchQuery.trim() !== '') {
-      const sqLower = searchQuery.trim().toLowerCase();
-      filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(sqLower));
-    }
-
-    const sortValue = sortSelected.getAttribute('data-value');
-    if (sortValue === 'asc') filteredProducts.sort((a, b) => a.price - b.price);
-    if (sortValue === 'desc') filteredProducts.sort((a, b) => b.price - a.price);
-
-
-    renderNextBatch();
-
-    updateTitles();
+  if (reset) {
+    renderedCount = 0;
+    container.innerHTML = '';
+    initialRenderDone = false;
   }
+
+  filteredProducts = [...allProducts];
+
+  // Фильтруем по бренду
+  if (selectedFilters.brand.length)
+    filteredProducts = filteredProducts.filter(p => selectedFilters.brand.includes(p.brand));
+
+  // Фильтруем по размерам
+  if (selectedFilters.size.length)
+    filteredProducts = filteredProducts.filter(p => Object.keys(p.sizes).some(s => selectedFilters.size.includes(s.toUpperCase())));
+
+  // По типу
+  if (selectedFilters.type.length)
+    filteredProducts = filteredProducts.filter(p => selectedFilters.type.includes(p.type));
+
+  // По цвету
+  if (selectedFilters.color.length)
+    filteredProducts = filteredProducts.filter(p => p.color && selectedFilters.color.includes(p.color.toLowerCase()));
+
+  // По цене
+  if (priceFilterActive) {
+    filteredProducts = filteredProducts.filter(p =>
+      p.price >= selectedFilters.priceMin && p.price <= selectedFilters.priceMax
+    );
+  }
+
+  // По поиску
+  if (searchQuery.trim() !== '') {
+    const sqLower = searchQuery.trim().toLowerCase();
+    filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(sqLower));
+  }
+
+  // Вот здесь — фильтр по избранному **после всех остальных фильтров**:
+  if (showFavorites) {
+    const favorites = getFavorites();
+    filteredProducts = filteredProducts.filter(p => favorites.includes(p.id));
+  }
+
+  updateFiltersHeaderVisibility();
+
+  // Сортировка
+  const sortValue = sortSelected.getAttribute('data-value');
+  if (sortValue === 'asc') filteredProducts.sort((a, b) => a.price - b.price);
+  if (sortValue === 'desc') filteredProducts.sort((a, b) => b.price - a.price);
+
+  renderNextBatch();
+
+  updateTitles();
+}
+
 function renderNextBatch() {
   if (loading) return;
   loading = true;
@@ -360,7 +395,7 @@ function renderNextBatch() {
   const nextBatch = filteredProducts.slice(renderedCount, renderedCount + PRODUCTS_PER_BATCH);
 
   if (nextBatch.length === 0) {
-    if (renderedCount === 0) noProductsMsg.style.display = 'block';
+    if (renderedCount === 0) noProductsMsg.style.display = 'flex';
     loading = false;
     return;
   }
@@ -530,16 +565,22 @@ function renderNextBatch() {
   }
 
   // Управление заголовками при поиске
-  function updateTitles() {
-    if (searchQuery.trim() !== '') {
-      catalogTitle.style.display = 'none';
-      searchResultsTitle.style.display = 'block';
-      searchResultsTitle.textContent = `Результати пошуку "${searchQuery}"`;
-    } else {
-      catalogTitle.style.display = 'block';
-      searchResultsTitle.style.display = 'none';
-    }
+function updateTitles() {
+  if (showFavorites) {
+    catalogTitle.style.display = 'block';
+    catalogTitle.textContent = 'Обрані';
+    searchResultsTitle.style.display = 'none';
+  } else if (searchQuery.trim() !== '') {
+    catalogTitle.style.display = 'none';
+    searchResultsTitle.style.display = 'block';
+    searchResultsTitle.textContent = `Результати пошуку "${searchQuery}"`;
+  } else {
+    catalogTitle.style.display = 'block';
+    catalogTitle.textContent = 'Каталог товарів'; // или как у тебя там обычный заголовок
+    searchResultsTitle.style.display = 'none';
   }
+}
+
 
   function updateFilterButtonLabels() {
     const map = {
@@ -649,6 +690,9 @@ function renderNextBatch() {
   threshold: 0.1 // Можно регулировать, когда считать карточку "видимой"
 });
 revealOnScroll('.cards-container', '.card');
+
+updateFiltersHeaderVisibility();
+
 
 
 });

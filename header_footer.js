@@ -49,6 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a data-lang='en' class="montserrat-light underline-animated dd">EN</a>
                     </div>
                 </div>
+                <a href="/catalog/?favorites=true" class="saved-icon" id="favorite-link">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier"> 
+                        <path d="M0 0h48v48H0z" fill="none"></path> 
+                        <g id="Shopicon"> 
+                            <path d="M14,4c-2.2,0-4,1.8-4,4v36l14-8l14,8V8c0-2.2-1.8-4-4-4H14z"></path> 
+                        </g> 
+                    </g>
+                </svg>
             </a>
             </div>
         </div>
@@ -61,6 +72,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     `;
 
+    const footer = document.createElement('footer');
+    footer.innerHTML = `
+        <div class="footer-wrapper">
+            <div class="icons">
+                <img src="/img/kirito_logo.png" alt="Kirito Brand Logo" class="kirito-logo">
+                <div class="social-media">
+                    <a href="" class="animated">
+                        <img src="/img/icons/instagram.svg" alt="">
+                    </a>
+                    <a href="" class="animated">
+                        <img src="/img/icons/telegram.svg" alt="">
+                    </a>
+                    <a href="" class="animated">
+                        <img src="/img/icons/tiktok.svg" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="info">
+                <h4 class="noto-sans-dd-title">МЕНЮ</h4>
+                <a href="" class="noto-sans-dd">Головна</a>
+                <a href="" class="noto-sans-dd">Каталог</a>
+                <a href="" class="noto-sans-dd">Про нас</a>
+            </div>
+            <div class="info">
+                <h4 class="noto-sans-dd-title">СЕРВІС</h4>
+                <a href="" class="noto-sans-dd">Про наш продукт</a>
+                <a href="" class="noto-sans-dd">Оплата</a>
+                <a href="" class="noto-sans-dd">Доставка</a>
+                <a href="" class="noto-sans-dd">Реферальна система та знижки</a>
+            </div>
+            <div class="info">
+                <h4 class="noto-sans-dd-title">КОНТАКТИ</h4>
+                <a href="" class="noto-sans-dd">Telegram</a>
+                <a href="" class="noto-sans-dd">Instagram</a>
+            </div>
+            <div class="info">
+                <h4 class="noto-sans-dd-title">МОВА</h4>
+                <a href="" class="noto-sans-dd">Українська</a>
+                <a href="" class="noto-sans-dd">Російська</a>
+                <a href="" class="noto-sans-dd">Англійська</a>
+            </div>
+        </div>
+
+    `;
+
     const overlayElem = document.createElement('div');
     overlayElem.classList.add('overlay');
     document.body.prepend(overlayElem);
@@ -68,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     document.body.prepend(header)
+    document.body.append(footer)
 
     const form = document.getElementById('global-search-form');
     const input = document.getElementById('global-search-input');
@@ -125,5 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = `/catalog/?search=${encodeURIComponent(query)}`;
         }
     });
+
+
 
 })

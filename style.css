@@ -7,6 +7,14 @@
 html,
 body {
     width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* 100% высоты окна */
 }
 
 body.no-scroll {
@@ -20,6 +28,7 @@ main {
     flex-direction: column;
     align-items: center;
     padding-top: 69.2px;
+    flex: 1;
 }
 
 section {
@@ -1239,6 +1248,10 @@ header.hide {
 
 }
 
+.filters-header.hidden {
+    display: none;
+}
+
 .price-filter {
     display: flex;
     flex-direction: column;
@@ -1276,6 +1289,7 @@ footer {
                 margin-top: 30px;
                 display: flex;
                 gap: 10px;
+
                 a {
                     position: relative;
                     display: flex;
@@ -1285,10 +1299,12 @@ footer {
                     border-radius: 100%;
                     padding: 9px;
                     opacity: 0.6;
+
                     img {
                         filter: brightness(0) invert(1);
                         width: 100%;
                     }
+
                     &:hover {
                         opacity: 1;
                     }
@@ -1296,18 +1312,22 @@ footer {
 
             }
         }
+
         .info {
             display: flex;
             flex-direction: column;
             gap: 10px;
+
             h4 {
                 color: white;
                 font-size: 18px;
             }
+
             a {
                 color: white;
                 text-decoration: none;
                 font-weight: 300;
+
                 &:hover {
                     text-decoration: underline;
                 }
@@ -1315,4 +1335,44 @@ footer {
         }
     }
 
+}
+
+.favorite-checkbox {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    user-select: none;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.favorite-checkbox input {
+    display: none;
+    /* прячем чекбокс */
+}
+
+/* по умолчанию — иконка пустая (заливка none, обводка черная) */
+.favorite-checkbox .favorite-icon {
+    fill: none;
+    stroke: #000;
+    transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+/* если чекбокс активен — заливка черная и обводка убирается */
+.favorite-checkbox input:checked+.favorite-icon {
+    fill: #000000;
+    stroke: none;
+}
+
+#no-products-msg {
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
