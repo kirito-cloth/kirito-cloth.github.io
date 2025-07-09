@@ -2,6 +2,106 @@ import { createProductCard } from '/productCard.js';
 import { revealOnScroll } from '/scrollReveal.js';
 import { getFavorites, setFavorites, toggleFavorite } from '/favorites.js';
 
+const path = window.location.pathname;
+let lang = 'ua'; // язык по умолчанию
+
+if (path.startsWith('/ru')) lang = 'ru';
+else if (path.startsWith('/en')) lang = 'en';
+
+
+const i18n = {
+  ua: {
+    catalog: 'Каталог товарів',
+    favorites: 'Обрані',
+    searchResults: (q) => `Результати пошуку "${q}"`,
+    loadingError: 'Помилка завантаження товарів',
+    noProducts: 'Товарів не знайдено',
+
+    filters: {
+      brand: 'Бренд',
+      size: 'Розмір',
+      type: 'Тип',
+      color: 'Колір',
+      price: 'Ціна',
+      apply: 'Застосувати',
+      reset: 'Скинути фільтри',
+    },
+
+    colors: {
+      white: 'Білий',
+      black: 'Чорний',
+      yellow: 'Жовтий',
+    },
+
+    types: {
+      tee: 'Футболки',
+      tank: 'Майки',
+      shorts: 'Шорти',
+    }
+  },
+
+  ru: {
+    catalog: 'Каталог товаров',
+    favorites: 'Избранное',
+    searchResults: (q) => `Результаты поиска "${q}"`,
+    loadingError: 'Ошибка загрузки товаров',
+    noProducts: 'Товаров не найдено',
+
+    filters: {
+      brand: 'Бренд',
+      size: 'Размер',
+      type: 'Тип',
+      color: 'Цвет',
+      price: 'Цена',
+      apply: 'Применить',
+      reset: 'Сбросить фильтры',
+    },
+
+    colors: {
+      white: 'Белый',
+      black: 'Чёрный',
+      yellow: 'Жёлтый',
+    },
+
+    types: {
+      tee: 'Футболки',
+      tank: 'Майки',
+      shorts: 'Шорты',
+    }
+  },
+
+  en: {
+    catalog: 'Product Catalog',
+    favorites: 'Favorites',
+    searchResults: (q) => `Search results for "${q}"`,
+    loadingError: 'Failed to load products',
+    noProducts: 'No products found',
+
+    filters: {
+      brand: 'Brand',
+      size: 'Size',
+      type: 'Type',
+      color: 'Color',
+      price: 'Price',
+      apply: 'Apply',
+      reset: 'Reset filters',
+    },
+
+    colors: {
+      white: 'White',
+      black: 'Black',
+      yellow: 'Yellow',
+    },
+
+    types: {
+      tee: 'T-Shirts',
+      tank: 'Tank Tops',
+      shorts: 'Shorts',
+    }
+  }
+};
+
+
 
 window.addEventListener('DOMContentLoaded', () => {
   let allProducts = [];
@@ -40,6 +140,44 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const filtersHeader = document.querySelector('div.filters-header');
 
+  function fixKeyboardLayout(input) {
+  const layoutMap = {
+    'й':'q', 'ц':'w', 'у':'e', 'к':'r', 'е':'t', 'н':'y', 'г':'u', 'ш':'i', 'щ':'o', 'з':'p',
+    'х':'[', 'ъ':']', 'ф':'a', 'ы':'s', 'в':'d', 'а':'f', 'п':'g', 'р':'h', 'о':'j', 'л':'k', 'д':'l',
+    'ж':';', 'э':'\'', 'я':'z', 'ч':'x', 'с':'c', 'м':'v', 'и':'b', 'т':'n', 'ь':'m', 'б':',', 'ю':'.',
+    'ё':'`'
+  };
+
+  return input.split('').map(char => {
+    const lowerChar = char.toLowerCase();
+    const mapped = layoutMap[lowerChar] || char;
+    return char === lowerChar ? mapped : mapped.toUpperCase();
+  }).join('');
+}
+function transliterate(text) {
+  const map = {
+    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+    'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+    'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+    'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch',
+    'ы': 'y', 'э': 'e', 'ю': 'yu', 'я': 'ya', 'ь': '', 'ъ': '',
+
+    // Украинские
+    'ґ': 'g', 'є': 'ye', 'і': 'i', 'ї': 'yi',
+
+    // Заглавные буквы
+    'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E', 'Ё': 'Yo',
+    'Ж': 'Zh', 'З': 'Z', 'И': 'I', 'Й': 'Y', 'К': 'K', 'Л': 'L', 'М': 'M',
+    'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U',
+    'Ф': 'F', 'Х': 'Kh', 'Ц': 'Ts', 'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Shch',
+    'Ы': 'Y', 'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya', 'Ь': '', 'Ъ': '',
+    'Ґ': 'G', 'Є': 'Ye', 'І': 'I', 'Ї': 'Yi'
+  };
+
+  return text.split('').map(char => map[char] || char).join('');
+}
+
+
   let priceMinGlobal = 0;
   let priceMaxGlobal = 10000;
   let currentMin = 0;
@@ -67,6 +205,14 @@ window.addEventListener('DOMContentLoaded', () => {
   // Состояние поиска
   let searchQuery = '';
 
+  resetBtn.textContent = i18n[lang].filters.reset;
+applyAllBtn.textContent = i18n[lang].filters.apply;
+applyBrandBtn.textContent = i18n[lang].filters.apply;
+applySizeBtn.textContent = i18n[lang].filters.apply;
+applyTypeBtn.textContent = i18n[lang].filters.apply;
+applyColorBtn.textContent = i18n[lang].filters.apply;
+applyPriceBtn.textContent = i18n[lang].filters.apply;
+
   fetch('/products.json')
     .then(res => res.json())
     .then(products => {
@@ -76,6 +222,7 @@ window.addEventListener('DOMContentLoaded', () => {
       priceMaxGlobal = Math.max(...prices);
       currentMin = priceMinGlobal;
       currentMax = priceMaxGlobal;
+      console.log(`total: ${products.length}`) 
 
       selectedFilters.priceMin = priceMinGlobal;
       selectedFilters.priceMax = priceMaxGlobal;
@@ -86,8 +233,8 @@ window.addEventListener('DOMContentLoaded', () => {
       window.addEventListener('scroll', onScrollLoadMore);
     })
     .catch(() => {
-      document.body.innerHTML = '<h2>Ошибка загрузки товаров</h2>';
-    });
+  document.body.innerHTML = `<h2>${i18n[lang].loadingError}</h2>`;
+});
 
   function createCheckbox(name, value) {
     const wrapper = document.createDocumentFragment(); // обёртка для label + br
@@ -365,10 +512,29 @@ function updateFiltersHeaderVisibility() {
   }
 
   // По поиску
-  if (searchQuery.trim() !== '') {
-    const sqLower = searchQuery.trim().toLowerCase();
-    filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(sqLower));
-  }
+if (searchQuery.trim() !== '') {
+  const original = searchQuery.trim();
+  const fixedLayout = fixKeyboardLayout(original);
+  const translit = transliterate(original);
+
+  const fuse = new Fuse(filteredProducts, {
+    keys: ['name', 'brand'],
+    threshold: 0.4,
+    ignoreLocation: true,
+    minMatchCharLength: 2,
+  });
+
+  const combinedResults = new Map();
+
+  // Ищем по всем трём вариантам
+  [original, fixedLayout, translit].forEach(term => {
+    fuse.search(term).forEach(res => combinedResults.set(res.item.id, res.item));
+  });
+
+  filteredProducts = Array.from(combinedResults.values());
+}
+
+
 
   // Вот здесь — фильтр по избранному **после всех остальных фильтров**:
   if (showFavorites) {
@@ -568,35 +734,27 @@ function renderNextBatch() {
 function updateTitles() {
   if (showFavorites) {
     catalogTitle.style.display = 'block';
-    catalogTitle.textContent = 'Обрані';
+    catalogTitle.textContent = i18n[lang].favorites;
     searchResultsTitle.style.display = 'none';
   } else if (searchQuery.trim() !== '') {
     catalogTitle.style.display = 'none';
     searchResultsTitle.style.display = 'block';
-    searchResultsTitle.textContent = `Результати пошуку "${searchQuery}"`;
+    searchResultsTitle.textContent = i18n[lang].searchResults(searchQuery);
   } else {
     catalogTitle.style.display = 'block';
-    catalogTitle.textContent = 'Каталог товарів'; // или как у тебя там обычный заголовок
+    catalogTitle.textContent = i18n[lang].catalog;
     searchResultsTitle.style.display = 'none';
   }
 }
 
 
+
   function updateFilterButtonLabels() {
     const map = {
-      type: {
-        tee: 'Футболки',
-        tank: 'Майки',
-        shorts: 'Шорти',
-      },
-      brand: {}, // Заполним динамически
-      size: {},  // Просто как есть
-      color: {
-        white: 'Білий',
-        black: 'Чорний',
-        yellow: 'Жовтий',
-      },
-    };
+  type: i18n[lang].types,
+  brand: {},
+  size: {}
+};
 
     // Динамически добавить бренды и размеры
     document.querySelectorAll('#filter-brand-group input').forEach(input => {
@@ -613,6 +771,18 @@ function updateTitles() {
       color: 'filter-group-color',
       price: 'filter-group-price',
     };
+
+    // Переводим названия фильтров (например: "Ціна", "Бренд"...)
+Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
+  const btn = document.querySelector(`.filters-wrap-button[data-filter-group-id="${groupId}"]`);
+  if (!btn) return;
+
+  const label = btn.querySelector('.filters-wrap-button-title');
+  if (label && i18n[lang].filters[filterKey]) {
+    label.textContent = i18n[lang].filters[filterKey];
+  }
+});
+
 
     Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
       const btn = document.querySelector(`.filters-wrap-button[data-filter-group-id="${groupId}"]`);

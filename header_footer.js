@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     header.innerHTML = `
         <div class="content">
             <nav class="noto-sans-header">
-                <a href="" class="underline-animated">Про нас</a>
+                <a href="/us.html" class="underline-animated">Про нас</a>
                 <a href="" class="underline-animated">Написати нам</a>
                 <div class="dropdown">
                     <span class="dropdown-title">Бренди</span>
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
                 <div class="dropdown">
-                    <span class="dropdown-title">Бренди</span>
+                    <span class="dropdown-title">Категорія</span>
                     <div class="dropdown-menu">
                         <a href="/catalog/?type=tee" class="dd noto-sans-dd">Футболки</a>
                         <a href="/catalog/?type=tank" class="dd noto-sans-dd">Майки</a>
@@ -91,20 +91,20 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="info">
                 <h4 class="noto-sans-dd-title">МЕНЮ</h4>
-                <a href="" class="noto-sans-dd">Головна</a>
-                <a href="" class="noto-sans-dd">Каталог</a>
-                <a href="" class="noto-sans-dd">Про нас</a>
+                <a href="/" class="noto-sans-dd">Головна</a>
+                <a href="/catalog/" class="noto-sans-dd">Каталог</a>
+                <a href="/us.html" class="noto-sans-dd">Про нас</a>
             </div>
             <div class="info">
                 <h4 class="noto-sans-dd-title">СЕРВІС</h4>
-                <a href="" class="noto-sans-dd">Про наш продукт</a>
-                <a href="" class="noto-sans-dd">Оплата</a>
-                <a href="" class="noto-sans-dd">Доставка</a>
-                <a href="" class="noto-sans-dd">Реферальна система та знижки</a>
+                <a href="/us.html#us-product" class="noto-sans-dd">Про наш продукт</a>
+                <a href="/us.html#us-payment" class="noto-sans-dd">Оплата</a>
+                <a href="/us.html#us-delivery" class="noto-sans-dd">Доставка</a>
+                <a href="/us.html#us-referal" class="noto-sans-dd">Реферальна система та знижки</a>
             </div>
             <div class="info">
                 <h4 class="noto-sans-dd-title">КОНТАКТИ</h4>
-                <a href="" class="noto-sans-dd">Telegram</a>
+                <a href="https://t.me/kirito_ls" class="noto-sans-dd">Telegram</a>
                 <a href="" class="noto-sans-dd">Instagram</a>
             </div>
             <div class="info">
@@ -130,6 +130,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('global-search-input');
     const labelBtn = document.querySelector('.labelforsearch')
     const overlay = document.querySelector('.overlay');
+
+    let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll > lastScroll && currentScroll > 100) {
+    header.classList.add('hide');
+  } else {
+    header.classList.remove('hide');
+  }
+
+  lastScroll = currentScroll;
+});
 
     function openSearch() {
         document.querySelector('header').classList.add('search');
