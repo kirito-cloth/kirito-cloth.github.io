@@ -1,3 +1,6 @@
+import { disableScroll, enableScroll } from '/openMenu.js';
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.createElement('header');
     header.innerHTML = `
@@ -147,11 +150,13 @@ window.addEventListener('scroll', () => {
 });
 
     function openSearch() {
+        disableScroll();
         document.querySelector('header').classList.add('search');
         overlay.classList.add('active')
     }
 
     function closeSearch() {
+        enableScroll();
         document.querySelector('header').classList.remove('search');
         overlay.classList.remove('active')
     }

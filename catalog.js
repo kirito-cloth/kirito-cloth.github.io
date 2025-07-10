@@ -1,6 +1,7 @@
 import { createProductCard } from '/productCard.js';
 import { revealOnScroll } from '/scrollReveal.js';
 import { getFavorites, setFavorites, toggleFavorite } from '/favorites.js';
+import { disableScroll, enableScroll } from '/openMenu.js';
 
 const path = window.location.pathname;
 let lang = 'ua'; // язык по умолчанию
@@ -291,50 +292,19 @@ applyPriceBtn.textContent = i18n[lang].filters.apply;
     });
   });
 
-  function getScrollbarWidth() {
-  const scrollDiv = document.createElement("div");
-  scrollDiv.style.visibility = "hidden";
-  scrollDiv.style.overflow = "scroll";
-  scrollDiv.style.position = "absolute";
-  scrollDiv.style.top = "-9999px";
-  scrollDiv.style.width = "100px";
-  document.body.appendChild(scrollDiv);
-
-  const innerDiv = document.createElement("div");
-  innerDiv.style.width = "100%";
-  scrollDiv.appendChild(innerDiv);
-
-  const scrollbarWidth = scrollDiv.offsetWidth - innerDiv.offsetWidth;
-
-  scrollDiv.remove();
-  return scrollbarWidth;
-}
 
 function openFilters() {
-  document.querySelector('.filters').classList.add('active');
+  document.querySelector('#filters').classList.add('active');
   document.querySelector('.overlay').classList.add('active');
-  document.querySelector('header').classList.add('filters-opened');
   document.body.classList.add('no-scroll');
 
-  const scrollbarWidth = getScrollbarWidth();
-  if (scrollbarWidth > 0) {
-    document.body.style.paddingRight = `${scrollbarWidth}px`;
-    document.querySelector('header').style.paddingRight = `${scrollbarWidth}px`;
-  }
+  disableScroll();
 }
 
 function closeFilters() {
-  document.querySelector('.filters').classList.remove('active');
+  document.querySelector('#filters').classList.remove('active');
   document.querySelector('.overlay').classList.remove('active');
-  document.querySelector('header').classList.remove('filters-opened');
-  document.body.classList.remove('no-scroll');
-
-  document.body.style.paddingRight = '';
-  document.querySelector('header').style.paddingRight = '';
-
-  document.querySelectorAll('.filter-group.active').forEach(group => {
-    group.classList.remove('active');
-  });
+  enableScroll();
 }
 
 
@@ -577,7 +547,7 @@ function renderNextBatch() {
   renderedCount += nextBatch.length;
   loading = false;
 
-  revealOnScroll('.cards-container', '.card'); // <--- ДОБАВИЛИ ЭТО
+  revealOnScroll(); // <--- ДОБАВИЛИ ЭТО
 
   if (initialRenderDone && window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
     renderNextBatch();
@@ -868,7 +838,7 @@ Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
 }, {
   threshold: 0.1 // Можно регулировать, когда считать карточку "видимой"
 });
-revealOnScroll('.cards-container', '.card');
+revealOnScroll();
 
 updateFiltersHeaderVisibility();
 

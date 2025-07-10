@@ -15,12 +15,15 @@
 
 <body>
   <main>
+    <div class="mobile-nav filters">
+
+    </div>
     <section class="catalog">
-      <h2 class="noto-sans-h2" id="catalog-title">Каталог</h2>
-      <h2 class="noto-sans-h2" id="search-results-title" style="display: none;">Результати пошуку </h2>
+      <h2 class="noto-sans-h2" id="catalog-title"></h2>
+      <h2 class="noto-sans-h2" id="search-results-title" style="display: none;"></h2>
 
 
-      <div class="filters">
+      <div id="filters" class="mobile-menu">
         <div class="filters-wrap-title">
           <div>
             <p class="noto-sans-dd-title">Фільтри</p>
@@ -256,7 +259,7 @@
   </main>
   
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
-  <script src="/header_footer.js"></script>
+  <script type="module" src="/header_footer.js"></script>
   <script type="module" src="/catalog.js"></script>
 </body>
 
