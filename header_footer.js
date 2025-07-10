@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     header.innerHTML = `
         <div class="content">
             <nav class="noto-sans-header">
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <a href="/us.html" class="underline-animated">Про нас</a>
                 <a href="" class="underline-animated">Написати нам</a>
                 <div class="dropdown">
@@ -24,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
                 <div class="dropdown">
-                    <span class="dropdown-title">Категорія</span>
+                    <span class="dropdown-title">Категорії</span>
                     <div class="dropdown-menu">
                         <a href="/catalog/?type=tee" class="dd noto-sans-dd">Футболки</a>
                         <a href="/catalog/?type=tank" class="dd noto-sans-dd">Майки</a>
@@ -124,6 +129,279 @@ document.addEventListener('DOMContentLoaded', () => {
     overlayElem.classList.add('overlay');
     document.body.prepend(overlayElem);
 
+    const main = document.querySelector('main');
+    if (!main) return;
+
+    const menuHTML = `
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="menu-wrap-title">
+        <div>
+          <p class="noto-sans-dd-title">Меню</p>
+        </div>
+        <button id="close-menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="4" y1="4" x2="20" y2="20" stroke="black" stroke-width="2" stroke-linecap="round" />
+            <line x1="20" y1="4" x2="4" y2="20" stroke="black" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <div class="menu-wrap">
+        <div class="menu-btns-wrap">
+          <button class="menu-wrap-button" data-filter-group-id="menu-about-us">
+            <div>
+              <p class="noto-sans-item-details-content">Про нас</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </button>
+          <a href="https://t.me/kirito_ls" class="menu-wrap-button" data-filter-group-id="menu-group-brand">
+            <div>
+              <p class="noto-sans-item-details-content">Написати нам</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <button class="menu-wrap-button" data-filter-group-id="menu-brands">
+            <div>
+              <p class="noto-sans-item-details-content">Бренди</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </button>
+          <button class="menu-wrap-button" data-filter-group-id="menu-categories">
+            <div>
+              <p class="noto-sans-item-details-content">Категорії</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </button>
+          <a href="https://kirito-sneakers.com" class="menu-wrap-button" data-filter-group-id="menu-group-price">
+            <div>
+              <p class="noto-sans-item-details-content">Кросівки</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <button class="menu-wrap-button" data-filter-group-id="menu-language">
+            <div>
+              <p class="noto-sans-item-details-content">Мова</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="filter-group" id="menu-about-us">
+        <div class="menu-wrap-title">
+          <div>
+            <p class="noto-sans-dd-title">Про нас</p>
+          </div>
+          <button class="close-filter-group">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="4" y1="4" x2="20" y2="20" stroke="black" stroke-width="2" stroke-linecap="round" />
+              <line x1="20" y1="4" x2="4" y2="20" stroke="black" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+        <div class="menu-wrap">
+          <a href="/us.html#us-product" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Про наш продукт</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/us.html#us-payment" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Оплата</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/us.html#us-delivery" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Доставка</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/us.html#us-referal" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Реферальна система та знижки</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+        </div>
+      </div>
+
+      <div class="filter-group" id="menu-brands">
+        <div class="menu-wrap-title">
+          <div>
+            <p class="noto-sans-dd-title">Бренди</p>
+          </div>
+          <button class="close-filter-group">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="4" y1="4" x2="20" y2="20" stroke="black" stroke-width="2" stroke-linecap="round" />
+              <line x1="20" y1="4" x2="4" y2="20" stroke="black" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+        <div class="menu-wrap">
+          <a href="/catalog/?brand=Balenciaga" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Balenciaga</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?brand=Vetements" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Vetements</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?brand=Rick+Owens" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Rick Owens</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?brand=Acne+Studios" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Acne Studios</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?brand=Maison+Margiela" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Maison Margiela</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?brand=Enfants+Riches+Deprimes" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Enfants Riches Deprimes</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?brand=Project+GR" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Project GR</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?brand=Number+Nine" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Number Nine</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?brand=Mastermind" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Mastermind</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?brand=Undercover" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Undercover</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+        </div>
+      </div>
+
+      <div class="filter-group" id="menu-categories">
+        <div class="menu-wrap-title">
+          <div>
+            <p class="noto-sans-dd-title">Категорії</p>
+          </div>
+          <button class="close-filter-group">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="4" y1="4" x2="20" y2="20" stroke="black" stroke-width="2" stroke-linecap="round" />
+              <line x1="20" y1="4" x2="4" y2="20" stroke="black" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+        <div class="menu-wrap">
+          <a href="/catalog/?type=tee" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Футболки</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?type=tank" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Майки</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?type=shorts" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Шорти</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+        </div>
+      </div>
+
+      <div class="filter-group" id="menu-language">
+        <div class="menu-wrap-title">
+          <div>
+            <p class="noto-sans-dd-title">Мова</p>
+          </div>
+          <button class="close-filter-group">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="4" y1="4" x2="20" y2="20" stroke="black" stroke-width="2" stroke-linecap="round" />
+              <line x1="20" y1="4" x2="4" y2="20" stroke="black" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+        <div class="menu-wrap">
+          <a href="/catalog/?type=tee" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Українська</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?type=tank" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Російська</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+          <a href="/catalog/?type=shorts" class="menu-wrap-button">
+            <div>
+              <p class="noto-sans-item-details-content">Англійська</p>
+              <span class="outfit-item-size menu-wrap-button-choice"></span>
+            </div>
+            <img src="/img/arrow.svg" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  `;
+
+    main.insertAdjacentHTML('afterbegin', menuHTML);
+
 
 
     document.body.prepend(header)
@@ -133,21 +411,55 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('global-search-input');
     const labelBtn = document.querySelector('.labelforsearch')
     const overlay = document.querySelector('.overlay');
+    const hamburger = document.querySelector('#hamburger');
+    const closeMenuBtn = document.querySelector('#close-menu');
+
+    document.querySelectorAll('.menu-wrap-button').forEach(button => {
+    button.addEventListener('click', () => {
+      // Получаем id из data-атрибута кнопки
+      const targetId = button.getAttribute('data-filter-group-id');
+      if (!targetId) return;
+
+      // Находим элемент с этим id
+      const targetElement = document.getElementById(targetId);
+      if (!targetElement) return;
+      targetElement.classList.add('active');
+
+    });
+  });
+
+    document.querySelectorAll('.close-filter-group').forEach(button => {
+    button.addEventListener('click', () => {
+      const filterGroup = button.closest('.filter-group');
+      if (filterGroup) filterGroup.classList.remove('active');
+
+    });
+  });
+
+    function closeMenu() {
+        document.querySelector('#mobile-menu').classList.remove('active');
+        document.querySelector('.overlay').classList.remove('active');
+        enableScroll();
+    }
+
+    closeMenuBtn.addEventListener('click', () => {
+        closeMenu();
+    })
 
     let lastScroll = 0;
 
-window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', () => {
 
-  const currentScroll = window.pageYOffset;
+        const currentScroll = window.pageYOffset;
 
-  if (currentScroll > lastScroll && currentScroll > 100) {
-    header.classList.add('hide');
-  } else {
-    header.classList.remove('hide');
-  }
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            header.classList.add('hide');
+        } else {
+            header.classList.remove('hide');
+        }
 
-  lastScroll = currentScroll;
-});
+        lastScroll = currentScroll;
+    });
 
     function openSearch() {
         disableScroll();
@@ -167,6 +479,7 @@ window.addEventListener('scroll', () => {
 
     overlay.addEventListener('click', () => {
         closeSearch();
+        closeMobileMenu();
     });
     if (!form || !input) return;
 
@@ -203,6 +516,20 @@ window.addEventListener('scroll', () => {
         }
     });
 
+    hamburger.addEventListener('click', () => {
+        openMobileMenu();
+    })
 
+    function openMobileMenu() {
+        disableScroll();
+        document.querySelector('#mobile-menu').classList.add('active');
+        overlay.classList.add('active')
+    }
+
+    function closeMobileMenu() {
+        enableScroll();
+        document.querySelector('#mobile-menu').classList.remove('active');
+        overlay.classList.remove('active')
+    }
 
 })

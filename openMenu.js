@@ -4,7 +4,7 @@ export function getScrollbarWidth() {
 
 export function disableScroll() {
   let scrollbarWidth = getScrollbarWidth();
-  
+
   if (scrollbarWidth === 0) {
     // Подставим типичную ширину
     scrollbarWidth = 15.1;
@@ -17,8 +17,8 @@ export function disableScroll() {
   requestAnimationFrame(() => {
     document.body.classList.add('no-scroll');
   });
-  
-    document.querySelector('header').classList.add('filters-opened');
+
+  document.querySelector('header').classList.add('filters-opened');
 }
 
 
@@ -30,6 +30,6 @@ export function enableScroll() {
   if (header) {
     header.style.marginRight = '';
   }
-  
-    document.querySelector('header').classList.remove('filters-opened');
+
+  document.querySelector('header').classList.remove('filters-opened');
 }

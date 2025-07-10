@@ -261,29 +261,6 @@ applyPriceBtn.textContent = i18n[lang].filters.apply;
     return wrapper;
   }
 
-
-  document.querySelectorAll('.filters-wrap-button').forEach(button => {
-    button.addEventListener('click', () => {
-      // Получаем id из data-атрибута кнопки
-      const targetId = button.getAttribute('data-filter-group-id');
-      if (!targetId) return;
-
-      // Находим элемент с этим id
-      const targetElement = document.getElementById(targetId);
-      if (!targetElement) return;
-      targetElement.classList.add('active');
-
-    });
-  });
-
-  document.querySelectorAll('.close-filter-group').forEach(button => {
-    button.addEventListener('click', () => {
-      const filterGroup = button.closest('.filter-group');
-      if (filterGroup) filterGroup.classList.remove('active');
-
-    });
-  });
-
   // Обработчик для кнопок применить внутри фильтров
   document.querySelectorAll('.apply-filter-btn').forEach(button => {
     button.addEventListener('click', () => {
@@ -753,10 +730,10 @@ function updateTitles() {
 
     // Переводим названия фильтров (например: "Ціна", "Бренд"...)
 Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
-  const btn = document.querySelector(`.filters-wrap-button[data-filter-group-id="${groupId}"]`);
+  const btn = document.querySelector(`.menu-wrap-button[data-filter-group-id="${groupId}"]`);
   if (!btn) return;
 
-  const label = btn.querySelector('.filters-wrap-button-title');
+  const label = btn.querySelector('.menu-wrap-button-title');
   if (label && i18n[lang].filters[filterKey]) {
     label.textContent = i18n[lang].filters[filterKey];
   }
@@ -764,10 +741,10 @@ Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
 
 
     Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
-      const btn = document.querySelector(`.filters-wrap-button[data-filter-group-id="${groupId}"]`);
+      const btn = document.querySelector(`.menu-wrap-button[data-filter-group-id="${groupId}"]`);
       if (!btn) return;
 
-      const span = btn.querySelector('.filters-wrap-button-choice');
+      const span = btn.querySelector('.menu-wrap-button-choice');
       let values = selectedFilters[filterKey];
 
       if (!Array.isArray(values)) {

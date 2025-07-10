@@ -15,16 +15,13 @@
 
 <body>
   <main>
-    <div class="mobile-nav filters">
-
-    </div>
     <section class="catalog">
       <h2 class="noto-sans-h2" id="catalog-title"></h2>
       <h2 class="noto-sans-h2" id="search-results-title" style="display: none;"></h2>
 
 
       <div id="filters" class="mobile-menu">
-        <div class="filters-wrap-title">
+        <div class="menu-wrap-title">
           <div>
             <p class="noto-sans-dd-title">Фільтри</p>
           </div>
@@ -36,41 +33,41 @@
           </button>
         </div>
 
-        <div class="filters-wrap">
-          <div class="filters-btns-wrap">
+        <div class="menu-wrap">
+          <div class="menu-btns-wrap">
             <!-- Тип товара: чекбоксы -->
-            <button class="filters-wrap-button" data-filter-group-id="filter-group-category">
+            <button class="menu-wrap-button" data-filter-group-id="filter-group-category">
               <div>
                 <p class="noto-sans-item-details-content">Категорія</p>
-                <span class="outfit-item-size filters-wrap-button-choice"></span>
+                <span class="outfit-item-size menu-wrap-button-choice"></span>
               </div>
               <img src="/img/arrow.svg" alt="">
             </button>
-            <button class="filters-wrap-button" data-filter-group-id="filter-group-brand">
+            <button class="menu-wrap-button" data-filter-group-id="filter-group-brand">
               <div>
                 <p class="noto-sans-item-details-content">Бренд</p>
-                <span class="outfit-item-size filters-wrap-button-choice"></span>
+                <span class="outfit-item-size menu-wrap-button-choice"></span>
               </div>
               <img src="/img/arrow.svg" alt="">
             </button>
-            <button class="filters-wrap-button" data-filter-group-id="filter-group-size">
+            <button class="menu-wrap-button" data-filter-group-id="filter-group-size">
               <div>
                 <p class="noto-sans-item-details-content">Розмір</p>
-                <span class="outfit-item-size filters-wrap-button-choice"></span>
+                <span class="outfit-item-size menu-wrap-button-choice"></span>
               </div>
               <img src="/img/arrow.svg" alt="">
             </button>
-            <button class="filters-wrap-button" data-filter-group-id="filter-group-color">
+            <button class="menu-wrap-button" data-filter-group-id="filter-group-color">
               <div>
                 <p class="noto-sans-item-details-content">Колір</p>
-                <span class="outfit-item-size filters-wrap-button-choice"></span>
+                <span class="outfit-item-size menu-wrap-button-choice"></span>
               </div>
               <img src="/img/arrow.svg" alt="">
             </button>
-            <button class="filters-wrap-button" data-filter-group-id="filter-group-price">
+            <button class="menu-wrap-button" data-filter-group-id="filter-group-price">
               <div>
                 <p class="noto-sans-item-details-content">Ціна</p>
-                <span class="outfit-item-size filters-wrap-button-choice"></span>
+                <span class="outfit-item-size menu-wrap-button-choice"></span>
               </div>
               <img src="/img/arrow.svg" alt="">
             </button>
@@ -80,15 +77,10 @@
             <button id="apply-all-btn" class="noto-sans-dd animated">Застосувати все фильтры</button>
           </div>
         </div>
-
-
-
-        <!-- Категория -->
-
       </div>
 
       <div class="filter-group" id="filter-group-category">
-        <div class="filters-wrap-title">
+        <div class="menu-wrap-title">
           <div>
             <p class="noto-sans-dd-title">Категорія</p>
           </div>
@@ -121,7 +113,7 @@
 
       <!-- Бренд -->
       <div class="filter-group" id="filter-group-brand">
-        <div class="filters-wrap-title">
+        <div class="menu-wrap-title">
           <div>
             <p class="noto-sans-dd-title">Бренд</p>
           </div>
@@ -140,7 +132,7 @@
 
       <!-- Размер -->
       <div class="filter-group" id="filter-group-size">
-        <div class="filters-wrap-title">
+        <div class="menu-wrap-title">
           <div>
             <p class="noto-sans-dd-title">Розмір</p>
           </div>
@@ -159,7 +151,7 @@
 
       <!-- Цвет -->
       <div class="filter-group" id="filter-group-color">
-        <div class="filters-wrap-title">
+        <div class="menu-wrap-title">
           <div>
             <p class="noto-sans-dd-title">Колір</p>
           </div>
@@ -197,7 +189,7 @@
 
       <!-- Цена (не требует чекбоксов, оставляем как есть) -->
       <div class="filter-group" id="filter-group-price">
-        <div class="filters-wrap-title">
+        <div class="menu-wrap-title">
           <div>
             <p class="noto-sans-dd-title">Ціна</p>
           </div>
@@ -254,10 +246,10 @@
         <p class="noto-sans-dd-title">Немає товарів за вибраними фільтрами.</p>
         <a class="noto-sans-dd" href="/catalog/">Скинути всі</a>
       </div>
-      
+
     </section>
   </main>
-  
+
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
   <script type="module" src="/header_footer.js"></script>
   <script type="module" src="/catalog.js"></script>
