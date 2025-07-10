@@ -387,6 +387,12 @@ function updateFiltersHeaderVisibility() {
     return Array.from(group.querySelectorAll('input:checked')).map(cb => cb.value);
   }
 
+  function getSelectedLabels(group) {
+  return Array.from(group.querySelectorAll('input:checked'))
+    .map(cb => cb.parentElement.textContent.trim());
+}
+
+
   function initSelectedFilters() {
     selectedFilters.brand = getSelectedValues(brandGroup);
     selectedFilters.size = getSelectedValues(sizeGroup);
@@ -655,8 +661,10 @@ function renderNextBatch() {
     selectedFilters.type = getSelectedValues(typeGroup);
   });
   applyColorBtn.addEventListener('click', () => {
-    selectedFilters.color = getSelectedValues(colorGroup);
-  });
+  selectedFilters.color = getSelectedValues(colorGroup); // ← оставить так, если нужен `value`
+  updateFilterButtonLabels();
+});
+
   applyPriceBtn.addEventListener('click', () => {
     selectedFilters.priceMin = currentMin;
     selectedFilters.priceMax = currentMax;
@@ -753,7 +761,8 @@ function updateTitles() {
     const map = {
   type: i18n[lang].types,
   brand: {},
-  size: {}
+  size: {},
+  color: i18n[lang].colors
 };
 
     // Динамически добавить бренды и размеры
