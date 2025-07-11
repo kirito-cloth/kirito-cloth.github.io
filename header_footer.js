@@ -2,8 +2,8 @@ import { disableScroll, enableScroll } from '/openMenu.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const header = document.createElement('header');
-    header.innerHTML = `
+  const header = document.createElement('header');
+  header.innerHTML = `
         <div class="content">
           <button class="hamburger" id="hamburger">
                 <span></span>
@@ -80,8 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     `;
 
-    const footer = document.createElement('footer');
-    footer.innerHTML = `
+  const footer = document.createElement('footer');
+  footer.innerHTML = `
         <div class="footer-wrapper">
             <div class="icons">
                 <img src="/img/kirito_logo.png" alt="Kirito Brand Logo" class="kirito-logo">
@@ -127,14 +127,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     `;
 
-    const overlayElem = document.createElement('div');
-    overlayElem.classList.add('overlay');
-    document.body.prepend(overlayElem);
+  const overlayElem = document.createElement('div');
+  overlayElem.classList.add('overlay');
+  document.body.prepend(overlayElem);
 
-    const main = document.querySelector('main');
-    if (!main) return;
+  const main = document.querySelector('main');
+  if (!main) return;
 
-    const menuHTML = `
+  const menuHTML = `
     <div class="mobile-menu" id="mobile-menu">
       <div class="menu-wrap-title">
         <div>
@@ -402,21 +402,44 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   `;
 
-    main.insertAdjacentHTML('afterbegin', menuHTML);
+  main.insertAdjacentHTML('afterbegin', menuHTML);
 
 
 
-    document.body.prepend(header)
-    document.body.append(footer)
+  document.body.prepend(header)
+  document.body.append(footer)
 
-    const form = document.getElementById('global-search-form');
-    const input = document.getElementById('global-search-input');
-    const labelBtn = document.querySelector('.labelforsearch')
-    const overlay = document.querySelector('.overlay');
-    const hamburger = document.querySelector('#hamburger');
-    const closeMenuBtn = document.querySelector('#close-menu');
+  const form = document.getElementById('global-search-form');
+  const input = document.getElementById('global-search-input');
+  const labelBtn = document.querySelector('.labelforsearch')
+  const overlay = document.querySelector('.overlay');
+  const hamburger = document.querySelector('#hamburger');
+  const closeMenuBtn = document.querySelector('#close-menu');
 
-    document.querySelectorAll('.menu-wrap-button').forEach(button => {
+  function setupFooterAccordion() {
+    const infos = document.querySelectorAll('.footer-info-wrap .info');
+
+    infos.forEach(info => {
+      info.addEventListener('click', () => {
+        if (window.innerWidth < 1000) {
+          info.classList.toggle('open');
+        }
+      });
+    });
+  }
+
+  setupFooterAccordion();
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1000) {
+      document.querySelectorAll('.footer-info-wrap .info').forEach(info => {
+        info.classList.remove('open');
+      });
+    }
+  });
+
+
+  document.querySelectorAll('.menu-wrap-button').forEach(button => {
     button.addEventListener('click', () => {
       // Получаем id из data-атрибута кнопки
       const targetId = button.getAttribute('data-filter-group-id');
@@ -430,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-    document.querySelectorAll('.close-filter-group').forEach(button => {
+  document.querySelectorAll('.close-filter-group').forEach(button => {
     button.addEventListener('click', () => {
       const filterGroup = button.closest('.filter-group');
       if (filterGroup) filterGroup.classList.remove('active');
@@ -438,100 +461,100 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-    function closeMenu() {
-        document.querySelector('#mobile-menu').classList.remove('active');
-        document.querySelector('.overlay').classList.remove('active');
-        enableScroll();
+  function closeMenu() {
+    document.querySelector('#mobile-menu').classList.remove('active');
+    document.querySelector('.overlay').classList.remove('active');
+    enableScroll();
+  }
+
+  closeMenuBtn.addEventListener('click', () => {
+    closeMenu();
+  })
+
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      header.classList.add('hide');
+    } else {
+      header.classList.remove('hide');
     }
 
-    closeMenuBtn.addEventListener('click', () => {
-        closeMenu();
-    })
+    lastScroll = currentScroll;
+  });
 
-    let lastScroll = 0;
+  function openSearch() {
+    disableScroll();
+    document.querySelector('header').classList.add('search');
+    overlay.classList.add('active')
+  }
 
-    window.addEventListener('scroll', () => {
+  function closeSearch() {
+    enableScroll();
+    document.querySelector('header').classList.remove('search');
+    overlay.classList.remove('active')
+  }
 
-        const currentScroll = window.pageYOffset;
+  labelBtn.addEventListener('click', () => {
+    openSearch();
+  })
 
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            header.classList.add('hide');
-        } else {
-            header.classList.remove('hide');
-        }
+  overlay.addEventListener('click', () => {
+    closeSearch();
+    closeMobileMenu();
+  });
+  if (!form || !input) return;
 
-        lastScroll = currentScroll;
-    });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const query = input.value.trim();
 
-    function openSearch() {
-        disableScroll();
-        document.querySelector('header').classList.add('search');
-        overlay.classList.add('active')
+    if (!query) {
+      const currentUrl = window.location.pathname;
+      const params = new URLSearchParams(window.location.search);
+
+      params.delete('search');
+
+      if (currentUrl.includes('/catalog')) {
+        window.location.href = `${currentUrl}?${params.toString()}`;
+      } else {
+        window.location.href = `/catalog`;
+      }
+      return;
     }
 
-    function closeSearch() {
-        enableScroll();
-        document.querySelector('header').classList.remove('search');
-        overlay.classList.remove('active')
+
+    const currentUrl = window.location.pathname;
+    const params = new URLSearchParams(window.location.search);
+
+    params.set('search', query);
+
+    if (currentUrl.includes('/catalog')) {
+      // Уже на странице каталога — просто обновим URL с сохранением других фильтров
+      window.location.href = `${currentUrl}?${params.toString()}`;
+    } else {
+      // На другой странице — переход на каталог
+      window.location.href = `/catalog/?search=${encodeURIComponent(query)}`;
     }
+  });
 
-    labelBtn.addEventListener('click', () => {
-        openSearch();
-    })
+  hamburger.addEventListener('click', () => {
+    openMobileMenu();
+  })
 
-    overlay.addEventListener('click', () => {
-        closeSearch();
-        closeMobileMenu();
-    });
-    if (!form || !input) return;
+  function openMobileMenu() {
+    disableScroll();
+    document.querySelector('#mobile-menu').classList.add('active');
+    overlay.classList.add('active')
+  }
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const query = input.value.trim();
-
-        if (!query) {
-            const currentUrl = window.location.pathname;
-            const params = new URLSearchParams(window.location.search);
-
-            params.delete('search');
-
-            if (currentUrl.includes('/catalog')) {
-                window.location.href = `${currentUrl}?${params.toString()}`;
-            } else {
-                window.location.href = `/catalog`;
-            }
-            return;
-        }
-
-
-        const currentUrl = window.location.pathname;
-        const params = new URLSearchParams(window.location.search);
-
-        params.set('search', query);
-
-        if (currentUrl.includes('/catalog')) {
-            // Уже на странице каталога — просто обновим URL с сохранением других фильтров
-            window.location.href = `${currentUrl}?${params.toString()}`;
-        } else {
-            // На другой странице — переход на каталог
-            window.location.href = `/catalog/?search=${encodeURIComponent(query)}`;
-        }
-    });
-
-    hamburger.addEventListener('click', () => {
-        openMobileMenu();
-    })
-
-    function openMobileMenu() {
-        disableScroll();
-        document.querySelector('#mobile-menu').classList.add('active');
-        overlay.classList.add('active')
-    }
-
-    function closeMobileMenu() {
-        enableScroll();
-        document.querySelector('#mobile-menu').classList.remove('active');
-        overlay.classList.remove('active')
-    }
+  function closeMobileMenu() {
+    enableScroll();
+    document.querySelector('#mobile-menu').classList.remove('active');
+    overlay.classList.remove('active')
+  }
 
 })
