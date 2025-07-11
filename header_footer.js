@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.createElement('header');
     header.innerHTML = `
         <div class="content">
-            <nav class="noto-sans-header">
-                <button class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+          <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="noto-sans-header">                
                 <a href="/us.html" class="underline-animated">Про нас</a>
                 <a href="" class="underline-animated">Написати нам</a>
                 <div class="dropdown">
