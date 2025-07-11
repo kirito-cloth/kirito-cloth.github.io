@@ -97,29 +97,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     </a>
                 </div>
             </div>
-            <div class="info">
-                <h4 class="noto-sans-dd-title">МЕНЮ</h4>
-                <a href="/" class="noto-sans-dd">Головна</a>
-                <a href="/catalog/" class="noto-sans-dd">Каталог</a>
-                <a href="/us.html" class="noto-sans-dd">Про нас</a>
-            </div>
-            <div class="info">
-                <h4 class="noto-sans-dd-title">СЕРВІС</h4>
-                <a href="/us.html#us-product" class="noto-sans-dd">Про наш продукт</a>
-                <a href="/us.html#us-payment" class="noto-sans-dd">Оплата</a>
-                <a href="/us.html#us-delivery" class="noto-sans-dd">Доставка</a>
-                <a href="/us.html#us-referal" class="noto-sans-dd">Реферальна система та знижки</a>
-            </div>
-            <div class="info">
-                <h4 class="noto-sans-dd-title">КОНТАКТИ</h4>
-                <a href="https://t.me/kirito_ls" class="noto-sans-dd">Telegram</a>
-                <a href="" class="noto-sans-dd">Instagram</a>
-            </div>
-            <div class="info">
-                <h4 class="noto-sans-dd-title">МОВА</h4>
-                <a href="" class="noto-sans-dd">Українська</a>
-                <a href="" class="noto-sans-dd">Російська</a>
-                <a href="" class="noto-sans-dd">Англійська</a>
+            <div class="footer-info-wrap">
+              <div class="info">
+                  <h4 class="noto-sans-dd-title">МЕНЮ</h4>
+                  <a href="/" class="noto-sans-dd">Головна</a>
+                  <a href="/catalog/" class="noto-sans-dd">Каталог</a>
+                  <a href="/us.html" class="noto-sans-dd">Про нас</a>
+              </div>
+              <div class="info">
+                  <h4 class="noto-sans-dd-title">СЕРВІС</h4>
+                  <a href="/us.html#us-product" class="noto-sans-dd">Про наш продукт</a>
+                  <a href="/us.html#us-payment" class="noto-sans-dd">Оплата</a>
+                  <a href="/us.html#us-delivery" class="noto-sans-dd">Доставка</a>
+                  <a href="/us.html#us-referal" class="noto-sans-dd">Реферальна система та знижки</a>
+              </div>
+              <div class="info">
+                  <h4 class="noto-sans-dd-title">КОНТАКТИ</h4>
+                  <a href="https://t.me/kirito_ls" class="noto-sans-dd">Telegram</a>
+                  <a href="" class="noto-sans-dd">Instagram</a>
+              </div>
+              <div class="info">
+                  <h4 class="noto-sans-dd-title">МОВА</h4>
+                  <a href="" class="noto-sans-dd">Українська</a>
+                  <a href="" class="noto-sans-dd">Російська</a>
+                  <a href="" class="noto-sans-dd">Англійська</a>
+              </div>
             </div>
         </div>
 
