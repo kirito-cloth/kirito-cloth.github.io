@@ -9728,5 +9728,864 @@
                 ],
                 "same": [353, 354],
                 "ready": false
+        },
+        {
+                "id": 414,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Columbine T-Shirt in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "length": 72,
+                                "chest": 112,
+                                "shoulder": 48
+                        },
+                        "m": {
+                                "length": 74,
+                                "chest": 116,
+                                "shoulder": 50
+                        },
+                        "l": {
+                                "length": 76,
+                                "chest": 120,
+                                "shoulder": 52
+                        },
+                        "xl": {
+                                "length": 78,
+                                "chest": 124,
+                                "shoulder": 54
+                        }
+                },
+                "price": 1800,
+                "images": [
+                        "https://i.ibb.co/V0nLmrZz/columbine-1.webp",
+                        "https://i.ibb.co/Y47yfNc3/columbine-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 415,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Sleep Sound T-Shirt in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "length": 74,
+                                "chest": 112,
+                                "shoulder": 49
+                        },
+                        "m": {
+                                "length": 76,
+                                "chest": 116,
+                                "shoulder": 51
+                        },
+                        "l": {
+                                "length": 78,
+                                "chest": 120,
+                                "shoulder": 53
+                        },
+                        "xl": {
+                                "length": 80,
+                                "chest": 124,
+                                "shoulder": 55
+                        }
+                },
+                "price": 1800,
+                "images": [
+                        "https://i.ibb.co/60PrZPSb/sleepsound-1.webp",
+                        "https://i.ibb.co/3Y9kcwWy/sleepsound-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 429,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Regression IV T-Shirt in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 60,
+                                "chest": 130,
+                                "shoulder": 60
+                        },
+                        "m": {
+                                "length": 62,
+                                "chest": 134,
+                                "shoulder": 62
+                        },
+                        "l": {
+                                "length": 64,
+                                "chest": 138,
+                                "shoulder": 64
+                        },
+                        "xl": {
+                                "length": 68,
+                                "chest": 142,
+                                "shoulder": 66
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/YFXwGmgn/regression-Iv-1.webp",
+                        "https://i.ibb.co/jPr3s83n/regression-Iv-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 413,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Xerox Boy T-Shirt in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 73,
+                                "chest": 114,
+                                "shoulder": 50
+                        },
+                        "m": {
+                                "length": 75,
+                                "chest": 118,
+                                "shoulder": 52
+                        },
+                        "l": {
+                                "length": 77,
+                                "chest": 122,
+                                "shoulder": 54
+                        },
+                        "xl": {
+                                "length": 79,
+                                "chest": 126,
+                                "shoulder": 56
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/VW2KgBNX/xeroxboy-1.webp",
+                        "https://i.ibb.co/svhx54d1/xeroxboy-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 402,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Baby T-Shirt in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "length": 62,
+                                "chest": 110,
+                                "shoulder": 27
+                        },
+                        "m": {
+                                "length": 64,
+                                "chest": 114,
+                                "shoulder": 28
+                        },
+                        "l": {
+                                "length": 66,
+                                "chest": 118,
+                                "shoulder": 29
+                        },
+                        "xl": {
+                                "length": 68,
+                                "chest": 122,
+                                "shoulder": 30
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/gL3zgHJn/baby-1.webp",
+                        "https://i.ibb.co/V031qPtv/baby-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 404,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes You Are Nothing T-Shirt in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "length": 68,
+                                "chest": 106,
+                                "shoulder": 49
+                        },
+                        "m": {
+                                "length": 70,
+                                "chest": 110,
+                                "shoulder": 51
+                        },
+                        "l": {
+                                "length": 72,
+                                "chest": 114,
+                                "shoulder": 53
+                        },
+                        "xl": {
+                                "length": 74,
+                                "chest": 118,
+                                "shoulder": 55
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/nN4DNbs6/youarenothing-1.webp",
+                        "https://i.ibb.co/0jtdym4P/youarenothing-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 410,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Cut The Bad Life T-Shirt in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 77,
+                                "chest": 114,
+                                "shoulder": 52
+                        },
+                        "m": {
+                                "length": 79,
+                                "chest": 118,
+                                "shoulder": 54
+                        },
+                        "l": {
+                                "length": 81,
+                                "chest": 122,
+                                "shoulder": 56
+                        },
+                        "xl": {
+                                "length": 83,
+                                "chest": 126,
+                                "shoulder": 58
+                        }
+                },
+                "price": 1600,
+                "images": [
+                        "https://i.ibb.co/bRgSVRGr/cablepole-1.webp",
+                        "https://i.ibb.co/6JYMmsCS/cablepole-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 411,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Comprendre T-Shirt in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "length": 76,
+                                "chest": 114,
+                                "shoulder": 53
+                        },
+                        "m": {
+                                "length": 78,
+                                "chest": 118,
+                                "shoulder": 55
+                        },
+                        "l": {
+                                "length": 80,
+                                "chest": 122,
+                                "shoulder": 57
+                        },
+                        "xl": {
+                                "length": 82,
+                                "chest": 126,
+                                "shoulder": 59
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/8gMnS3dV/comprende-1.webp",
+                        "https://i.ibb.co/k6mK2nMD/comprende-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 431,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Whisper T-Shirt in Red",
+                "color": "red",
+                "sizes": {
+                        "s": {
+                                "length": 64,
+                                "chest": 112,
+                                "shoulder": 28
+                        },
+                        "m": {
+                                "length": 68,
+                                "chest": 116,
+                                "shoulder": 29
+                        },
+                        "l": {
+                                "length": 70,
+                                "chest": 120,
+                                "shoulder": 30
+                        },
+                        "xl": {
+                                "length": 72,
+                                "chest": 124,
+                                "shoulder": 31
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/bM7vwQrj/wisper-1.webp",
+                        "https://i.ibb.co/k6mQvDNt/wisper-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 422,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Ritual Prayer T-Shirt in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 69,
+                                "chest": 114,
+                                "shoulder": 50
+                        },
+                        "m": {
+                                "length": 71,
+                                "chest": 118,
+                                "shoulder": 52
+                        },
+                        "l": {
+                                "length": 73,
+                                "chest": 122,
+                                "shoulder": 54
+                        },
+                        "xl": {
+                                "length": 75,
+                                "chest": 126,
+                                "shoulder": 56
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/d4sYkT8d/ritualprayer-1.webp",
+                        "https://i.ibb.co/3YrH8mL8/ritualprayer-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 416,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Pocket Logo T-Shirt in Black",
+                "color": "black",
+                "sizes": {
+                        "m": {
+                                "length": 74,
+                                "chest": 116,
+                                "shoulder": 50
+                        },
+                        "l": {
+                                "length": 76,
+                                "chest": 120,
+                                "shoulder": 52
+                        },
+                        "xl": {
+                                "length": 78,
+                                "chest": 124,
+                                "shoulder": 54
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/chyS4V02/erddpocket-1.webp",
+                        "https://i.ibb.co/RGhqt7W0/erddpocket-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 427,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Pocket Logo T-Shirt in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "length": 68,
+                                "chest": 112,
+                                "shoulder": 52
+                        },
+                        "m": {
+                                "length": 70,
+                                "chest": 116,
+                                "shoulder": 54
+                        },
+                        "l": {
+                                "length": 72,
+                                "chest": 120,
+                                "shoulder": 56
+                        },
+                        "xl": {
+                                "length": 74,
+                                "chest": 124,
+                                "shoulder": 58
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/KpbdqY5h/erdpocket-1.webp",
+                        "https://i.ibb.co/39c8pcJG/erdpocket-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 417,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Logo T-Shirt in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "length": 77,
+                                "chest": 114,
+                                "shoulder": 51
+                        },
+                        "m": {
+                                "length": 79,
+                                "chest": 118,
+                                "shoulder": 53
+                        },
+                        "l": {
+                                "length": 81,
+                                "chest": 122,
+                                "shoulder": 55
+                        },
+                        "xl": {
+                                "length": 83,
+                                "chest": 126,
+                                "shoulder": 57
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/C32RmfQw/erdblack-1.webp",
+                        "https://i.ibb.co/bgbYLSsL/erdblack-2.webp"
+                ],
+                "same": [420, 418, 419],
+                "ready": false
+        },
+        {
+                "id": 420,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Logo T-Shirt in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 77,
+                                "chest": 114,
+                                "shoulder": 51
+                        },
+                        "m": {
+                                "length": 79,
+                                "chest": 118,
+                                "shoulder": 53
+                        },
+                        "l": {
+                                "length": 81,
+                                "chest": 122,
+                                "shoulder": 55
+                        },
+                        "xl": {
+                                "length": 83,
+                                "chest": 126,
+                                "shoulder": 57
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/KjJ0b2C7/erdwhite-1.webp",
+                        "https://i.ibb.co/WWfN1Y1c/erdwhite-2.webp"
+                ],
+                "same": [417, 418, 419],
+                "ready": false
+        },
+        {
+                "id": 418,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Logo T-Shirt in Grey",
+                "color": "grey",
+                "sizes": {
+                        "s": {
+                                "length": 77,
+                                "chest": 114,
+                                "shoulder": 51
+                        },
+                        "m": {
+                                "length": 79,
+                                "chest": 118,
+                                "shoulder": 53
+                        },
+                        "l": {
+                                "length": 81,
+                                "chest": 122,
+                                "shoulder": 55
+                        },
+                        "xl": {
+                                "length": 83,
+                                "chest": 126,
+                                "shoulder": 57
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/JwCTNbmB/erdgrey-1.webp",
+                        "https://i.ibb.co/r2XYmhyL/erdgrey-2.webp"
+                ],
+                "same": [417, 420, 419],
+                "ready": false
+        },
+        {
+                "id": 419,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Logo T-Shirt in Blue",
+                "color": "blue",
+                "sizes": {
+                        "s": {
+                                "length": 77,
+                                "chest": 114,
+                                "shoulder": 51
+                        },
+                        "m": {
+                                "length": 79,
+                                "chest": 118,
+                                "shoulder": 53
+                        },
+                        "l": {
+                                "length": 81,
+                                "chest": 122,
+                                "shoulder": 55
+                        },
+                        "xl": {
+                                "length": 83,
+                                "chest": 126,
+                                "shoulder": 57
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/xK0dM8bK/erdblue-1.webp",
+                        "https://i.ibb.co/SX1cDZ0F/erdblue-2.webp"
+                ],
+                "same": [417, 420, 418],
+                "ready": false
+        },
+        {
+                "id": 442,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Madonna T-Shirt in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 71,
+                                "chest": 112,
+                                "shoulder": 48
+                        },
+                        "m": {
+                                "length": 73,
+                                "chest": 116,
+                                "shoulder": 50
+                        },
+                        "l": {
+                                "length": 75,
+                                "chest": 120,
+                                "shoulder": 52
+                        },
+                        "xl": {
+                                "length": 77,
+                                "chest": 124,
+                                "shoulder": 54
+                        }
+                },
+                "price": 1600,
+                "images": [
+                        "https://i.ibb.co/s8BkST0/madonna-1.webp",
+                        "https://i.ibb.co/1J6jy59H/madonna-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 457,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Lust T-Shirt in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 71,
+                                "chest": 112,
+                                "shoulder": 48
+                        },
+                        "m": {
+                                "length": 73,
+                                "chest": 116,
+                                "shoulder": 50
+                        },
+                        "l": {
+                                "length": 75,
+                                "chest": 120,
+                                "shoulder": 52
+                        },
+                        "xl": {
+                                "length": 77,
+                                "chest": 124,
+                                "shoulder": 54
+                        }
+                },
+                "price": 1600,
+                "images": [
+                        "https://i.ibb.co/bjLXwgcN/micke-1.webp",
+                        "https://i.ibb.co/8LPNYggp/micke-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 458,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Nietzsche T-Shirt in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "length": 71,
+                                "chest": 112,
+                                "shoulder": 48
+                        },
+                        "m": {
+                                "length": 73,
+                                "chest": 116,
+                                "shoulder": 50
+                        },
+                        "l": {
+                                "length": 75,
+                                "chest": 120,
+                                "shoulder": 52
+                        },
+                        "xl": {
+                                "length": 77,
+                                "chest": 124,
+                                "shoulder": 54
+                        }
+                },
+                "price": 1800,
+                "images": [
+                        "https://i.ibb.co/9mRGkZM0/nieztsche-1.webp",
+                        "https://i.ibb.co/BVT5DFgr/nieztsche-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 446,
+                "type": "tank",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Endless Blockades Tank Top in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 71,
+                                "chest": 112,
+                                "shoulder": 47
+                        },
+                        "m": {
+                                "length": 73,
+                                "chest": 116,
+                                "shoulder": 49
+                        },
+                        "l": {
+                                "length": 75,
+                                "chest": 120,
+                                "shoulder": 51
+                        },
+                        "xl": {
+                                "length": 77,
+                                "chest": 124,
+                                "shoulder": 53
+                        }
+                },
+                "price": 1600,
+                "images": [
+                        "https://i.ibb.co/5Xm5whyk/maika-1.webp",
+                        "https://i.ibb.co/kg8HDVwT/maika-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 456,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Christiane F T-Shirt in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "length": 71,
+                                "chest": 114,
+                                "shoulder": 48
+                        },
+                        "m": {
+                                "length": 73,
+                                "chest": 118,
+                                "shoulder": 50
+                        },
+                        "l": {
+                                "length": 75,
+                                "chest": 122,
+                                "shoulder": 52
+                        },
+                        "xl": {
+                                "length": 77,
+                                "chest": 126,
+                                "shoulder": 54
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/FLhysdkR/jew-1.webp",
+                        "https://i.ibb.co/8gVHwC7Y/jew-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 438,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Exposed Christina T-Shirt in Black",
+                "color": "black",
+                "sizes": {
+                        "s": {
+                                "length": 73,
+                                "chest": 110,
+                                "shoulder": 48
+                        },
+                        "m": {
+                                "length": 75,
+                                "chest": 114,
+                                "shoulder": 50
+                        },
+                        "l": {
+                                "length": 77,
+                                "chest": 118,
+                                "shoulder": 52
+                        },
+                        "xl": {
+                                "length": 79,
+                                "chest": 122,
+                                "shoulder": 54
+                        }
+                },
+                "price": 1600,
+                "images": [
+                        "https://i.ibb.co/svsGLhdf/christina-1.webp",
+                        "https://i.ibb.co/j07YMNJ/christina-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 435,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes Fat Kid T-Shirt in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 70,
+                                "chest": 112,
+                                "shoulder": 52
+                        },
+                        "m": {
+                                "length": 72,
+                                "chest": 116,
+                                "shoulder": 54
+                        },
+                        "l": {
+                                "length": 74,
+                                "chest": 120,
+                                "shoulder": 56
+                        },
+                        "xl": {
+                                "length": 76,
+                                "chest": 124,
+                                "shoulder": 58
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/5gK82GmM/parents-1.webp",
+                        "https://i.ibb.co/FqhbGQf6/parents-2.webp"
+                ],
+                "same": [],
+                "ready": false
+        },
+        {
+                "id": 437,
+                "type": "tee",
+                "brand": "Enfants Riches Deprimes",
+                "name": "Enfants Riches Deprimes November T-Shirt in White",
+                "color": "white",
+                "sizes": {
+                        "s": {
+                                "length": 67,
+                                "chest": 116,
+                                "shoulder": 50
+                        },
+                        "m": {
+                                "length": 69,
+                                "chest": 120,
+                                "shoulder": 52
+                        },
+                        "l": {
+                                "length": 71,
+                                "chest": 124,
+                                "shoulder": 54
+                        },
+                        "xl": {
+                                "length": 73,
+                                "chest": 128,
+                                "shoulder": 56
+                        }
+                },
+                "price": 1700,
+                "images": [
+                        "https://i.ibb.co/zhZt44FV/manshaving-1.webp",
+                        "https://i.ibb.co/Y4YvjWTZ/manshaving-2.webp"
+                ],
+                "same": [],
+                "ready": false
         }
 ]
