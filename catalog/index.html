@@ -202,9 +202,16 @@
           </button>
         </div>
         <div class="price-filter">
-          <div class="outfit-item-title">
-            <span id="price-min-value">0 ₴</span> — <span id="price-max-value">10000 ₴</span>
-          </div>
+            <div class="price-filter-wrap">
+              <div>
+                <span id="price-min-value" class="noto-sans-dd-title"></span>
+                <p class="noto-sans-item-details-content">грн</p>
+              </div>
+              <div>
+                <span id="price-max-value" class="noto-sans-dd-title"></span>
+                <p class="noto-sans-item-details-content">грн</p>
+              </div>
+            </div>
           <div class="double-range-slider filter-group-choice-wrap" id="doubleRangeSlider">
             <div id="sliderRange" class="slider-range"></div>
             <div id="thumbMin" class="slider-thumb"></div>
@@ -228,7 +235,7 @@
             <p>За популярністю</p>
             <img src="/img/arrow.svg" alt="">
           </div>
-          <div class="options-list" style="display: none;">
+          <div class="options-list">
             <div class="option" data-value="">За популярністю</div>
             <div class="option" data-value="asc">Ціна за зростанням</div>
             <div class="option" data-value="desc">Ціна за спаданням</div>

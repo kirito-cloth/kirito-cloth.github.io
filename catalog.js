@@ -26,6 +26,7 @@ const i18n = {
       price: 'Ціна',
       apply: 'Застосувати',
       reset: 'Скинути фільтри',
+      show: 'Показати',
     },
 
     colors: {
@@ -56,6 +57,7 @@ const i18n = {
       price: 'Цена',
       apply: 'Применить',
       reset: 'Сбросить фильтры',
+      show: 'Показать',
     },
 
     colors: {
@@ -86,6 +88,7 @@ const i18n = {
       price: 'Price',
       apply: 'Apply',
       reset: 'Reset filters',
+      show: 'Show',
     },
 
     colors: {
@@ -142,41 +145,41 @@ window.addEventListener('DOMContentLoaded', () => {
   const filtersHeader = document.querySelector('div.filters-header');
 
   function fixKeyboardLayout(input) {
-  const layoutMap = {
-    'й':'q', 'ц':'w', 'у':'e', 'к':'r', 'е':'t', 'н':'y', 'г':'u', 'ш':'i', 'щ':'o', 'з':'p',
-    'х':'[', 'ъ':']', 'ф':'a', 'ы':'s', 'в':'d', 'а':'f', 'п':'g', 'р':'h', 'о':'j', 'л':'k', 'д':'l',
-    'ж':';', 'э':'\'', 'я':'z', 'ч':'x', 'с':'c', 'м':'v', 'и':'b', 'т':'n', 'ь':'m', 'б':',', 'ю':'.',
-    'ё':'`'
-  };
+    const layoutMap = {
+      'й': 'q', 'ц': 'w', 'у': 'e', 'к': 'r', 'е': 't', 'н': 'y', 'г': 'u', 'ш': 'i', 'щ': 'o', 'з': 'p',
+      'х': '[', 'ъ': ']', 'ф': 'a', 'ы': 's', 'в': 'd', 'а': 'f', 'п': 'g', 'р': 'h', 'о': 'j', 'л': 'k', 'д': 'l',
+      'ж': ';', 'э': '\'', 'я': 'z', 'ч': 'x', 'с': 'c', 'м': 'v', 'и': 'b', 'т': 'n', 'ь': 'm', 'б': ',', 'ю': '.',
+      'ё': '`'
+    };
 
-  return input.split('').map(char => {
-    const lowerChar = char.toLowerCase();
-    const mapped = layoutMap[lowerChar] || char;
-    return char === lowerChar ? mapped : mapped.toUpperCase();
-  }).join('');
-}
-function transliterate(text) {
-  const map = {
-    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
-    'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
-    'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
-    'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch',
-    'ы': 'y', 'э': 'e', 'ю': 'yu', 'я': 'ya', 'ь': '', 'ъ': '',
+    return input.split('').map(char => {
+      const lowerChar = char.toLowerCase();
+      const mapped = layoutMap[lowerChar] || char;
+      return char === lowerChar ? mapped : mapped.toUpperCase();
+    }).join('');
+  }
+  function transliterate(text) {
+    const map = {
+      'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+      'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+      'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+      'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch',
+      'ы': 'y', 'э': 'e', 'ю': 'yu', 'я': 'ya', 'ь': '', 'ъ': '',
 
-    // Украинские
-    'ґ': 'g', 'є': 'ye', 'і': 'i', 'ї': 'yi',
+      // Украинские
+      'ґ': 'g', 'є': 'ye', 'і': 'i', 'ї': 'yi',
 
-    // Заглавные буквы
-    'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E', 'Ё': 'Yo',
-    'Ж': 'Zh', 'З': 'Z', 'И': 'I', 'Й': 'Y', 'К': 'K', 'Л': 'L', 'М': 'M',
-    'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U',
-    'Ф': 'F', 'Х': 'Kh', 'Ц': 'Ts', 'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Shch',
-    'Ы': 'Y', 'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya', 'Ь': '', 'Ъ': '',
-    'Ґ': 'G', 'Є': 'Ye', 'І': 'I', 'Ї': 'Yi'
-  };
+      // Заглавные буквы
+      'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E', 'Ё': 'Yo',
+      'Ж': 'Zh', 'З': 'Z', 'И': 'I', 'Й': 'Y', 'К': 'K', 'Л': 'L', 'М': 'M',
+      'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U',
+      'Ф': 'F', 'Х': 'Kh', 'Ц': 'Ts', 'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Shch',
+      'Ы': 'Y', 'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya', 'Ь': '', 'Ъ': '',
+      'Ґ': 'G', 'Є': 'Ye', 'І': 'I', 'Ї': 'Yi'
+    };
 
-  return text.split('').map(char => map[char] || char).join('');
-}
+    return text.split('').map(char => map[char] || char).join('');
+  }
 
 
   let priceMinGlobal = 0;
@@ -207,12 +210,11 @@ function transliterate(text) {
   let searchQuery = '';
 
   resetBtn.textContent = i18n[lang].filters.reset;
-applyAllBtn.textContent = i18n[lang].filters.apply;
-applyBrandBtn.textContent = i18n[lang].filters.apply;
-applySizeBtn.textContent = i18n[lang].filters.apply;
-applyTypeBtn.textContent = i18n[lang].filters.apply;
-applyColorBtn.textContent = i18n[lang].filters.apply;
-applyPriceBtn.textContent = i18n[lang].filters.apply;
+  applyBrandBtn.textContent = i18n[lang].filters.apply;
+  applySizeBtn.textContent = i18n[lang].filters.apply;
+  applyTypeBtn.textContent = i18n[lang].filters.apply;
+  applyColorBtn.textContent = i18n[lang].filters.apply;
+  applyPriceBtn.textContent = i18n[lang].filters.apply;
 
   fetch('/products.json')
     .then(res => res.json())
@@ -223,7 +225,7 @@ applyPriceBtn.textContent = i18n[lang].filters.apply;
       priceMaxGlobal = Math.max(...prices);
       currentMin = priceMinGlobal;
       currentMax = priceMaxGlobal;
-      console.log(`total: ${products.length}`) 
+      console.log(`total: ${products.length}`)
 
       selectedFilters.priceMin = priceMinGlobal;
       selectedFilters.priceMax = priceMaxGlobal;
@@ -231,11 +233,12 @@ applyPriceBtn.textContent = i18n[lang].filters.apply;
       populateFilters(products);
       applyFiltersFromURL();
       updateSliderUI();
-      window.addEventListener('scroll', onScrollLoadMore);
+      window.addEventListener('scroll', checkScrollNearBottom);
+
     })
     .catch(() => {
-  document.body.innerHTML = `<h2>${i18n[lang].loadingError}</h2>`;
-});
+      document.body.innerHTML = `<h2>${i18n[lang].loadingError}</h2>`;
+    });
 
   function createCheckbox(name, value) {
     const wrapper = document.createDocumentFragment(); // обёртка для label + br
@@ -266,49 +269,51 @@ applyPriceBtn.textContent = i18n[lang].filters.apply;
     button.addEventListener('click', () => {
       const filterGroup = button.closest('.filter-group');
       if (filterGroup) filterGroup.classList.remove('active');
+      applyAllBtn.textContent = `${i18n[lang].filters.show} (${countFilteredProductsPreview()})`;
     });
   });
 
 
-function openFilters() {
-  document.querySelector('#filters').classList.add('active');
-  document.querySelector('.overlay').classList.add('active');
-  document.body.classList.add('no-scroll');
+  function openFilters() {
+    document.querySelector('#filters').classList.add('active');
+    document.querySelector('.overlay').classList.add('active');
+    document.body.classList.add('no-scroll');
 
-  disableScroll();
-}
+    disableScroll();
+  }
 
-function closeFilters() {
-  document.querySelector('#filters').classList.remove('active');
-  document.querySelector('.overlay').classList.remove('active');
-  enableScroll();
-}
+  function closeFilters() {
+    document.querySelector('#filters').classList.remove('active');
+    document.querySelector('.overlay').classList.remove('active');
+    enableScroll();
+  }
 
 
   document.querySelector('#close-filters').addEventListener('click', (e) => {
     closeFilters();
   })
   document.querySelector('.overlay').addEventListener('click', () => {
-  closeFilters();
+    closeFilters();
 
-  // Закрыть все открытые .filter-group
-  document.querySelectorAll('.filter-group.active').forEach(group => {
-    group.classList.remove('active');
+    // Закрыть все открытые .filter-group
+    document.querySelectorAll('.filter-group.active').forEach(group => {
+      group.classList.remove('active');
+    });
   });
-});
 
   document.querySelector('#filters-button').addEventListener('click', (e) => {
     openFilters();
+    applyAllBtn.textContent = `${i18n[lang].filters.show} (${countFilteredProductsPreview()})`;
   })
 
-function updateFiltersHeaderVisibility() {
-  if (!filtersHeader) return;
-  if (showFavorites) {
-    filtersHeader.classList.add('hidden');
-  } else {
-    filtersHeader.classList.remove('hidden');
+  function updateFiltersHeaderVisibility() {
+    if (!filtersHeader) return;
+    if (showFavorites) {
+      filtersHeader.classList.add('hidden');
+    } else {
+      filtersHeader.classList.remove('hidden');
+    }
   }
-}
 
 
 
@@ -335,9 +340,9 @@ function updateFiltersHeaderVisibility() {
   }
 
   function getSelectedLabels(group) {
-  return Array.from(group.querySelectorAll('input:checked'))
-    .map(cb => cb.parentElement.textContent.trim());
-}
+    return Array.from(group.querySelectorAll('input:checked'))
+      .map(cb => cb.parentElement.textContent.trim());
+  }
 
 
   function initSelectedFilters() {
@@ -366,16 +371,16 @@ function updateFiltersHeaderVisibility() {
     updateFiltersHeaderVisibility();
 
     if (sort === 'asc' || sort === 'desc') {
-  sortSelected.setAttribute('data-value', sort);
+      sortSelected.setAttribute('data-value', sort);
 
-  const optionEl = [...sortOptions].find(opt => opt.getAttribute('data-value') === sort);
-  if (optionEl) {
-    const textEl = sortSelected.querySelector('p');
-    if (textEl) textEl.textContent = optionEl.textContent;
-  }
-} else {
-  sortSelected.setAttribute('data-value', '');
-}
+      const optionEl = [...sortOptions].find(opt => opt.getAttribute('data-value') === sort);
+      if (optionEl) {
+        const textEl = sortSelected.querySelector('p');
+        if (textEl) textEl.textContent = optionEl.textContent;
+      }
+    } else {
+      sortSelected.setAttribute('data-value', '');
+    }
 
     brandGroup.querySelectorAll('input').forEach(i => (i.checked = selectedBrands.includes(i.value)));
     sizeGroup.querySelectorAll('input').forEach(i => (i.checked = selectedSizes.includes(i.value)));
@@ -408,7 +413,7 @@ function updateFiltersHeaderVisibility() {
     updateTitles();
     updateFilterButtonLabels();
 
-    
+
   }
 
 
@@ -431,107 +436,199 @@ function updateFiltersHeaderVisibility() {
     history.replaceState(null, '', `${window.location.pathname}?${params}`);
   }
 
+  function checkScrollNearBottom() {
+    if (loading) return;
+
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+
+    const footerHeight = footer.offsetHeight;
+    const scrollThreshold = 200; // можно регулировать
+
+    const scrolledToBottom =
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - footerHeight - scrollThreshold;
+
+    if (scrolledToBottom) {
+      renderNextBatch();
+    }
+  }
+
+  function countFilteredProductsPreview() {
+    const previewFilters = {
+      brand: getSelectedValues(brandGroup),
+      size: getSelectedValues(sizeGroup),
+      type: getSelectedValues(typeGroup),
+      color: getSelectedValues(colorGroup),
+      priceMin: currentMin,
+      priceMax: currentMax,
+    };
+
+    const noFiltersSelected =
+      previewFilters.brand.length === 0 &&
+      previewFilters.size.length === 0 &&
+      previewFilters.type.length === 0 &&
+      previewFilters.color.length === 0 &&
+      previewFilters.priceMin === priceMinGlobal &&
+      previewFilters.priceMax === priceMaxGlobal;
+
+    if (noFiltersSelected) {
+      return allProducts.length;
+    }
+
+    let result = [...allProducts];
+
+    if (previewFilters.brand.length)
+      result = result.filter(p => previewFilters.brand.includes(p.brand));
+
+    if (previewFilters.size.length)
+      result = result.filter(p =>
+        Object.keys(p.sizes).some(s => previewFilters.size.includes(s.toUpperCase()))
+      );
+
+    if (previewFilters.type.length)
+      result = result.filter(p => previewFilters.type.includes(p.type));
+
+    if (previewFilters.color.length)
+      result = result.filter(p =>
+        p.color && previewFilters.color.includes(p.color.toLowerCase())
+      );
+
+    result = result.filter(p =>
+      p.price >= previewFilters.priceMin && p.price <= previewFilters.priceMax
+    );
+
+    return result.length;
+  }
+
+
 
   function filterAndRender(reset = false) {
-  if (reset) {
-    renderedCount = 0;
-    container.innerHTML = '';
-    initialRenderDone = false;
-  }
+    if (reset) {
+      renderedCount = 0;
+      container.innerHTML = '';
+      initialRenderDone = false;
+    }
 
-  filteredProducts = [...allProducts];
+    filteredProducts = [...allProducts];
 
-  // Фильтруем по бренду
-  if (selectedFilters.brand.length)
-    filteredProducts = filteredProducts.filter(p => selectedFilters.brand.includes(p.brand));
+    // Фильтруем по бренду
+    if (selectedFilters.brand.length)
+      filteredProducts = filteredProducts.filter(p => selectedFilters.brand.includes(p.brand));
 
-  // Фильтруем по размерам
-  if (selectedFilters.size.length)
-    filteredProducts = filteredProducts.filter(p => Object.keys(p.sizes).some(s => selectedFilters.size.includes(s.toUpperCase())));
+    // Фильтруем по размерам
+    if (selectedFilters.size.length)
+      filteredProducts = filteredProducts.filter(p => Object.keys(p.sizes).some(s => selectedFilters.size.includes(s.toUpperCase())));
 
-  // По типу
-  if (selectedFilters.type.length)
-    filteredProducts = filteredProducts.filter(p => selectedFilters.type.includes(p.type));
+    // По типу
+    if (selectedFilters.type.length)
+      filteredProducts = filteredProducts.filter(p => selectedFilters.type.includes(p.type));
 
-  // По цвету
-  if (selectedFilters.color.length)
-    filteredProducts = filteredProducts.filter(p => p.color && selectedFilters.color.includes(p.color.toLowerCase()));
+    // По цвету
+    if (selectedFilters.color.length)
+      filteredProducts = filteredProducts.filter(p => p.color && selectedFilters.color.includes(p.color.toLowerCase()));
 
-  // По цене
-  if (priceFilterActive) {
-    filteredProducts = filteredProducts.filter(p =>
-      p.price >= selectedFilters.priceMin && p.price <= selectedFilters.priceMax
-    );
-  }
+    // По цене
+    if (priceFilterActive) {
+      filteredProducts = filteredProducts.filter(p =>
+        p.price >= selectedFilters.priceMin && p.price <= selectedFilters.priceMax
+      );
+    }
 
-  // По поиску
-if (searchQuery.trim() !== '') {
-  const original = searchQuery.trim();
-  const fixedLayout = fixKeyboardLayout(original);
-  const translit = transliterate(original);
+    // По поиску
+    if (searchQuery.trim() !== '') {
+      const original = searchQuery.trim();
+      const fixedLayout = fixKeyboardLayout(original);
+      const translit = transliterate(original);
 
-  const fuse = new Fuse(filteredProducts, {
-    keys: ['name', 'brand'],
-    threshold: 0.4,
-    ignoreLocation: true,
-    minMatchCharLength: 2,
-  });
+      const fuse = new Fuse(filteredProducts, {
+        keys: ['name', 'brand'],
+        threshold: 0.4,
+        ignoreLocation: true,
+        minMatchCharLength: 2,
+      });
 
-  const combinedResults = new Map();
+      const combinedResults = new Map();
 
-  // Ищем по всем трём вариантам
-  [original, fixedLayout, translit].forEach(term => {
-    fuse.search(term).forEach(res => combinedResults.set(res.item.id, res.item));
-  });
+      // Ищем по всем трём вариантам
+      [original, fixedLayout, translit].forEach(term => {
+        fuse.search(term).forEach(res => combinedResults.set(res.item.id, res.item));
+      });
 
-  filteredProducts = Array.from(combinedResults.values());
-}
+      filteredProducts = Array.from(combinedResults.values());
+    }
 
 
 
-  // Вот здесь — фильтр по избранному **после всех остальных фильтров**:
-  if (showFavorites) {
-    const favorites = getFavorites();
-    filteredProducts = filteredProducts.filter(p => favorites.includes(p.id));
-  }
+    // Вот здесь — фильтр по избранному **после всех остальных фильтров**:
+    if (showFavorites) {
+      const favorites = getFavorites();
+      filteredProducts = filteredProducts.filter(p => favorites.includes(p.id));
+    }
 
-  updateFiltersHeaderVisibility();
+    updateFiltersHeaderVisibility();
 
-  // Сортировка
-  const sortValue = sortSelected.getAttribute('data-value');
-  if (sortValue === 'asc') filteredProducts.sort((a, b) => a.price - b.price);
-  if (sortValue === 'desc') filteredProducts.sort((a, b) => b.price - a.price);
+    // Сортировка
+    const sortValue = sortSelected.getAttribute('data-value');
+    if (sortValue === 'asc') filteredProducts.sort((a, b) => a.price - b.price);
+    if (sortValue === 'desc') filteredProducts.sort((a, b) => b.price - a.price);
 
-  renderNextBatch();
-
-  updateTitles();
-}
-
-function renderNextBatch() {
-  if (loading) return;
-  loading = true;
-
-  const nextBatch = filteredProducts.slice(renderedCount, renderedCount + PRODUCTS_PER_BATCH);
-
-  if (nextBatch.length === 0) {
-    if (renderedCount === 0) noProductsMsg.style.display = 'flex';
-    loading = false;
-    return;
-  }
-
-  noProductsMsg.style.display = 'none';
-  nextBatch.forEach(p => container.appendChild(createProductCard(p)));
-  renderedCount += nextBatch.length;
-  loading = false;
-
-  revealOnScroll(); // <--- ДОБАВИЛИ ЭТО
-
-  if (initialRenderDone && window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
     renderNextBatch();
-  } else {
-    initialRenderDone = true;
+
+    updateTitles();
   }
-}
+
+  let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  if (!isTouchDevice) {
+    // Десктоп — hover
+    sortSelect.addEventListener('mouseenter', () => {
+      sortSelect.classList.add('hovering');
+    });
+
+    sortSelect.addEventListener('mouseleave', () => {
+      sortSelect.classList.remove('hovering');
+    });
+  } else {
+    // Мобилка — toggle по клику
+    sortSelected.addEventListener('click', (e) => {
+      e.stopPropagation(); // чтобы не закрывало само себя
+      sortSelect.classList.toggle('hovering');
+    });
+
+    // Закрытие при клике вне блока
+    document.addEventListener('click', (e) => {
+      if (!sortSelect.contains(e.target)) {
+        sortSelect.classList.remove('hovering');
+      }
+    });
+  }
+
+
+  function renderNextBatch() {
+    if (loading) return;
+    loading = true;
+
+    const nextBatch = filteredProducts.slice(renderedCount, renderedCount + PRODUCTS_PER_BATCH);
+
+    if (nextBatch.length === 0) {
+      if (renderedCount === 0) noProductsMsg.style.display = 'flex';
+      loading = false;
+      return;
+    }
+
+    noProductsMsg.style.display = 'none';
+    nextBatch.forEach(p => container.appendChild(createProductCard(p)));
+    renderedCount += nextBatch.length;
+    loading = false;
+
+    revealOnScroll(); // <--- ДОБАВИЛИ ЭТО
+
+    if (initialRenderDone && window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+      renderNextBatch();
+    } else {
+      initialRenderDone = true;
+    }
+  }
 
   function fillPageInitially() {
     let batchesLoaded = 0;
@@ -563,8 +660,8 @@ function renderNextBatch() {
     sliderRange.style.left = `${leftPercent}%`;
     sliderRange.style.right = `${rightPercent}%`;
 
-    priceMinDisplay.textContent = `${Math.round(currentMin)} ₴`;
-    priceMaxDisplay.textContent = `${Math.round(currentMax)} ₴`;
+    priceMinDisplay.textContent = `${Math.round(currentMin)}`;
+    priceMaxDisplay.textContent = `${Math.round(currentMax)}`;
   }
 
   function onPointerDown(e) {
@@ -608,9 +705,9 @@ function renderNextBatch() {
     selectedFilters.type = getSelectedValues(typeGroup);
   });
   applyColorBtn.addEventListener('click', () => {
-  selectedFilters.color = getSelectedValues(colorGroup); // ← оставить так, если нужен `value`
-  updateFilterButtonLabels();
-});
+    selectedFilters.color = getSelectedValues(colorGroup); // ← оставить так, если нужен `value`
+    updateFilterButtonLabels();
+  });
 
   applyPriceBtn.addEventListener('click', () => {
     selectedFilters.priceMin = currentMin;
@@ -626,38 +723,26 @@ function renderNextBatch() {
   });
 
   sortOptions.forEach(option => {
-  option.addEventListener('click', () => {
-    const value = option.getAttribute('data-value');
-    
-    const textEl = sortSelected.querySelector('p');
-    if (textEl) textEl.textContent = option.textContent;
-    
-    sortSelected.setAttribute('data-value', value);
-    sortSelect.querySelector('.options-list').style.display = 'none';
+    option.addEventListener('click', () => {
+      const value = option.getAttribute('data-value');
 
-    updateURL();
-    filterAndRender(true);
-    fillPageInitially();
+      const textEl = sortSelected.querySelector('p');
+      if (textEl) textEl.textContent = option.textContent;
+
+      sortSelected.setAttribute('data-value', value);
+      sortSelect.classList.remove('hovering');
+
+      updateURL();
+      filterAndRender(true);
+      fillPageInitially();
+    });
   });
-});
-
-
-  sortSelected.addEventListener('click', () => {
-    const list = sortSelect.querySelector('.options-list');
-    list.style.display = list.style.display === 'block' ? 'none' : 'block';
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!sortSelect.contains(e.target)) {
-      sortSelect.querySelector('.options-list').style.display = 'none';
-    }
-  });
-
 
   resetBtn.addEventListener('click', () => {
     [brandGroup, sizeGroup, typeGroup, colorGroup].forEach(group => {
       group.querySelectorAll('input').forEach(cb => (cb.checked = false));
     });
+
     sortSelect.value = '';
     currentMin = priceMinGlobal;
     currentMax = priceMaxGlobal;
@@ -669,48 +754,46 @@ function renderNextBatch() {
     selectedFilters.color = [];
     selectedFilters.priceMin = priceMinGlobal;
     selectedFilters.priceMax = priceMaxGlobal;
-    priceFilterActive = false; // <--- ВАЖНО!
+    priceFilterActive = false;
 
     searchQuery = '';
     searchInput.value = '';
 
     updateURL();
     updateFilterButtonLabels();
+
+    closeFilters();           // ← Закрываем .filters
+    filterAndRender(true);    // ← Обновляем карточки
+    fillPageInitially();      // ← Заполняем по батчам
+
+    applyAllBtn.textContent = `${i18n[lang].filters.show} (${countFilteredProductsPreview()})`;
   });
 
-  function onScrollLoadMore() {
-    if (loading) return;
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-      renderNextBatch();
+
+  // Управление заголовками при поиске
+  function updateTitles() {
+    if (showFavorites) {
+      catalogTitle.style.display = 'block';
+      catalogTitle.textContent = i18n[lang].favorites;
+      searchResultsTitle.style.display = 'none';
+    } else if (searchQuery.trim() !== '') {
+      catalogTitle.style.display = 'none';
+      searchResultsTitle.style.display = 'block';
+      searchResultsTitle.textContent = i18n[lang].searchResults(searchQuery);
+    } else {
+      catalogTitle.style.display = 'block';
+      catalogTitle.textContent = i18n[lang].catalog;
+      searchResultsTitle.style.display = 'none';
     }
   }
 
-  // Управление заголовками при поиске
-function updateTitles() {
-  if (showFavorites) {
-    catalogTitle.style.display = 'block';
-    catalogTitle.textContent = i18n[lang].favorites;
-    searchResultsTitle.style.display = 'none';
-  } else if (searchQuery.trim() !== '') {
-    catalogTitle.style.display = 'none';
-    searchResultsTitle.style.display = 'block';
-    searchResultsTitle.textContent = i18n[lang].searchResults(searchQuery);
-  } else {
-    catalogTitle.style.display = 'block';
-    catalogTitle.textContent = i18n[lang].catalog;
-    searchResultsTitle.style.display = 'none';
-  }
-}
-
-
-
   function updateFilterButtonLabels() {
     const map = {
-  type: i18n[lang].types,
-  brand: {},
-  size: {},
-  color: i18n[lang].colors
-};
+      type: i18n[lang].types,
+      brand: {},
+      size: {},
+      color: i18n[lang].colors
+    };
 
     // Динамически добавить бренды и размеры
     document.querySelectorAll('#filter-brand-group input').forEach(input => {
@@ -729,15 +812,15 @@ function updateTitles() {
     };
 
     // Переводим названия фильтров (например: "Ціна", "Бренд"...)
-Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
-  const btn = document.querySelector(`.menu-wrap-button[data-filter-group-id="${groupId}"]`);
-  if (!btn) return;
+    Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
+      const btn = document.querySelector(`.menu-wrap-button[data-filter-group-id="${groupId}"]`);
+      if (!btn) return;
 
-  const label = btn.querySelector('.menu-wrap-button-title');
-  if (label && i18n[lang].filters[filterKey]) {
-    label.textContent = i18n[lang].filters[filterKey];
-  }
-});
+      const label = btn.querySelector('.menu-wrap-button-title');
+      if (label && i18n[lang].filters[filterKey]) {
+        label.textContent = i18n[lang].filters[filterKey];
+      }
+    });
 
 
     Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
@@ -806,18 +889,18 @@ Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
   });
 
   const observer = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      obs.unobserve(entry.target); // Отключаем, чтобы не триггерилось повторно
-    }
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target); // Отключаем, чтобы не триггерилось повторно
+      }
+    });
+  }, {
+    threshold: 0.1 // Можно регулировать, когда считать карточку "видимой"
   });
-}, {
-  threshold: 0.1 // Можно регулировать, когда считать карточку "видимой"
-});
-revealOnScroll();
+  revealOnScroll();
 
-updateFiltersHeaderVisibility();
+  updateFiltersHeaderVisibility();
 
 
 
