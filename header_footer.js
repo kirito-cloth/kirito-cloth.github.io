@@ -84,7 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
   footer.innerHTML = `
         <div class="footer-wrapper">
             <div class="icons">
-                <img src="/img/kirito_logo.png" alt="Kirito Brand Logo" class="kirito-logo">
+                <a href="">
+                  <img src="/img/kirito_logo.png" alt="Kirito Brand Logo" class="kirito-logo">
+                </a>
                 <div class="social-media">
                     <a href="" class="animated">
                         <img src="/img/icons/instagram.svg" alt="">
