@@ -1444,6 +1444,7 @@ footer {
         font-size: 20px;
         margin-bottom: 8px;
         margin-top: 20px;
+        text-align: left;
     }
 
     p {
@@ -1497,6 +1498,9 @@ footer {
         padding: 0px 50px;
     }
 
+    .about-us {
+        padding: 0px 100px;
+    }
 }
 
 @media (max-width: 870px) {
@@ -1537,6 +1541,10 @@ footer {
         .card {
             flex: 0 0 calc(50% - 15px);
         }
+    }
+
+    .about-us {
+        padding: 0px 50px;
     }
 }
 
@@ -1767,5 +1775,9 @@ footer {
             }
         }
 
+    }
+
+    .about-us {
+        padding: 0px 30px;
     }
 }
