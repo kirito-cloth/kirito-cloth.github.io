@@ -1541,6 +1541,17 @@ footer {
 }
 
 @media (max-width: 600px) {
+    header {
+        height: 60px;
+        .content {
+            a.logo {
+                img {
+                    height: 60px;
+                }
+            }
+        }
+    }
+
     :root {
         --outfit-card-title: 15px;
         --outfit-card-sizes: 11px;
@@ -1741,6 +1752,7 @@ footer {
     .menu-wrap {
         .filters-btns {
             gap: 10px;
+
             #reset-filters {
                 padding: 0px;
                 width: 100%;
