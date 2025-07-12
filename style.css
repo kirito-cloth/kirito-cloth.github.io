@@ -1552,6 +1552,10 @@ footer {
         }
     }
 
+    main {
+        padding-top: 60px;
+    }
+
     :root {
         --outfit-card-title: 15px;
         --outfit-card-sizes: 11px;
