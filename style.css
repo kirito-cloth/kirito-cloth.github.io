@@ -1740,6 +1740,7 @@ footer {
 
     .menu-wrap {
         .filters-btns {
+            gap: 10px;
             #reset-filters {
                 padding: 0px;
                 width: 100%;
