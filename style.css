@@ -1311,23 +1311,13 @@ footer {
             }
 
             .social-media {
-                margin-top: 30px;
-                display: flex;
-                gap: 10px;
+                margin: 30px 0px 0px 0px;
 
                 a {
-                    position: relative;
-                    display: flex;
-                    width: 45px;
-                    height: 45px;
                     border: 1px solid white;
-                    border-radius: 100%;
-                    padding: 9px;
-                    opacity: 0.6;
 
                     img {
                         filter: brightness(0) invert(1);
-                        width: 100%;
                     }
 
                     &:hover {
@@ -1336,6 +1326,7 @@ footer {
                 }
 
             }
+
         }
 
         .footer-info-wrap {
@@ -1364,6 +1355,33 @@ footer {
                     }
                 }
             }
+        }
+    }
+
+}
+
+.social-media {
+    margin: 20px auto 20px auto;
+    display: flex;
+    gap: 10px;
+
+    a {
+        position: relative;
+        display: flex;
+        width: 45px;
+        height: 45px;
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 100%;
+        padding: 9px;
+        opacity: 0.6;
+
+        img {
+            filter: none;
+            width: 100%;
+        }
+
+        &:hover {
+            opacity: 1;
         }
     }
 

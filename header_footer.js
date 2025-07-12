@@ -193,6 +193,17 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
         </div>
       </div>
+      <div class="social-media">
+                <a href="" class="animated">
+                    <img src="/img/icons/instagram.svg" alt="">
+                </a>
+                <a href="" class="animated">
+                    <img src="/img/icons/telegram.svg" alt="">
+                </a>
+                <a href="" class="animated">
+                    <img src="/img/icons/tiktok.svg" alt="">
+                </a>
+            </div>
     </div>
 
     <div>
