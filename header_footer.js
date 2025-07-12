@@ -486,15 +486,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScroll = currentScroll;
   });
 
-document.getElementById('search-button').addEventListener('click', () => {
-  disableScroll();
-  document.querySelector('header').classList.add('search');
-  overlay.classList.add('active');
-
-  const input = document.getElementById('global-search-input');
-  input.focus(); // теперь Safari даст фокус
-});
-
 
 
   function closeSearch() {
@@ -503,9 +494,16 @@ document.getElementById('search-button').addEventListener('click', () => {
     overlay.classList.remove('active')
   }
 
-  labelBtn.addEventListener('click', () => {
-    openSearch();
-  })
+  labelBtn.addEventListener('click', (e) => {
+  e.preventDefault(); // если нужно предотвратить дефолтное действие
+  disableScroll();
+  document.querySelector('header').classList.add('search');
+  overlay.classList.add('active');
+
+  const input = document.getElementById('global-search-input');
+  if (input) input.focus();
+});
+
 
   overlay.addEventListener('click', () => {
     closeSearch();
