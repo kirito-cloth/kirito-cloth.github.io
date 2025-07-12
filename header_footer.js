@@ -486,15 +486,19 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScroll = currentScroll;
   });
 
-  function openSearch() {
-    disableScroll();
-    document.querySelector('header').classList.add('search');
-    overlay.classList.add('active')
-    requestAnimationFrame(() => {
-    const input = document.getElementById('global-search-input');
-    if (input) input.focus();
+function openSearch() {
+  disableScroll();
+  document.querySelector('header').classList.add('search');
+  overlay.classList.add('active');
+
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      const input = document.getElementById('global-search-input');
+      if (input) input.focus();
+    }, 0); // минимальная задержка помогает Safari
   });
-  }
+}
+
 
   function closeSearch() {
     enableScroll();
