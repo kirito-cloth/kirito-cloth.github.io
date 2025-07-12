@@ -961,6 +961,7 @@ header.hide {
     transition: 0.4s ease-in-out;
     display: flex;
     flex-direction: column;
+    padding-bottom: 50px;
 }
 
 
@@ -1082,7 +1083,7 @@ header.hide {
     z-index: 100;
     transition: 0.4s ease-in-out;
     overflow-x: hidden;
-    padding-bottom: 20px;
+    padding-bottom: 50px;
 }
 
 .filter-group.active {
