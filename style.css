@@ -1635,7 +1635,9 @@ footer {
                 .info .noto-sans-dd-title {
                     cursor: pointer;
                     position: relative;
-                    margin: 16px 6px;
+                    margin: 19px 6px;
+                    font-size: 15px;
+                    font-weight: 500;
                 }
 
                 .info::after {
