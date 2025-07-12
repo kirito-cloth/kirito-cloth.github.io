@@ -427,17 +427,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.querySelector('#hamburger');
   const closeMenuBtn = document.querySelector('#close-menu');
 
-  function setupFooterAccordion() {
-    const infos = document.querySelectorAll('.footer-info-wrap .info');
+function setupFooterAccordion() {
+  const infos = document.querySelectorAll('.footer-info-wrap .info');
 
-    infos.forEach(info => {
-      info.addEventListener('click', () => {
-        if (window.innerWidth < 1000) {
-          info.classList.toggle('open');
-        }
-      });
+  infos.forEach(info => {
+    info.addEventListener('click', () => {
+      if (window.innerWidth < 1000) {
+        // Если уже открыт другой — закрываем его
+        infos.forEach(other => {
+          if (other !== info) {
+            other.classList.remove('open');
+          }
+        });
+
+        // Переключаем текущий
+        info.classList.toggle('open');
+      }
     });
-  }
+  });
+}
+
 
   setupFooterAccordion();
 
