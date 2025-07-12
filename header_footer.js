@@ -490,6 +490,10 @@ document.addEventListener('DOMContentLoaded', () => {
     disableScroll();
     document.querySelector('header').classList.add('search');
     overlay.classList.add('active')
+    requestAnimationFrame(() => {
+    const input = document.getElementById('global-search-input');
+    if (input) input.focus();
+  });
   }
 
   function closeSearch() {

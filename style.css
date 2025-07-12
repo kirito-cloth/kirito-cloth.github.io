@@ -19,6 +19,7 @@ body {
 body.no-scroll {
     overflow: hidden;
     touch-action: none;
+    padding-right: 15.1px;
     /* Для мобильных */
 }
 
@@ -42,6 +43,7 @@ section {
 
     h2 {
         margin-bottom: 40px;
+        text-align: center;
     }
 }
 
@@ -145,10 +147,7 @@ section {
 .orbitron-h1 {
     font-family: "Orbitron", sans-serif;
     font-optical-sizing: auto;
-    font-style: normal
-}
-
-.orbitron-h1 {
+    font-style: normal;
     font-weight: 600;
     font-size: var(--orbitron-h1);
 }
@@ -478,6 +477,7 @@ header {
                 border: none;
                 text-align: center;
                 border-bottom: 1px solid var(--light-grey);
+                font-size: 16px;
 
                 &:focus {
                     outline: none;
@@ -506,6 +506,10 @@ header.search {
 }
 
 header.filters-opened {
+    .content {
+        margin-right: 15.1px;
+    }
+
     nav {
         opacity: 0;
         pointer-events: none;
@@ -544,7 +548,7 @@ header.hide {
     width: 100%;
     max-width: unset;
     position: relative;
-    height: 600px;
+    height: 500px;
     background-image: url('https://th.hashtaglegend.com/th-storage/uploads/posts/2025/06/09/01JX9G9XAMMBXHY3GKHWHRVC2V.jpeg');
     background-position: center;
     background-position-y: bottom;
@@ -561,7 +565,7 @@ header.hide {
         height: 100%;
         position: absolute;
         background-color: #111;
-        opacity: 0.7;
+        opacity: 0.6;
         z-index: -1;
     }
 
@@ -574,6 +578,7 @@ header.hide {
         p {
             color: white;
             margin-bottom: 5px;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
         }
 
         h1 {
@@ -614,7 +619,6 @@ header.hide {
             justify-content: space-between;
             align-items: center;
             width: 250px;
-            height: 300px;
             text-decoration: none;
             color: black;
 
@@ -624,6 +628,7 @@ header.hide {
                 width: 100%;
                 aspect-ratio: 1 / 1;
                 border-radius: 100%;
+                margin-bottom: 20px;
 
                 img {
                     position: absolute;
@@ -666,7 +671,6 @@ header.hide {
     justify-content: space-between;
     flex-direction: column;
     width: 250px;
-    height: 380px;
     position: relative;
     text-align: left;
     opacity: 0;
@@ -684,6 +688,7 @@ header.hide {
     aspect-ratio: 1 / 1;
     position: relative;
     overflow: hidden;
+    margin-bottom: 30px;
 }
 
 .product-img img {
@@ -759,13 +764,6 @@ header.hide {
 .product-title {
     color: black;
     text-decoration: none;
-}
-
-
-.bestsellers {
-    h2 {
-        margin-bottom: 20px;
-    }
 }
 
 .item {
@@ -956,7 +954,8 @@ header.hide {
     left: 0px;
     z-index: 99;
     background-color: white;
-    width: 400px;
+    width: 80%;
+    max-width: 400px;
     height: 100%;
     overflow-y: auto;
     transform: translateX(-100%);
@@ -1078,7 +1077,8 @@ header.hide {
     transform: translateX(-100%);
     background-color: white;
     position: fixed;
-    width: 400px;
+    width: 80%;
+    max-width: 400px;
     height: 100vh;
     overflow-y: auto;
     z-index: 100;
@@ -1360,8 +1360,8 @@ footer {
     right: 8px;
     cursor: pointer;
     user-select: none;
-    width: 24px;
-    height: 24px;
+    width: 34px;
+    height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1419,6 +1419,28 @@ footer {
     }
 }
 
+@media (hover: none) {
+    .product-img:hover img:first-of-type {
+        opacity: 1;
+    }
+
+    .product-img:hover img:last-of-type {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+
+    body.no-scroll {
+        padding-right: 0px;
+    }
+
+
+    header.filters-opened {
+        .content {
+            margin-right: 0px;
+        }
+    }
+}
+
 @media (max-width: 1100px) {
     header {
         .content {
@@ -1464,9 +1486,34 @@ footer {
             }
         }
     }
+
+    .desired-categories {
+        .desired-categories-wrap {
+            gap: 30px;
+
+            a {
+                flex: 0 0 100%;
+                max-width: 60%;
+            }
+        }
+    }
+}
+
+@media (max-width: 635px) {
+    .cards-container {
+        .card {
+            flex: 0 0 calc(50% - 15px);
+        }
+    }
 }
 
 @media (max-width: 600px) {
+    :root {
+        --outfit-card-title: 15px;
+        --outfit-card-sizes: 11px;
+        --outfit-card-price: 13px;
+    }
+
     footer {
         .footer-wrapper {
             padding: 70px 40px;
@@ -1481,12 +1528,35 @@ footer {
             }
         }
     }
+
+
+    .popular-brands {
+        .popular-brands-wrap {
+            gap: 25px;
+
+            a {
+                flex: 0 0 calc(50% - 25px);
+                margin-bottom: 10px;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 509px) {
+    :root {
+        --orbitron-h1: 40px;
+        --noto-sans-header: 15px;
+        --noto-sans-h2: 20px;
+    }
+
     footer {
         .footer-wrapper {
             padding: 50px 10px;
+
             .footer-info-wrap {
                 gap: 0px;
                 overflow: hidden;
@@ -1552,6 +1622,34 @@ footer {
                 }
             }
 
+        }
+    }
+
+    section {
+        padding: 0 20px;
+        margin-bottom: 70px;
+
+        h2 {
+            margin-bottom: 30px;
+        }
+    }
+
+    .popular-brands {
+        .popular-brands-wrap {
+            padding: 10px 0px 20px 0px;
+        }
+    }
+
+    .cards-container {
+        justify-content: space-between;
+
+        .card {
+            padding-top: 20px;
+
+            .product-img {
+                margin-bottom: 20px;
+                transform: scale(1.1);
+            }
         }
     }
 }
