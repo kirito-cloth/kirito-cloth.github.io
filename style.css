@@ -1156,6 +1156,15 @@ header.hide {
     transform: rotate(45deg);
 }
 
+.custom-checkbox .color-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin-right: 8px;
+  flex-shrink: 0;       
+}
+
 .mobile-menu.active {
     transform: translateX(0%);
 }
@@ -1426,7 +1435,18 @@ footer {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
+    text-align: center;
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 35px;
+        width: 140px;
+        border-radius: 5px;
+        border: 1px solid var(--light-grey);
+        text-decoration: none;
+    }
 }
 
 .about-us {

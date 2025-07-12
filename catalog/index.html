@@ -164,26 +164,83 @@
           </button>
         </div>
         <div id="filter-color-group" class="filter-group-choice-wrap">
-          <label class="custom-checkbox">
+          <label class="custom-checkbox" data-color="white">
             <input type="checkbox" name="color" value="white" />
             <span class="checkmark"></span>
+            <div class="color-dot"></div>
             Білий
           </label><br />
-          <label class="custom-checkbox">
+
+          <label class="custom-checkbox" data-color="black">
             <input type="checkbox" name="color" value="black" />
             <span class="checkmark"></span>
+            <div class="color-dot"></div>
             Чорний
           </label><br />
-          <label class="custom-checkbox">
-            <input type="checkbox" name="color" value="yellow" />
+
+          <label class="custom-checkbox" data-color="grey">
+            <input type="checkbox" name="color" value="grey" />
             <span class="checkmark"></span>
-            Жовтий
+            <div class="color-dot"></div>
+            Сірий
           </label><br />
-          <label class="custom-checkbox">
+
+          <label class="custom-checkbox" data-color="beige">
+            <input type="checkbox" name="color" value="beige" />
+            <span class="checkmark"></span>
+            <div class="color-dot"></div>
+            Бежевий
+          </label><br />
+
+          <label class="custom-checkbox" data-color="#483C32">
+            <input type="checkbox" name="color" value="taupe" />
+            <span class="checkmark"></span>
+            <div class="color-dot"></div>
+            Сіро-коричневий
+          </label><br />
+
+          <label class="custom-checkbox" data-color="red">
             <input type="checkbox" name="color" value="red" />
             <span class="checkmark"></span>
+            <div class="color-dot"></div>
             Червоний
-          </label>
+          </label><br />
+
+          <label class="custom-checkbox" data-color="pink">
+            <input type="checkbox" name="color" value="pink" />
+            <span class="checkmark"></span>
+            <div class="color-dot"></div>
+            Рожевий
+          </label><br />
+
+          <label class="custom-checkbox" data-color="purple">
+            <input type="checkbox" name="color" value="purple" />
+            <span class="checkmark"></span>
+            <div class="color-dot"></div>
+            Фіолетовий
+          </label><br />
+
+          <label class="custom-checkbox" data-color="blue">
+            <input type="checkbox" name="color" value="blue" />
+            <span class="checkmark"></span>
+            <div class="color-dot"></div>
+            Синій
+          </label><br />
+
+          <label class="custom-checkbox" data-color="green">
+            <input type="checkbox" name="color" value="green" />
+            <span class="checkmark"></span>
+            <div class="color-dot"></div>
+            Зелений
+          </label><br />
+
+          <label class="custom-checkbox" data-color="yellow">
+            <input type="checkbox" name="color" value="yellow" />
+            <span class="checkmark"></span>
+            <div class="color-dot"></div>
+            Жовтий
+          </label><br />
+
         </div>
         <button id="apply-color-btn" class="apply-filter-btn animated">Застосувати</button>
       </div>
@@ -202,16 +259,16 @@
           </button>
         </div>
         <div class="price-filter">
-            <div class="price-filter-wrap">
-              <div>
-                <span id="price-min-value" class="noto-sans-dd-title"></span>
-                <p class="noto-sans-item-details-content">грн</p>
-              </div>
-              <div>
-                <span id="price-max-value" class="noto-sans-dd-title"></span>
-                <p class="noto-sans-item-details-content">грн</p>
-              </div>
+          <div class="price-filter-wrap">
+            <div>
+              <span id="price-min-value" class="noto-sans-dd-title"></span>
+              <p class="noto-sans-item-details-content">грн</p>
             </div>
+            <div>
+              <span id="price-max-value" class="noto-sans-dd-title"></span>
+              <p class="noto-sans-item-details-content">грн</p>
+            </div>
+          </div>
           <div class="double-range-slider filter-group-choice-wrap" id="doubleRangeSlider">
             <div id="sliderRange" class="slider-range"></div>
             <div id="thumbMin" class="slider-thumb"></div>

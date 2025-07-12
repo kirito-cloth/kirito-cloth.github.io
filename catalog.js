@@ -29,12 +29,6 @@ const i18n = {
       show: 'Показати',
     },
 
-    colors: {
-      white: 'Білий',
-      black: 'Чорний',
-      yellow: 'Жовтий',
-    },
-
     types: {
       tee: 'Футболки',
       tank: 'Майки',
@@ -60,12 +54,6 @@ const i18n = {
       show: 'Показать',
     },
 
-    colors: {
-      white: 'Белый',
-      black: 'Чёрный',
-      yellow: 'Жёлтый',
-    },
-
     types: {
       tee: 'Футболки',
       tank: 'Майки',
@@ -89,12 +77,6 @@ const i18n = {
       apply: 'Apply',
       reset: 'Reset filters',
       show: 'Show',
-    },
-
-    colors: {
-      white: 'White',
-      black: 'Black',
-      yellow: 'Yellow',
     },
 
     types: {
@@ -788,64 +770,87 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateFilterButtonLabels() {
-    const map = {
-      type: i18n[lang].types,
-      brand: {},
-      size: {},
-      color: i18n[lang].colors
-    };
+  const map = {
+    type: i18n[lang].types,
+    brand: {},
+    size: {},
+    // color: i18n[lang].colors, // Убираем
+  };
 
-    // Динамически добавить бренды и размеры
-    document.querySelectorAll('#filter-brand-group input').forEach(input => {
-      map.brand[input.value] = input.value;
-    });
-    document.querySelectorAll('#filter-size-group input').forEach(input => {
-      map.size[input.value.toUpperCase()] = input.value.toUpperCase();
-    });
-
-    const buttonMap = {
-      type: 'filter-group-category',
-      brand: 'filter-group-brand',
-      size: 'filter-group-size',
-      color: 'filter-group-color',
-      price: 'filter-group-price',
-    };
-
-    // Переводим названия фильтров (например: "Ціна", "Бренд"...)
-    Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
-      const btn = document.querySelector(`.menu-wrap-button[data-filter-group-id="${groupId}"]`);
-      if (!btn) return;
-
-      const label = btn.querySelector('.menu-wrap-button-title');
-      if (label && i18n[lang].filters[filterKey]) {
-        label.textContent = i18n[lang].filters[filterKey];
-      }
-    });
+  document.querySelectorAll('.custom-checkbox').forEach(label => {
+  const color = label.dataset.color;
+  const dot = label.querySelector('.color-dot');
+  if (dot && color) {
+    dot.style.backgroundColor = color;
+  }
+});
 
 
-    Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
-      const btn = document.querySelector(`.menu-wrap-button[data-filter-group-id="${groupId}"]`);
-      if (!btn) return;
+  // Динамически добавить бренды и размеры
+  document.querySelectorAll('#filter-brand-group input').forEach(input => {
+    map.brand[input.value] = input.value;
+  });
+  document.querySelectorAll('#filter-size-group input').forEach(input => {
+    map.size[input.value.toUpperCase()] = input.value.toUpperCase();
+  });
 
-      const span = btn.querySelector('.menu-wrap-button-choice');
-      let values = selectedFilters[filterKey];
+  const buttonMap = {
+    type: 'filter-group-category',
+    brand: 'filter-group-brand',
+    size: 'filter-group-size',
+    color: 'filter-group-color',
+    price: 'filter-group-price',
+  };
 
-      if (!Array.isArray(values)) {
-        if (filterKey === 'price') {
-          if (priceFilterActive) {
-            values = [`${Math.round(selectedFilters.priceMin)} - ${Math.round(selectedFilters.priceMax)} ₴`];
-          } else {
-            values = []; // не показываем ничего, если фильтр цены не активен
-          }
+  // Переводим названия фильтров (например: "Ціна", "Бренд"...)
+  Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
+    const btn = document.querySelector(`.menu-wrap-button[data-filter-group-id="${groupId}"]`);
+    if (!btn) return;
+
+    const label = btn.querySelector('.menu-wrap-button-title');
+    if (label && i18n[lang].filters[filterKey]) {
+      label.textContent = i18n[lang].filters[filterKey];
+    }
+  });
+
+  Object.entries(buttonMap).forEach(([filterKey, groupId]) => {
+    const btn = document.querySelector(`.menu-wrap-button[data-filter-group-id="${groupId}"]`);
+    if (!btn) return;
+
+    const span = btn.querySelector('.menu-wrap-button-choice');
+    let values = selectedFilters[filterKey];
+
+    if (!Array.isArray(values)) {
+      if (filterKey === 'price') {
+        if (priceFilterActive) {
+          values = [`${Math.round(selectedFilters.priceMin)} - ${Math.round(selectedFilters.priceMax)} ₴`];
         } else {
           values = [];
         }
+      } else {
+        values = [];
       }
+    }
 
+    let mapped;
 
-      const mapped = values.map(v => map[filterKey]?.[v] || v);
-      span.textContent = mapped.length ? mapped.join(', ') : '';
-    });
+    if (filterKey === 'color') {
+      mapped = values.map(v => {
+        const input = document.querySelector(`#filter-color-group input[value="${v}"]`);
+        if (input) {
+          // Берём текст из label (удаляем чекбокс, просто textContent)
+          return input.parentElement.textContent.trim();
+        }
+        return v;
+      });
+    } else {
+      mapped = values.map(v => map[filterKey]?.[v] || v);
+    }
+
+    span.textContent = mapped.length ? mapped.join(', ') : '';
+  });
+
+  // ... остальной ко
 
     const filtersAmountEl = document.getElementById('filters-button-amount');
 
