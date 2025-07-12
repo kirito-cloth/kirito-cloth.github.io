@@ -486,18 +486,15 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScroll = currentScroll;
   });
 
-function openSearch() {
+document.getElementById('search-button').addEventListener('click', () => {
   disableScroll();
   document.querySelector('header').classList.add('search');
   overlay.classList.add('active');
 
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      const input = document.getElementById('global-search-input');
-      if (input) input.focus();
-    }, 0); // минимальная задержка помогает Safari
-  });
-}
+  const input = document.getElementById('global-search-input');
+  input.focus(); // теперь Safari даст фокус
+});
+
 
 
   function closeSearch() {
