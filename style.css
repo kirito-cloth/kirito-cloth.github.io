@@ -633,7 +633,6 @@ header.hide {
                 position: relative;
                 width: 100%;
                 aspect-ratio: 1 / 1;
-                border-radius: 100%;
                 margin-bottom: 20px;
 
                 img {
