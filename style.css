@@ -774,6 +774,7 @@ header.hide {
     align-items: flex-start;
     overflow-x: unset;
     margin-top: -50px;
+    margin-bottom: 0px;
 
     .item-img-wrap {
         position: relative;
