@@ -12,6 +12,7 @@
         href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Outfit:wght@100..900&display=swap"
         rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
 
 <body>
@@ -98,9 +99,23 @@
         </section>
 
     </main>
-    <script src="/acordeon.js"></script>
-    <script type="module" src="/header_footer.js"></script>
-    <script type="module" src="/script.js"></script>
+    <div id="img-modal" class="img-modal">
+        <span class="close">&times;</span>
+        <div class="zoom-swiper swiper">
+            <div id="modal-swiper-wrapper" class="swiper-wrapper">
+                <!-- Слайды динамически создаются -->
+            </div>
+            <!-- Добавляем сюда пагинацию и стрелки для zoomSwiper -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+
 </body>
+<script src="/acordeon.js"></script>
+<script type="module" src="/header_footer.js"></script>
+<script type="module" src="/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 </html>

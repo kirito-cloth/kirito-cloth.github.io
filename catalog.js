@@ -625,17 +625,33 @@ window.addEventListener('DOMContentLoaded', () => {
       else if (activeThumb === thumbMax) currentMax = currentMin + minGap;
     }
   }
-
-  function updateFiltersCountBadge() {
+function updateFiltersCountBadge() {
   const filtersAmountEl = document.getElementById('filters-button-amount');
+  const params = new URLSearchParams(window.location.search);
 
+  const filterKeys = ['brand', 'size', 'type', 'color'];
   let activeCount = 0;
-  if (selectedFilters.brand.length) activeCount++;
-  if (selectedFilters.size.length) activeCount++;
-  if (selectedFilters.type.length) activeCount++;
-  if (selectedFilters.color.length) activeCount++;
-  if (priceFilterActive) activeCount++;
 
+  // Считаем сколько разных фильтров присутствуют в URL
+  filterKeys.forEach(key => {
+    if (params.has(key)) {
+      const value = params.get(key);
+      if (value && value.trim() !== '') {
+        activeCount++;
+      }
+    }
+  });
+
+  // Проверка на активный фильтр цены
+  if (params.has('priceMin') || params.has('priceMax')) {
+    const min = params.get('priceMin');
+    const max = params.get('priceMax');
+    if ((min && min !== '0') || (max && max !== '99999')) {
+      activeCount++;
+    }
+  }
+
+  // Обновляем бейдж
   if (activeCount > 0) {
     filtersAmountEl.classList.add('active');
     filtersAmountEl.querySelector('span').textContent = activeCount;
@@ -644,6 +660,8 @@ window.addEventListener('DOMContentLoaded', () => {
     filtersAmountEl.querySelector('span').textContent = '';
   }
 }
+
+updateFiltersCountBadge();
 
 
   function updateSliderUI() {
