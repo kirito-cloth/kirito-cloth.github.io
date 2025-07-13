@@ -1,12 +1,11 @@
 import { createProductCard } from '/productCard.js';
 import { revealOnScroll } from '/scrollReveal.js';
 import { disableScroll, enableScroll } from '/openMenu.js';
+
 // Используем глобальную переменную Swiper и модуль Zoom
 const { Zoom } = window.Swiper;
-
 const SwiperClass = window.Swiper;
 SwiperClass.use([Zoom]);
-
 
 function getProductId() {
   const params = new URLSearchParams(window.location.search);
@@ -28,20 +27,22 @@ fetch('/products.json')
     const dollarPrice = Math.ceil(product.price * 0.024);
     const itemImgWrap = document.querySelector('.item-img-wrap');
     const readyDelver = document.querySelector('.ready-deliver');
+    const modal = document.getElementById('img-modal');
+    const wrapper = document.getElementById('modal-swiper-wrapper');
 
-    // Все таблицы размеров
+    // Таблицы размеров
     const tables = {
       tee: document.getElementById('sizes-tee'),
       shorts: document.getElementById('sizes-shorts'),
       tank: document.getElementById('sizes-tank'),
     };
 
-    // Скрыть все таблицы
+    // Скрываем все таблицы
     Object.values(tables).forEach(table => {
       if (table) table.style.display = 'none';
     });
 
-    // Показать нужную таблицу по типу
+    // Показываем нужную таблицу
     const activeTable = tables[product.type];
     if (!activeTable) {
       console.warn(`Нет таблицы для типа ${product.type}`);
@@ -49,7 +50,7 @@ fetch('/products.json')
     }
     activeTable.style.display = '';
 
-    // Очистить таблицу (оставляем заголовок)
+    // Очищаем таблицу, кроме заголовка
     while (activeTable.rows.length > 1) {
       activeTable.deleteRow(1);
     }
@@ -61,7 +62,7 @@ fetch('/products.json')
       return td;
     }
 
-    // Заполнение строк в зависимости от типа
+    // Заполняем таблицу размерами
     for (const sizeKey in sizesObj) {
       const sizeData = sizesObj[sizeKey];
       const tr = document.createElement('tr');
@@ -87,12 +88,12 @@ fetch('/products.json')
       activeTable.appendChild(tr);
     }
 
-    // Картинки
+    // Рендер картинок
     const isMobile = window.matchMedia('(max-width: 1000px)').matches;
     itemImgWrap.innerHTML = '';
 
     if (!isMobile) {
-      // На ПК просто показываем картинки как раньше
+      // ПК — просто выводим картинки
       product.images.forEach(img => {
         const imgEl = document.createElement('img');
         imgEl.src = img;
@@ -100,7 +101,7 @@ fetch('/products.json')
         itemImgWrap.appendChild(imgEl);
       });
     } else {
-      // На мобилке создаём Swiper-слайдер
+      // Мобильный Swiper-слайдер
       const swiperContainer = document.createElement('div');
       swiperContainer.classList.add('swiper');
 
@@ -119,7 +120,7 @@ fetch('/products.json')
         swiperWrapper.appendChild(swiperSlide);
       });
 
-      // Добавляем пагинацию и стрелки в контейнер
+      // Пагинация и навигация
       const paginationEl = document.createElement('div');
       paginationEl.classList.add('swiper-pagination');
 
@@ -132,8 +133,6 @@ fetch('/products.json')
       swiperContainer.appendChild(paginationEl);
       swiperContainer.appendChild(prevBtn);
       swiperContainer.appendChild(nextBtn);
-
-
       swiperContainer.appendChild(swiperWrapper);
       itemImgWrap.appendChild(swiperContainer);
 
@@ -151,109 +150,12 @@ fetch('/products.json')
           prevEl: prevBtn,
         },
       });
-
     }
 
-    document.querySelector('#img-modal .close').addEventListener('click', () => {
-      document.getElementById('img-modal').style.display = 'none';
-      enableScroll();
-    });
-
-    let zoomSwiper;
-
-    document.addEventListener('click', e => {
-      const target = e.target;
-      if (target.tagName === 'IMG' && target.closest('.swiper-slide')) {
-        const modal = document.getElementById('img-modal');
-        const wrapper = document.getElementById('modal-swiper-wrapper');
-        disableScroll();
-
-        // Очистить предыдущие слайды
-        wrapper.innerHTML = '';
-
-        // Получаем список всех изображений в галерее
-        const allImgs = [...document.querySelectorAll('.swiper-slide img')];
-        const clickedSrc = target.src;
-
-        // Создаем слайды
-        allImgs.forEach(img => {
-          const slide = document.createElement('div');
-          slide.classList.add('swiper-slide');
-          slide.innerHTML = `
-        <div class="swiper-zoom-container">
-          <img src="${img.src}" alt="">
-        </div>`;
-          wrapper.appendChild(slide);
-        });
-
-        modal.style.display = 'flex';
-
-        // Инициализировать Swiper с zoom
-        if (zoomSwiper) zoomSwiper.destroy(true, true);
-
-        zoomSwiper = new Swiper('.zoom-swiper', {
-  zoom: true,
-  loop: true,
-  slidesPerView: 1,
-  spaceBetween: 10,
-  resistanceRatio: 0, // 💡 минимизирует сопротивление на краях
-  initialSlide: allImgs.findIndex(img => img.src === clickedSrc),
-  pagination: {
-    el: '.zoom-swiper .swiper-pagination',
-    clickable: true,
-  },
-  navigation: {
-    nextEl: '.zoom-swiper .swiper-button-next',
-    prevEl: '.zoom-swiper .swiper-button-prev',
-  },
-  on: {
-  touchStart() {
-    const zoomEl = document.querySelector('.zoom-swiper .swiper-slide-active .swiper-zoom-container');
-    const img = zoomEl?.querySelector('img');
-    if (!zoomEl || !img) return;
-
-    const scale = zoomSwiper.zoom.scale || 1;
-
-    if (scale <= 1) {
-      zoomSwiper.allowTouchMove = true;
-      return;
-    }
-
-    const zoomRect = zoomEl.getBoundingClientRect();
-    const imgRect = img.getBoundingClientRect();
-
-    const scrollableX = imgRect.width > zoomRect.width;
-    const scrollableY = imgRect.height > zoomRect.height;
-
-    // 💡 Если хотя бы в одну сторону есть возможность двигать, запрещаем свайп
-    if (scrollableX || scrollableY) {
-      zoomSwiper.allowTouchMove = false;
-    } else {
-      zoomSwiper.allowTouchMove = true;
-    }
-  }
-}
-
-});
-
-
-
-      }
-    });
-
-    // Закрытие
-    document.querySelector('#img-modal .close').addEventListener('click', () => {
-      document.getElementById('img-modal').style.display = 'none';
-      if (zoomSwiper) zoomSwiper.destroy(true, true);
-    });
-
-
-
-
-    // Статус готовности
+    // Статус готовности товара
     readyDelver.classList.toggle('active', product.ready);
 
-    // Название, цена, размеры
+    // Заголовок, цена, размеры
     document.title = product.name;
     document.getElementById('item-title').textContent = product.name;
     document.getElementById('item-price').textContent = `${dollarPrice} $ / ${product.price} ₴`;
@@ -262,7 +164,6 @@ fetch('/products.json')
     // === Same products ===
     const sameContainer = document.querySelector('.same-products-container .cards-container');
     sameContainer.innerHTML = '';
-
     if (Array.isArray(product.same) && product.same.length > 0) {
       document.querySelector('.same-products-container').classList.add('active');
       const sameProducts = products.filter(p => product.same.includes(p.id));
@@ -272,7 +173,6 @@ fetch('/products.json')
     // === Like / Random products ===
     const likeContainer = document.querySelector('.like-products-container .cards-container');
     likeContainer.innerHTML = '';
-
     function getRandomProducts(arr, n, excludeId) {
       const filtered = arr.filter(p => p.id !== excludeId);
       const result = [];
@@ -287,10 +187,134 @@ fetch('/products.json')
       }
       return result;
     }
-
     const randomProducts = getRandomProducts(products, 4, product.id);
     randomProducts.forEach(p => likeContainer.appendChild(createProductCard(p)));
+
     revealOnScroll();
+
+    // ================ Модалка с зумом ================
+
+    let zoomSwiper;
+
+    // Для тач-свайпа по модалке
+    let touchStartY = 0;
+    let touchEndY = 0;
+    const swipeThreshold = 50;
+
+    function closeModal() {
+      modal.classList.add('hidden'); // плавное скрытие через CSS
+      setTimeout(() => {
+        modal.style.display = 'none';
+        modal.classList.remove('hidden');
+        if (zoomSwiper) zoomSwiper.destroy(true, true);
+        zoomSwiper = null;
+        enableScroll();
+      }, 300); // должен совпадать с CSS transition
+    }
+
+    modal.addEventListener('touchstart', (e) => {
+      if (zoomSwiper && zoomSwiper.zoom.scale === 1) {
+        touchStartY = e.changedTouches[0].clientY;
+      }
+    });
+
+    modal.addEventListener('touchend', (e) => {
+      if (zoomSwiper && zoomSwiper.zoom.scale === 1) {
+        touchEndY = e.changedTouches[0].clientY;
+        const diffY = touchEndY - touchStartY;
+        if (diffY < -swipeThreshold || diffY > swipeThreshold) { // свайп вверх или вниз
+          closeModal();
+        }
+      }
+    });
+
+
+    document.querySelector('#img-modal .close').addEventListener('click', closeModal);
+
+    // Клик по картинке - открываем модалку с зумом
+    document.addEventListener('click', e => {
+      const target = e.target;
+      if (target.tagName === 'IMG' && target.closest('.swiper-slide')) {
+        disableScroll();
+
+        // Очистить слайды
+        wrapper.innerHTML = '';
+
+        // Все картинки в галерее
+        const allImgs = [...document.querySelectorAll('.swiper-slide img')];
+
+        allImgs.forEach(img => {
+          const slide = document.createElement('div');
+          slide.classList.add('swiper-slide');
+          slide.innerHTML = `
+            <div class="swiper-zoom-container">
+              <img src="${img.src}" alt="">
+            </div>
+          `;
+          wrapper.appendChild(slide);
+        });
+
+        modal.style.display = 'flex';
+
+        if (zoomSwiper) zoomSwiper.destroy(true, true);
+
+        zoomSwiper = new Swiper('.zoom-swiper', {
+  zoom: {
+    maxRatio: 3,
+  },
+  slidesPerView: 1,
+  spaceBetween: 10,
+  loop: true,
+  pagination: {
+    el: '.zoom-swiper .swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.zoom-swiper .swiper-button-next',
+    prevEl: '.zoom-swiper .swiper-button-prev',
+  },
+  on: {
+    zoomChange(swiper, scale, imageEl) {
+      // Ограничение сдвига картинки (translate)
+      const zoomContainer = imageEl.parentElement;
+      const containerRect = zoomContainer.getBoundingClientRect();
+
+      const scaledWidth = imageEl.naturalWidth * scale;
+      const scaledHeight = imageEl.naturalHeight * scale;
+
+      const containerWidth = containerRect.width;
+      const containerHeight = containerRect.height;
+
+      const maxX = (scaledWidth - containerWidth) / 2;
+      const maxY = (scaledHeight - containerHeight) / 2;
+
+      const transform = imageEl.style.transform;
+      const match = transform.match(/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/);
+
+      if (match) {
+        let x = parseFloat(match[1]);
+        let y = parseFloat(match[2]);
+
+        x = Math.min(maxX, Math.max(-maxX, x));
+        y = Math.min(maxY, Math.max(-maxY, y));
+
+        imageEl.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+      }
+
+      // Управление свайпом и скроллом
+      if (scale > 1) {
+        swiper.allowTouchMove = false; // запрещаем свайп переключения слайдов
+        disableScroll();               // блокируем прокрутку
+      } else {
+        swiper.allowTouchMove = true;  // разрешаем свайп
+        enableScroll();                // разрешаем прокрутку
+      }
+    }
+  }
+});
+
+      }
+    });
   })
   .catch(() => {
     document.body.innerHTML = '<h2>Error loading product</h2>';

@@ -938,7 +938,9 @@ header.hide {
 
 /* Модальное окно — центрируем и ограничиваем размеры */
 .img-modal {
-  display: none; /* по умолчанию скрыто */
+  display: none; /* по умолчанию скрыта */
+  opacity: 1;
+  transition: opacity 0.3s ease;
   position: fixed;
   inset: 0;
   background: white;
@@ -946,6 +948,11 @@ header.hide {
   align-items: center;
   z-index: 9999;
   box-sizing: border-box;
+}
+
+.img-modal.hidden {
+  opacity: 0;
+  pointer-events: none; /* чтобы клики не проходили, когда скрыто */
 }
 
 /* Контейнер зум-слайдера — ограничиваем размеры */
@@ -1011,7 +1018,6 @@ header.hide {
   background: black;
   opacity: 1;
 }
-
 
 
 .same-products-container {
