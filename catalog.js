@@ -207,7 +207,6 @@ window.addEventListener('DOMContentLoaded', () => {
       priceMaxGlobal = Math.max(...prices);
       currentMin = priceMinGlobal;
       currentMax = priceMaxGlobal;
-      console.log(`total: ${products.length}`)
 
       selectedFilters.priceMin = priceMinGlobal;
       selectedFilters.priceMax = priceMaxGlobal;
@@ -277,10 +276,6 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.overlay').addEventListener('click', () => {
     closeFilters();
 
-    // Закрыть все открытые .filter-group
-    document.querySelectorAll('.filter-group.active').forEach(group => {
-      group.classList.remove('active');
-    });
   });
 
   document.querySelector('#filters-button').addEventListener('click', (e) => {
@@ -382,7 +377,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     searchQuery = search;
-    searchInput.value = searchQuery;
 
     enforceMinGap();
     updateSliderUI();
@@ -632,6 +626,26 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function updateFiltersCountBadge() {
+  const filtersAmountEl = document.getElementById('filters-button-amount');
+
+  let activeCount = 0;
+  if (selectedFilters.brand.length) activeCount++;
+  if (selectedFilters.size.length) activeCount++;
+  if (selectedFilters.type.length) activeCount++;
+  if (selectedFilters.color.length) activeCount++;
+  if (priceFilterActive) activeCount++;
+
+  if (activeCount > 0) {
+    filtersAmountEl.classList.add('active');
+    filtersAmountEl.querySelector('span').textContent = activeCount;
+  } else {
+    filtersAmountEl.classList.remove('active');
+    filtersAmountEl.querySelector('span').textContent = '';
+  }
+}
+
+
   function updateSliderUI() {
     const range = priceMaxGlobal - priceMinGlobal;
     const leftPercent = ((currentMin - priceMinGlobal) / range) * 100;
@@ -702,6 +716,7 @@ window.addEventListener('DOMContentLoaded', () => {
     updateURL();
     filterAndRender(true);
     fillPageInitially();
+    updateFiltersCountBadge();
   });
 
   sortOptions.forEach(option => {
@@ -743,6 +758,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     updateURL();
     updateFilterButtonLabels();
+    updateFiltersCountBadge();
 
     closeFilters();           // ← Закрываем .filters
     filterAndRender(true);    // ← Обновляем карточки
@@ -849,25 +865,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     span.textContent = mapped.length ? mapped.join(', ') : '';
   });
-
-  // ... остальной ко
-
-    const filtersAmountEl = document.getElementById('filters-button-amount');
-
-    let activeCount = 0;
-    if (selectedFilters.brand.length) activeCount++;
-    if (selectedFilters.size.length) activeCount++;
-    if (selectedFilters.type.length) activeCount++;
-    if (selectedFilters.color.length) activeCount++;
-    if (priceFilterActive) activeCount++;
-
-    if (activeCount > 0) {
-      filtersAmountEl.classList.add('active');
-      filtersAmountEl.querySelector('span').textContent = activeCount;
-    } else {
-      filtersAmountEl.classList.remove('active');
-      filtersAmountEl.querySelector('span').textContent = '';
-    }
 
   }
   applyBrandBtn.addEventListener('click', () => {

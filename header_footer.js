@@ -530,6 +530,11 @@ function setupFooterAccordion() {
   overlay.addEventListener('click', () => {
     closeSearch();
     closeMobileMenu();
+    
+    // Закрыть все открытые .filter-group
+    document.querySelectorAll('.filter-group.active').forEach(group => {
+      group.classList.remove('active');
+    });
   });
   if (!form || !input) return;
 

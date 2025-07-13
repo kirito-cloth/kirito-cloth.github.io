@@ -1025,7 +1025,7 @@ header.hide {
             }
 
             span {
-                font-size: 14px;
+                font-size: 13px;
                 margin-bottom: 5px;
                 text-align: left;
             }
@@ -1106,6 +1106,8 @@ header.hide {
     background-color: #111;
     color: white;
     cursor: pointer;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
 
     &:hover,
     &:active {
@@ -1560,8 +1562,9 @@ footer {
 
 @media (max-width: 635px) {
     .cards-container {
+        gap: 20px;
         .card {
-            flex: 0 0 calc(50% - 15px);
+            flex: 0 0 calc(50% - 10px);
         }
     }
 
