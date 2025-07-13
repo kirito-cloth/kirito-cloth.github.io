@@ -198,38 +198,49 @@ fetch('/products.json')
 
     // Для тач-свайпа по модалке
     let touchStartY = 0;
-    let touchEndY = 0;
-    const swipeThreshold = 50;
+let touchEndY = 0;
+const swipeThreshold = 50;
 
-    function closeModal() {
-      modal.classList.add('hidden'); // плавное скрытие через CSS
-      setTimeout(() => {
-        modal.style.display = 'none';
-        modal.classList.remove('hidden');
-        if (zoomSwiper) zoomSwiper.destroy(true, true);
-        zoomSwiper = null;
-        enableScroll();
-      }, 300); // должен совпадать с CSS transition
+function closeModal() {
+  modal.classList.add('hidden');
+  setTimeout(() => {
+    modal.style.display = 'none';
+    modal.classList.remove('hidden');
+    if (zoomSwiper) zoomSwiper.destroy(true, true);
+    zoomSwiper = null;
+    enableScroll();
+  }, 300);
+}
+
+// Свайп
+modal.addEventListener('touchstart', (e) => {
+  if (zoomSwiper && zoomSwiper.zoom.scale === 1) {
+    touchStartY = e.changedTouches[0].clientY;
+  }
+});
+
+modal.addEventListener('touchend', (e) => {
+  if (zoomSwiper && zoomSwiper.zoom.scale === 1) {
+    touchEndY = e.changedTouches[0].clientY;
+    const diffY = touchEndY - touchStartY;
+    if (Math.abs(diffY) > swipeThreshold) {
+      closeModal();
     }
+  }
+});
 
-    modal.addEventListener('touchstart', (e) => {
-      if (zoomSwiper && zoomSwiper.zoom.scale === 1) {
-        touchStartY = e.changedTouches[0].clientY;
-      }
-    });
+// Скролл
+modal.addEventListener('wheel', (e) => {
+  if (zoomSwiper && zoomSwiper.zoom.scale === 1 && e.deltaY > 0) {
+    closeModal();
+  }
+});
 
-    modal.addEventListener('touchend', (e) => {
-      if (zoomSwiper && zoomSwiper.zoom.scale === 1) {
-        touchEndY = e.changedTouches[0].clientY;
-        const diffY = touchEndY - touchStartY;
-        if (diffY < -swipeThreshold || diffY > swipeThreshold) { // свайп вверх или вниз
-          closeModal();
-        }
-      }
-    });
+// Кнопка закрытия
+document.querySelector('#img-modal .close').addEventListener('click', () => {
+  closeModal();
+});
 
-
-    document.querySelector('#img-modal .close').addEventListener('click', closeModal);
 
     // Клик по картинке - открываем модалку с зумом
     document.addEventListener('click', e => {
@@ -259,59 +270,58 @@ fetch('/products.json')
         if (zoomSwiper) zoomSwiper.destroy(true, true);
 
         zoomSwiper = new Swiper('.zoom-swiper', {
-  zoom: {
-    maxRatio: 3,
-  },
-  slidesPerView: 1,
-  spaceBetween: 10,
-  loop: true,
-  pagination: {
-    el: '.zoom-swiper .swiper-pagination',
-    clickable: true,
-  },
-  navigation: {
-    nextEl: '.zoom-swiper .swiper-button-next',
-    prevEl: '.zoom-swiper .swiper-button-prev',
-  },
-  on: {
-    zoomChange(swiper, scale, imageEl) {
-      // Ограничение сдвига картинки (translate)
-      const zoomContainer = imageEl.parentElement;
-      const containerRect = zoomContainer.getBoundingClientRect();
+          zoom: {
+            maxRatio: 3,
+          },
+          slidesPerView: 1,
+          spaceBetween: 10,
+          loop: true,
+          pagination: {
+            el: '.zoom-swiper .swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.zoom-swiper .swiper-button-next',
+            prevEl: '.zoom-swiper .swiper-button-prev',
+          },
+          on: {
+            zoomChange(swiper, scale, imageEl) {
+              const zoomContainer = imageEl.parentElement;
+              const containerRect = zoomContainer.getBoundingClientRect();
 
-      const scaledWidth = imageEl.naturalWidth * scale;
-      const scaledHeight = imageEl.naturalHeight * scale;
+              const scaledWidth = imageEl.naturalWidth * scale;
+              const scaledHeight = imageEl.naturalHeight * scale;
 
-      const containerWidth = containerRect.width;
-      const containerHeight = containerRect.height;
+              const containerWidth = containerRect.width;
+              const containerHeight = containerRect.height;
 
-      const maxX = (scaledWidth - containerWidth) / 2;
-      const maxY = (scaledHeight - containerHeight) / 2;
+              const maxX = (scaledWidth - containerWidth) / 2;
+              const maxY = (scaledHeight - containerHeight) / 2;
 
-      const transform = imageEl.style.transform;
-      const match = transform.match(/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/);
+              const transform = imageEl.style.transform;
+              const match = transform.match(/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/);
 
-      if (match) {
-        let x = parseFloat(match[1]);
-        let y = parseFloat(match[2]);
+              if (match) {
+                let x = parseFloat(match[1]);
+                let y = parseFloat(match[2]);
 
-        x = Math.min(maxX, Math.max(-maxX, x));
-        y = Math.min(maxY, Math.max(-maxY, y));
+                x = Math.min(maxX, Math.max(-maxX, x));
+                y = Math.min(maxY, Math.max(-maxY, y));
 
-        imageEl.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
-      }
+                imageEl.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+              }
 
-      // Управление свайпом и скроллом
-      if (scale > 1) {
-        swiper.allowTouchMove = false; // запрещаем свайп переключения слайдов
-        disableScroll();               // блокируем прокрутку
-      } else {
-        swiper.allowTouchMove = true;  // разрешаем свайп
-        enableScroll();                // разрешаем прокрутку
-      }
-    }
-  }
-});
+              // Управление свайпом и скроллом при зуме
+              zoomSwiper.allowTouchMove = scale <= 1;
+              if (scale > 1) {
+                disableScroll();
+              } else {
+                enableScroll();
+              }
+            }
+          }
+        });
+
 
       }
     });
