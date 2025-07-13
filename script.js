@@ -15,13 +15,31 @@ function getProductId() {
 fetch('/products.json')
   .then(res => res.json())
   .then(products => {
+    // Сначала получаем id и product
     const id = parseInt(getProductId(), 10);
     const product = products.find(p => p.id === id);
 
+    // Проверяем, найден ли продукт
     if (!product) {
       document.body.innerHTML = '<h2>Product not found</h2>';
       return;
     }
+
+    // Функция для добавления в recently viewed
+    function addToRecentlyViewed(productId) {
+      if (!productId) return;
+      const key = 'recentlyViewed';
+
+      const viewed = JSON.parse(localStorage.getItem(key)) || [];
+
+      const updated = [productId, ...viewed.filter(id => id !== productId)].slice(0, 4);
+
+      localStorage.setItem(key, JSON.stringify(updated));
+    }
+
+    // Использование
+    addToRecentlyViewed(id);
+
 
     const sizesObj = product.sizes;
     const dollarPrice = Math.ceil(product.price * 0.024);
@@ -198,48 +216,48 @@ fetch('/products.json')
 
     // Для тач-свайпа по модалке
     let touchStartY = 0;
-let touchEndY = 0;
-const swipeThreshold = 50;
+    let touchEndY = 0;
+    const swipeThreshold = 50;
 
-function closeModal() {
-  modal.classList.add('hidden');
-  setTimeout(() => {
-    modal.style.display = 'none';
-    modal.classList.remove('hidden');
-    if (zoomSwiper) zoomSwiper.destroy(true, true);
-    zoomSwiper = null;
-    enableScroll();
-  }, 300);
-}
-
-// Свайп
-modal.addEventListener('touchstart', (e) => {
-  if (zoomSwiper && zoomSwiper.zoom.scale === 1) {
-    touchStartY = e.changedTouches[0].clientY;
-  }
-});
-
-modal.addEventListener('touchend', (e) => {
-  if (zoomSwiper && zoomSwiper.zoom.scale === 1) {
-    touchEndY = e.changedTouches[0].clientY;
-    const diffY = touchEndY - touchStartY;
-    if (Math.abs(diffY) > swipeThreshold) {
-      closeModal();
+    function closeModal() {
+      modal.classList.add('hidden');
+      setTimeout(() => {
+        modal.style.display = 'none';
+        modal.classList.remove('hidden');
+        if (zoomSwiper) zoomSwiper.destroy(true, true);
+        zoomSwiper = null;
+        enableScroll();
+      }, 300);
     }
-  }
-});
 
-// Скролл
-modal.addEventListener('wheel', (e) => {
-  if (zoomSwiper && zoomSwiper.zoom.scale === 1 && e.deltaY > 0) {
-    closeModal();
-  }
-});
+    // Свайп
+    modal.addEventListener('touchstart', (e) => {
+      if (zoomSwiper && zoomSwiper.zoom.scale === 1) {
+        touchStartY = e.changedTouches[0].clientY;
+      }
+    });
 
-// Кнопка закрытия
-document.querySelector('#img-modal .close').addEventListener('click', () => {
-  closeModal();
-});
+    modal.addEventListener('touchend', (e) => {
+      if (zoomSwiper && zoomSwiper.zoom.scale === 1) {
+        touchEndY = e.changedTouches[0].clientY;
+        const diffY = touchEndY - touchStartY;
+        if (Math.abs(diffY) > swipeThreshold) {
+          closeModal();
+        }
+      }
+    });
+
+    // Скролл
+    modal.addEventListener('wheel', (e) => {
+      if (zoomSwiper && zoomSwiper.zoom.scale === 1 && e.deltaY > 0) {
+        closeModal();
+      }
+    });
+
+    // Кнопка закрытия
+    document.querySelector('#img-modal .close').addEventListener('click', () => {
+      closeModal();
+    });
 
 
     // Клик по картинке - открываем модалку с зумом
