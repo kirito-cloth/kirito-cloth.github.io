@@ -2553,8 +2553,8 @@
                 "id": 61,
                 "type": "tee",
                 "brand": "Balenciaga",
-                "name": "Balenciaga Laurel Classic T-shirt in Green",
-                "color": "green",
+                "name": "Balenciaga Laurel Classic T-shirt in Blue",
+                "color": "blue",
                 "sizes": {
                         "xs": {
                                 "length": 70,
@@ -7861,7 +7861,7 @@
                 "id": 370,
                 "type": "tee",
                 "brand": "Acne Studios",
-                "name": "Acne Studios Glitter Logo T-Shirt in Black",
+                "name": "Acne Studios Glitter Logo T-Shirt in Faded Black",
                 "color": "black",
                 "sizes": {
                         "s": {
@@ -7897,7 +7897,7 @@
                 "id": 368,
                 "type": "tee",
                 "brand": "Acne Studios",
-                "name": "Acne Studios Glitter Logo T-Shirt in Green",
+                "name": "Acne Studios Glitter Logo T-Shirt in Faded Green",
                 "color": "green",
                 "sizes": {
                         "s": {
@@ -12478,7 +12478,7 @@
                 "id": 553,
                 "type": "tee",
                 "brand": "Number Nine",
-                "name": "Number (N)ine Cross Necklace Rosary Skull T-Shirt in Black",
+                "name": "Number (N)ine Cross Necklace Rosary Skull T-Shirt in White",
                 "color": "white",
                 "sizes": {
                         "s": {
