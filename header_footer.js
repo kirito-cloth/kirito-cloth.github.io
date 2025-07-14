@@ -2,6 +2,81 @@ import { disableScroll, enableScroll } from '/openMenu.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  const translations = {
+    ua: {
+      about: 'Про нас',
+      contact: 'Написати нам',
+      brands: 'Бренди',
+      categories: 'Категорії',
+      sneakers: 'Кросівки',
+      searchPlaceholder: 'Пошук по товарам і брендам',
+      find: 'Знайти',
+      lang: 'Мова',
+      ua: 'Українська',
+      ru: 'Російська',
+      en: 'Англійська',
+      menu: 'Меню',
+      delivery: 'Доставка',
+      payment: 'Оплата',
+      product: 'Про наш продукт',
+      referal: 'Реферальна система та знижки',
+      service: 'Сервіс',
+      main: 'Головна',
+      catalog: 'Каталог',
+      contacts: 'Контакти'
+    },
+    ru: {
+      about: 'О нас',
+      contact: 'Связаться с нами',
+      brands: 'Бренды',
+      categories: 'Категории',
+      sneakers: 'Кроссовки',
+      searchPlaceholder: 'Поиск по товарам и брендам',
+      find: 'Найти',
+      lang: 'Язык',
+      ua: 'Украинский',
+      ru: 'Русский',
+      en: 'Английский',
+      menu: 'Меню',
+      delivery: 'Доставка',
+      payment: 'Оплата',
+      product: 'О нашем продукте',
+      referal: 'Реферальная система и скидки',
+      service: 'Сервис',
+      main: 'Главная',
+      catalog: 'Каталог',
+      contacts: 'Контакты'
+    },
+    en: {
+      about: 'About Us',
+      contact: 'Contact Us',
+      brands: 'Brands',
+      categories: 'Categories',
+      sneakers: 'Sneakers',
+      searchPlaceholder: 'Search products and brands',
+      find: 'Find',
+      lang: 'Language',
+      ua: 'Ukrainian',
+      ru: 'Russian',
+      en: 'English',
+      menu: 'Menu',
+      delivery: 'Delivery',
+      payment: 'Payment',
+      product: 'About our product',
+      referal: 'Referral system & discounts',
+      service: 'Service',
+      main: 'Home',
+      catalog: 'Catalog',
+      contacts: 'Contacts'
+    }
+  };
+
+  const lang = getCurrentLang();
+  function withLangPrefix(path) {
+    if (lang === 'ua') return path;
+    return `/${lang}${path.startsWith('/') ? path : '/' + path}`;
+  }
+
   const header = document.createElement('header');
   header.innerHTML = `
         <div class="content">
@@ -11,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span></span>
             </button>
             <nav class="noto-sans-header">                
-                <a href="/us.html" class="underline-animated">Про нас</a>
+                <a href="${withLangPrefix('/us.html')}" data-i18n="about"></a>
                 <a href="" class="underline-animated">Написати нам</a>
                 <div class="dropdown">
                     <span class="dropdown-title">Бренди</span>
@@ -46,15 +121,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     <svg class="searchIcon" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>
                 </button>
                 <div class="dropdown noto-sans-header">
-                    <span class="dropdown-title montserrat-light">
+                    <span id="active-lang-label" class="dropdown-title montserrat-light">
                         UA
                         <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
                             <path d="M12 17.414 3.293 8.707l1.414-1.414L12 14.586l7.293-7.293 1.414 1.414L12 17.414z"/>
                         </svg>
                     </span>
                     <div class="dropdown-menu lang">
-                        <a data-lang='ru' class="montserrat-light underline-animated dd">RU</a>
-                        <a data-lang='en' class="montserrat-light underline-animated dd">EN</a>
+                        <a data-lang='' class="montserrat-light dd">UA</a>
+                        <a data-lang='ru' class="montserrat-light dd">RU</a>
+                        <a data-lang='en' class="montserrat-light dd">EN</a>
                     </div>
                 </div>
                 <a href="/catalog/?favorites=true" class="saved-icon" id="favorite-link">
@@ -429,28 +505,95 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.querySelector('#hamburger');
   const closeMenuBtn = document.querySelector('#close-menu');
 
-function setupFooterAccordion() {
-  const infos = document.querySelectorAll('.footer-info-wrap .info');
+  function getCurrentLang() {
+    const path = window.location.pathname.split('/');
+    const firstSegment = path[1];
+    return ['ua', 'ru', 'en'].includes(firstSegment) ? firstSegment : 'ua';
+  }
 
-  infos.forEach(info => {
-    info.addEventListener('click', () => {
-      if (window.innerWidth < 1000) {
-        // Если уже открыт другой — закрываем его
-        infos.forEach(other => {
-          if (other !== info) {
-            other.classList.remove('open');
-          }
-        });
+  function getLangLabel(lang) {
+    switch (lang) {
+      case 'ru': return 'RU';
+      case 'en': return 'EN';
+      default: return 'UA';
+    }
+  }
 
-        // Переключаем текущий
-        info.classList.toggle('open');
+  const activeLangSpan = document.getElementById('active-lang-label');
+  if (activeLangSpan) {
+    activeLangSpan.childNodes[0].nodeValue = getLangLabel(lang) + ' '; // добавляем пробел перед svg
+  }
+
+
+  function setupFooterAccordion() {
+    const infos = document.querySelectorAll('.footer-info-wrap .info');
+
+    infos.forEach(info => {
+      info.addEventListener('click', () => {
+        if (window.innerWidth < 1000) {
+          // Если уже открыт другой — закрываем его
+          infos.forEach(other => {
+            if (other !== info) {
+              other.classList.remove('open');
+            }
+          });
+
+          // Переключаем текущий
+          info.classList.toggle('open');
+        }
+      });
+    });
+  }
+
+  function applyTranslations(lang) {
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.textContent = translations[lang][key];
       }
     });
-  });
-}
+
+    // Отдельно: placeholder
+    const searchInput = document.getElementById('global-search-input');
+    if (searchInput && translations[lang].searchPlaceholder) {
+      searchInput.placeholder = translations[lang].searchPlaceholder;
+    }
+  }
+
+  function withLangPrefix(path) {
+    const lang = getCurrentLang();
+    if (lang === 'ua') return path; // Для украинского — без префикса
+    return `/${lang}${path.startsWith('/') ? path : '/' + path}`;
+  }
+
 
 
   setupFooterAccordion();
+  const langLinks = document.querySelectorAll('.dropdown-menu.lang a');
+
+  langLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const selectedLang = link.getAttribute('data-lang');
+      const currentPath = window.location.pathname;
+
+      // Разбиваем путь: ['', 'folder', 'index.html'] или ['', 'ru', 'folder', 'index.html']
+      const pathParts = currentPath.split('/').filter(p => p); // удаляем пустые части
+
+      // Проверим, есть ли уже префикс языка (например, ru или en)
+      const supportedLangs = ['ru', 'en'];
+      if (supportedLangs.includes(pathParts[0])) {
+        pathParts[0] = selectedLang; // заменяем язык
+      } else {
+        pathParts.unshift(selectedLang); // добавляем язык в начало
+      }
+
+      // Собираем новый путь
+      const newPath = '/' + pathParts.join('/');
+      window.location.href = newPath;
+    });
+  });
+
 
   window.addEventListener('resize', () => {
     if (window.innerWidth >= 1000) {
@@ -530,7 +673,7 @@ function setupFooterAccordion() {
   overlay.addEventListener('click', () => {
     closeSearch();
     closeMobileMenu();
-    
+
     // Закрыть все открытые .filter-group
     document.querySelectorAll('.filter-group.active').forEach(group => {
       group.classList.remove('active');
@@ -586,5 +729,8 @@ function setupFooterAccordion() {
     document.querySelector('#mobile-menu').classList.remove('active');
     overlay.classList.remove('active')
   }
+
+  applyTranslations(lang);
+
 
 })

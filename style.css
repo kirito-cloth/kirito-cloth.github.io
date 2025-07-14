@@ -1824,7 +1824,7 @@ footer {
         --noto-sans-header: 15px;
         --noto-sans-h2: 25px;
         --noto-sans-dd: 13px;
-        --clash-grotesk-item-title: 25px;
+        --clash-grotesk-item-title: 23px;
     }
 
     footer {
@@ -1998,5 +1998,11 @@ footer {
 
     .about-us {
         padding: 0px 30px;
+    }
+
+    .item {
+        .item-info-wrap {
+            gap: 13px;
+        }
     }
 }
