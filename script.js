@@ -76,7 +76,7 @@ fetch('/products.json')
     // Вспомогательная функция для создания ячейки с текстом + ' см'
     function createTd(value) {
       const td = document.createElement('td');
-      td.textContent = value !== undefined ? value + ' см' : '-';
+      td.textContent = value !== undefined ? value + ' cm' : '-';
       return td;
     }
 

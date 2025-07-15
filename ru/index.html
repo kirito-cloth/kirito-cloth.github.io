@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kirito Cloth</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Outfit:wght@100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <section class="main-bg">
+            <div class="content">
+                <p class="orbitron-h1">KIRITO CLOTH</p>
+                <h1 class="noto-sans-header">Создай свой образ с премиальными репликами любимых брендов</h1>
+                <a href="./catalog/" class="main-btn noto-sans-header animated">каталог</a>
+            </div>
+        </section>
+
+        <section class="popular-brands">
+            <h2 class="noto-sans-h2">Популярные бренды</h2>
+            <div class="popular-brands-wrap">
+                <a href="./catalog/?brand=Balenciaga" class="underline-animated">
+                    <img src="/img/logotypes/balenciaga_logo.svg" alt="">
+                </a>
+                <a href="./catalog/?brand=Vetements" class="underline-animated">
+                    <img src="/img/logotypes/vetements_logo.png" alt="">
+                </a>
+                <a href="./catalog/?brand=Rick+Owens" class="underline-animated">
+                    <img src="/img/logotypes/rick_owens_logo.svg" alt="">
+                </a>
+                <a href="./catalog/?brand=Acne+Studios" class="underline-animated">
+                    <img src="/img/logotypes/acne_studios_logo.svg" alt="">
+                </a>
+                <a href="./catalog/?brand=Maison+Margiela" class="underline-animated">
+                    <img src="/img/logotypes/maison_margiela_logo.svg" alt="">
+                </a>
+                <a href="./catalog/?brand=Enfants+Riches+Deprimes" class="underline-animated">
+                    <img src="/img/logotypes/erd_logo.svg" alt="">
+                </a>
+                <a href="./catalog/?brand=Mastermind" class="underline-animated">
+                    <img src="/img/logotypes/mastermind_logo.png" alt="">
+                </a>
+                <a href="./catalog/?brand=Undercover" class="underline-animated">
+                    <img src="/img/logotypes/undercover_logo.svg" alt="">
+                </a>
+                <a href="./catalog/?brand=Project+GR" class="underline-animated">
+                    <img src="/img/logotypes/project_gt_logo.png" alt="">
+                </a>
+                <a href="./catalog/?brand=Number+Nine" class="underline-animated">
+                    <img src="/img/logotypes/number_nine_logo.png" alt="">
+                </a>
+            </div>
+            <p class="noto-sans-soon">Скоро больше...</p>
+        </section>
+
+        <section class="recently-viewed">
+            <h2 class="noto-sans-h2">Недавно просмотренные</h2>
+            <div class="cards-container"></div>
+        </section>
+
+        <section class="desired-categories">
+            <h2 class="noto-sans-h2">Желаемые категории</h2>
+            <div class="desired-categories-wrap">
+                <a href="./catalog/?type=tee" class="desired-category noto-sans-body">
+                    <div class="desired-categories-img">
+                        <img class='animated' src="/img/categories/tee.png" alt="">
+                    </div>
+                    <p class="desired-category-title underline-animated">Футболки</p>
+                </a>
+                <a href="./catalog/?type=tank" class="desired-category noto-sans-body">
+                    <div class="desired-categories-img">
+                        <img class='animated' src="/img/categories/tank.png" alt="">
+                    </div>
+                    <p class="desired-category-title underline-animated">Майки</p>
+                </a>
+                <a href="./catalog/?type=shorts" class="desired-category noto-sans-body">
+                    <div class="desired-categories-img">
+                        <img class='animated' src="/img/categories/shorts.png" alt="">
+                    </div>
+                    <p class="desired-category-title underline-animated">Шорты</p>
+                </a>
+            </div>
+            <p class="noto-sans-soon">Скоро больше...</p>
+        </section>
+
+        <section class="bestsellers">
+            <h2 class="noto-sans-h2">Бестселлеры</h2>
+            <div class="cards-container"></div>
+        </section>
+    </main>
+
+    <script type="module" src="/bestsellers.js"></script>
+    <script type="module" src="/header_footer.js"></script>
+</body>
+
+</html>

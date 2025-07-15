@@ -1,4 +1,7 @@
 import { disableScroll, enableScroll } from '/openMenu.js';
+import { getCurrentLang, getLangLabel, withLangPrefix, setupLangSwitcher } from '/langUtils.js';
+
+const lang = getCurrentLang();
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
       contact: 'Написати нам',
       brands: 'Бренди',
       categories: 'Категорії',
+      tee: 'Футболки',
+      tank: 'Майки',
+      shorts: 'Шорти',
       sneakers: 'Кросівки',
       searchPlaceholder: 'Пошук по товарам і брендам',
       find: 'Знайти',
@@ -30,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
       contact: 'Связаться с нами',
       brands: 'Бренды',
       categories: 'Категории',
+      tee: 'Футболки',
+      tank: 'Майки',
+      shorts: 'Шорты',
       sneakers: 'Кроссовки',
       searchPlaceholder: 'Поиск по товарам и брендам',
       find: 'Найти',
@@ -52,6 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
       contact: 'Contact Us',
       brands: 'Brands',
       categories: 'Categories',
+      tee: 'T-shirts',
+      tank: 'Tank',
+      shorts: 'Shorts',
       sneakers: 'Sneakers',
       searchPlaceholder: 'Search products and brands',
       find: 'Find',
@@ -71,12 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const lang = getCurrentLang();
-  function withLangPrefix(path) {
-    if (lang === 'ua') return path;
-    return `/${lang}${path.startsWith('/') ? path : '/' + path}`;
-  }
-
   const header = document.createElement('header');
   header.innerHTML = `
         <div class="content">
@@ -86,34 +92,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span></span>
             </button>
             <nav class="noto-sans-header">                
-                <a href="${withLangPrefix('/us.html')}" data-i18n="about"></a>
-                <a href="" class="underline-animated">Написати нам</a>
+                <a href="${withLangPrefix('/us.html')}" class="underline-animated" data-i18n="about"></a>
+                <a target="_blank" href="https://t.me/kirito_ls" class="underline-animated" data-i18n="contact"></a>
                 <div class="dropdown">
-                    <span class="dropdown-title">Бренди</span>
+                    <span class="dropdown-title" data-i18n="brands"></span>
                     <div class="dropdown-menu">
-                        <a href="/catalog/?brand=Balenciaga" class="dd noto-sans-dd">Balenciaga</a>
-                        <a href="/catalog/?brand=Vetements" class="dd noto-sans-dd">Vetements</a>
-                        <a href="/catalog/?brand=Rick+Owens" class="dd noto-sans-dd">Rick Owens</a>
-                        <a href="/catalog/?brand=Acne+Studios" class="dd noto-sans-dd">Acne Studios</a>
-                        <a href="/catalog/?brand=Maison+Margiela" class="dd noto-sans-dd">Maison Margiela</a>
-                        <a href="/catalog/?brand=Enfants+Riches+Deprimes" class="dd noto-sans-dd">Enfants Riches Deprimes</a>
-                        <a href="/catalog/?brand=Project+GR" class="dd noto-sans-dd">Project GR</a>
-                        <a href="/catalog/?brand=Number+Nine" class="dd noto-sans-dd">Number Nine</a>
-                        <a href="/catalog/?brand=Mastermind" class="dd noto-sans-dd">Mastermind</a>
-                        <a href="/catalog/?brand=Undercover" class="dd noto-sans-dd">Undercover</a>
+                        <a href="${withLangPrefix('/catalog/?brand=Balenciaga')}" class="dd noto-sans-dd">Balenciaga</a>
+                        <a href="${withLangPrefix('/catalog/?brand=Vetements')}" class="dd noto-sans-dd">Vetements</a>
+                        <a href="${withLangPrefix('/catalog/?brand=Rick+Owens')}" class="dd noto-sans-dd">Rick Owens</a>
+                        <a href="${withLangPrefix('/catalog/?brand=Acne+Studios')}" class="dd noto-sans-dd">Acne Studios</a>
+                        <a href="${withLangPrefix('/catalog/?brand=Maison+Margiela')}" class="dd noto-sans-dd">Maison Margiela</a>
+                        <a href="${withLangPrefix('/catalog/?brand=Enfants+Riches+Deprimes')}" class="dd noto-sans-dd">Enfants Riches Deprimes</a>
+                        <a href="${withLangPrefix('/catalog/?brand=Project+GR')}" class="dd noto-sans-dd">Project GR</a>
+                        <a href="${withLangPrefix('/catalog/?brand=Number+Nine')}" class="dd noto-sans-dd">Number Nine</a>
+                        <a href="${withLangPrefix('/catalog/?brand=Mastermind')}" class="dd noto-sans-dd">Mastermind</a>
+                        <a href="${withLangPrefix('/catalog/?brand=Undercover')}" class="dd noto-sans-dd">Undercover</a>
                     </div>
                 </div>
                 <div class="dropdown">
-                    <span class="dropdown-title">Категорії</span>
+                    <span class="dropdown-title" data-i18n="categories"></span>
                     <div class="dropdown-menu">
-                        <a href="/catalog/?type=tee" class="dd noto-sans-dd">Футболки</a>
-                        <a href="/catalog/?type=tank" class="dd noto-sans-dd">Майки</a>
-                        <a href="/catalog/?type=shorts" class="dd noto-sans-dd">Шорти</a>
+                        <a href="${withLangPrefix('/catalog/?type=tee')}" class="dd noto-sans-dd" data-i18n="tee"></a>
+                        <a href="${withLangPrefix('/catalog/?type=tank')}" class="dd noto-sans-dd" data-i18n="tank"></a>
+                        <a href="${withLangPrefix('/catalog/?type=shorts')}" class="dd noto-sans-dd" data-i18n="shorts"></a>
                     </div>
                 </div>
-                <a href="https://kirito-sneakers.com" class="underline-animated">Кросівки</a>
+                <a target="_blank" href="https://kirito-sneakers.com" class="underline-animated" data-i18n="sneakers"></a>
             </nav>
-            <a href="/" class="logo">
+            <a href="${withLangPrefix('/')}" class="logo">
                 <img src="/img/logotype.svg" alt="Kirito Cloth logotype">
             </a>
             <div class="header-buttons">
@@ -133,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a data-lang='en' class="montserrat-light dd">EN</a>
                     </div>
                 </div>
-                <a href="/catalog/?favorites=true" class="saved-icon" id="favorite-link">
+                <a href="${withLangPrefix('/catalog/?favorites=true')}" class="saved-icon" id="favorite-link">
                 <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#000000">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -149,8 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="search-wrapper">
             <form id="global-search-form">
-                <input type="text" id="global-search-input" placeholder="Пошук по товарам і брендам">
-                <button type="submit" id="global-search-btn" class="main-btn animated">Знайти</button>
+                <input type="text" id="global-search-input" placeholder="" data-i18n="searchPlaceholder">
+                <button type="submit" id="global-search-btn" class="main-btn animated" data-i18n="find"></button>
             </form>
         </div>
 
@@ -160,45 +166,45 @@ document.addEventListener('DOMContentLoaded', () => {
   footer.innerHTML = `
         <div class="footer-wrapper">
             <div class="icons">
-                <a href="">
+                <a href="${withLangPrefix('/')}">
                   <img src="/img/kirito_logo.png" alt="Kirito Brand Logo" class="kirito-logo">
                 </a>
                 <div class="social-media">
-                    <a href="" class="animated">
-                        <img src="/img/icons/instagram.svg" alt="">
+                    <a target="_blank" href="https://www.instagram.com/kirito_cloth/" class="animated">
+                        <img src="/img/icons/instagram.svg" alt="instagram">
                     </a>
-                    <a href="" class="animated">
-                        <img src="/img/icons/telegram.svg" alt="">
+                    <a target="_blank" href="https://t.me/kirito_cloth" class="animated">
+                        <img src="/img/icons/telegram.svg" alt="telegram">
                     </a>
-                    <a href="" class="animated">
-                        <img src="/img/icons/tiktok.svg" alt="">
+                    <a target="_blank" href="https://www.tiktok.com/@kirito_sneakers" class="animated">
+                        <img src="/img/icons/tiktok.svg" alt="tiktok">
                     </a>
                 </div>
             </div>
             <div class="footer-info-wrap">
               <div class="info">
-                  <h4 class="noto-sans-dd-title">МЕНЮ</h4>
-                  <a href="/" class="noto-sans-dd">Головна</a>
-                  <a href="/catalog/" class="noto-sans-dd">Каталог</a>
-                  <a href="/us.html" class="noto-sans-dd">Про нас</a>
+                  <h4 class="noto-sans-dd-title" data-i18n="menu"></h4>
+                  <a href="${withLangPrefix('/')}" class="noto-sans-dd" data-i18n="main"></a>
+                  <a href="${withLangPrefix('/catalog/')}" class="noto-sans-dd" data-i18n="catalog"></a>
+                  <a href="${withLangPrefix('/us.html')}" class="noto-sans-dd" data-i18n="about"></a>
               </div>
               <div class="info">
-                  <h4 class="noto-sans-dd-title">СЕРВІС</h4>
-                  <a href="/us.html#us-product" class="noto-sans-dd">Про наш продукт</a>
-                  <a href="/us.html#us-payment" class="noto-sans-dd">Оплата</a>
-                  <a href="/us.html#us-delivery" class="noto-sans-dd">Доставка</a>
-                  <a href="/us.html#us-referal" class="noto-sans-dd">Реферальна система та знижки</a>
+                  <h4 class="noto-sans-dd-title" data-i18n="service"></h4>
+                  <a href="${withLangPrefix('/us.html#us-product')}" class="noto-sans-dd" data-i18n="product"> </a>
+                  <a href="${withLangPrefix('/us.html#us-payment')}" class="noto-sans-dd" data-i18n="payment"></a>
+                  <a href="${withLangPrefix('/us.html#us-delivery')}" class="noto-sans-dd" data-i18n="delivery"></a>
+                  <a href="${withLangPrefix('/us.html#us-referal')}" class="noto-sans-dd" data-i18n="referal"></a>
               </div>
               <div class="info">
-                  <h4 class="noto-sans-dd-title">КОНТАКТИ</h4>
-                  <a href="https://t.me/kirito_ls" class="noto-sans-dd">Telegram</a>
-                  <a href="" class="noto-sans-dd">Instagram</a>
+                  <h4 class="noto-sans-dd-title" data-i18n="contacts"></h4>
+                  <a target="_blank" href="https://t.me/kirito_ls" class="noto-sans-dd">Telegram</a>
+                  <a target="_blank" href="https://www.instagram.com/kirito_cloth/" class="noto-sans-dd">Instagram</a>
               </div>
               <div class="info">
-                  <h4 class="noto-sans-dd-title">МОВА</h4>
-                  <a href="" class="noto-sans-dd">Українська</a>
-                  <a href="" class="noto-sans-dd">Російська</a>
-                  <a href="" class="noto-sans-dd">Англійська</a>
+                  <h4 class="noto-sans-dd-title" data-i18n="lang"></h4>
+                  <a data-lang='' class="noto-sans-dd" data-i18n="ua"></a>
+                  <a data-lang='ru' class="noto-sans-dd" data-i18n="ru"></a>
+                  <a data-lang='en' class="noto-sans-dd" data-i18n="en"></a>
               </div>
             </div>
         </div>
@@ -216,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="mobile-menu" id="mobile-menu">
       <div class="menu-wrap-title">
         <div>
-          <p class="noto-sans-dd-title">Меню</p>
+          <p class="noto-sans-dd-title" data-i18n="menu"></p>
         </div>
         <button id="close-menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -229,42 +235,42 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="menu-btns-wrap">
           <button class="menu-wrap-button" data-filter-group-id="menu-about-us">
             <div>
-              <p class="noto-sans-item-details-content">Про нас</p>
+              <p class="noto-sans-item-details-content" data-i18n="about"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </button>
-          <a href="https://t.me/kirito_ls" class="menu-wrap-button" data-filter-group-id="menu-group-brand">
+          <a target="_blank" href="https://t.me/kirito_ls" class="menu-wrap-button" data-filter-group-id="menu-group-brand">
             <div>
-              <p class="noto-sans-item-details-content">Написати нам</p>
+              <p class="noto-sans-item-details-content" data-i18n="contact"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
           <button class="menu-wrap-button" data-filter-group-id="menu-brands">
             <div>
-              <p class="noto-sans-item-details-content">Бренди</p>
+              <p class="noto-sans-item-details-content" data-i18n="brands"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </button>
           <button class="menu-wrap-button" data-filter-group-id="menu-categories">
             <div>
-              <p class="noto-sans-item-details-content">Категорії</p>
+              <p class="noto-sans-item-details-content" data-i18n="categories"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </button>
-          <a href="https://kirito-sneakers.com" class="menu-wrap-button" data-filter-group-id="menu-group-price">
+          <a target="_blank" href="https://kirito-sneakers.com" class="menu-wrap-button" data-filter-group-id="menu-group-price">
             <div>
-              <p class="noto-sans-item-details-content">Кросівки</p>
+              <p class="noto-sans-item-details-content" data-i18n="sneakers"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
           <button class="menu-wrap-button" data-filter-group-id="menu-language">
             <div>
-              <p class="noto-sans-item-details-content">Мова</p>
+              <p class="noto-sans-item-details-content" data-i18n="lang"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
@@ -272,13 +278,13 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
       <div class="social-media">
-                <a href="" class="animated">
+                <a target="_blank" href="https://www.instagram.com/kirito_cloth/" class="animated">
                     <img src="/img/icons/instagram.svg" alt="">
                 </a>
-                <a href="" class="animated">
+                <a target="_blank" href="https://t.me/kirito_cloth" class="animated">
                     <img src="/img/icons/telegram.svg" alt="">
                 </a>
-                <a href="" class="animated">
+                <a target="_blank" href="https://www.tiktok.com/@kirito_sneakers" class="animated">
                     <img src="/img/icons/tiktok.svg" alt="">
                 </a>
             </div>
@@ -288,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="filter-group" id="menu-about-us">
         <div class="menu-wrap-title">
           <div>
-            <p class="noto-sans-dd-title">Про нас</p>
+            <p class="noto-sans-dd-title" data-i18n="about"></p>
           </div>
           <button class="close-filter-group">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -298,30 +304,30 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
         </div>
         <div class="menu-wrap">
-          <a href="/us.html#us-product" class="menu-wrap-button">
+          <a href="${withLangPrefix('/us.html#us-product')}" class="menu-wrap-button">
             <div>
-              <p class="noto-sans-item-details-content">Про наш продукт</p>
+              <p class="noto-sans-item-details-content" data-i18n="product"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/us.html#us-payment" class="menu-wrap-button">
+          <a href="${withLangPrefix('/us.html#us-payment')}')}" class="menu-wrap-button">
             <div>
-              <p class="noto-sans-item-details-content">Оплата</p>
+              <p class="noto-sans-item-details-content" data-i18n="payment"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/us.html#us-delivery" class="menu-wrap-button">
+          <a href="${withLangPrefix('/us.html#us-delivery')}')}" class="menu-wrap-button">
             <div>
-              <p class="noto-sans-item-details-content">Доставка</p>
+              <p class="noto-sans-item-details-content" data-i18n="delivery"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/us.html#us-referal" class="menu-wrap-button">
+          <a href="${withLangPrefix('/us.html#us-referal')}')}" class="menu-wrap-button">
             <div>
-              <p class="noto-sans-item-details-content">Реферальна система та знижки</p>
+              <p class="noto-sans-item-details-content" data-i18n="referal"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
@@ -332,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="filter-group" id="menu-brands">
         <div class="menu-wrap-title">
           <div>
-            <p class="noto-sans-dd-title">Бренди</p>
+            <p class="noto-sans-dd-title" data-i18n="brands"></p>
           </div>
           <button class="close-filter-group">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -342,70 +348,70 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
         </div>
         <div class="menu-wrap">
-          <a href="/catalog/?brand=Balenciaga" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?brand=Balenciaga')}')}" class="menu-wrap-button">
             <div>
               <p class="noto-sans-item-details-content">Balenciaga</p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?brand=Vetements" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?brand=Vetements')}')}" class="menu-wrap-button">
             <div>
               <p class="noto-sans-item-details-content">Vetements</p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?brand=Rick+Owens" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?brand=Rick+Owens')}')}" class="menu-wrap-button">
             <div>
               <p class="noto-sans-item-details-content">Rick Owens</p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?brand=Acne+Studios" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?brand=Acne+Studios')}')}" class="menu-wrap-button">
             <div>
               <p class="noto-sans-item-details-content">Acne Studios</p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?brand=Maison+Margiela" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?brand=Maison+Margiela')}')}" class="menu-wrap-button">
             <div>
               <p class="noto-sans-item-details-content">Maison Margiela</p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?brand=Enfants+Riches+Deprimes" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?brand=Enfants+Riches+Deprimes')}')}" class="menu-wrap-button">
             <div>
               <p class="noto-sans-item-details-content">Enfants Riches Deprimes</p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?brand=Project+GR" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?brand=Project+GR')}')}" class="menu-wrap-button">
             <div>
               <p class="noto-sans-item-details-content">Project GR</p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?brand=Number+Nine" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?brand=Number+Nine')}')}" class="menu-wrap-button">
             <div>
               <p class="noto-sans-item-details-content">Number Nine</p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?brand=Mastermind" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?brand=Mastermind')}')}" class="menu-wrap-button">
             <div>
               <p class="noto-sans-item-details-content">Mastermind</p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?brand=Undercover" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?brand=Undercover')}')}" class="menu-wrap-button">
             <div>
               <p class="noto-sans-item-details-content">Undercover</p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
@@ -418,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="filter-group" id="menu-categories">
         <div class="menu-wrap-title">
           <div>
-            <p class="noto-sans-dd-title">Категорії</p>
+            <p class="noto-sans-dd-title" data-i18n="categories"></p>
           </div>
           <button class="close-filter-group">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -428,23 +434,23 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
         </div>
         <div class="menu-wrap">
-          <a href="/catalog/?type=tee" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?type=tee')}" class="menu-wrap-button">
             <div>
-              <p class="noto-sans-item-details-content">Футболки</p>
+              <p class="noto-sans-item-details-content" data-i18n="tee"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?type=tank" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?type=tank')}" class="menu-wrap-button">
             <div>
-              <p class="noto-sans-item-details-content">Майки</p>
+              <p class="noto-sans-item-details-content" data-i18n="tank"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?type=shorts" class="menu-wrap-button">
+          <a href="${withLangPrefix('/catalog/?type=shorts')}" class="menu-wrap-button">
             <div>
-              <p class="noto-sans-item-details-content">Шорти</p>
+              <p class="noto-sans-item-details-content" data-i18n="shorts"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
@@ -455,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="filter-group" id="menu-language">
         <div class="menu-wrap-title">
           <div>
-            <p class="noto-sans-dd-title">Мова</p>
+            <p class="noto-sans-dd-title" data-i18n="lang"></p>
           </div>
           <button class="close-filter-group">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -465,23 +471,23 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
         </div>
         <div class="menu-wrap">
-          <a href="/catalog/?type=tee" class="menu-wrap-button">
+          <a data-lang='' class="menu-wrap-button">
             <div>
-              <p class="noto-sans-item-details-content">Українська</p>
+              <p class="noto-sans-item-details-content" data-i18n="ua"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?type=tank" class="menu-wrap-button">
+          <a data-lang='ru' class="menu-wrap-button">
             <div>
-              <p class="noto-sans-item-details-content">Російська</p>
+              <p class="noto-sans-item-details-content" data-i18n="ru"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
           </a>
-          <a href="/catalog/?type=shorts" class="menu-wrap-button">
+          <a data-lang='en' class="menu-wrap-button">
             <div>
-              <p class="noto-sans-item-details-content">Англійська</p>
+              <p class="noto-sans-item-details-content" data-i18n="en"></p>
               <span class="outfit-item-size menu-wrap-button-choice"></span>
             </div>
             <img src="/img/arrow.svg" alt="">
@@ -493,8 +499,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   main.insertAdjacentHTML('afterbegin', menuHTML);
 
-
-
   document.body.prepend(header)
   document.body.append(footer)
 
@@ -504,20 +508,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.querySelector('.overlay');
   const hamburger = document.querySelector('#hamburger');
   const closeMenuBtn = document.querySelector('#close-menu');
-
-  function getCurrentLang() {
-    const path = window.location.pathname.split('/');
-    const firstSegment = path[1];
-    return ['ua', 'ru', 'en'].includes(firstSegment) ? firstSegment : 'ua';
-  }
-
-  function getLangLabel(lang) {
-    switch (lang) {
-      case 'ru': return 'RU';
-      case 'en': return 'EN';
-      default: return 'UA';
-    }
-  }
 
   const activeLangSpan = document.getElementById('active-lang-label');
   if (activeLangSpan) {
@@ -561,16 +551,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function withLangPrefix(path) {
-    const lang = getCurrentLang();
-    if (lang === 'ua') return path; // Для украинского — без префикса
-    return `/${lang}${path.startsWith('/') ? path : '/' + path}`;
-  }
-
 
 
   setupFooterAccordion();
-  const langLinks = document.querySelectorAll('.dropdown-menu.lang a');
+  const langLinks = document.querySelectorAll('a[data-lang]');
 
   langLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -685,32 +669,26 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const query = input.value.trim();
 
-    if (!query) {
-      const currentUrl = window.location.pathname;
-      const params = new URLSearchParams(window.location.search);
+    const currentUrl = window.location.pathname;
+    const params = new URLSearchParams(window.location.search);
 
+    if (!query) {
       params.delete('search');
 
       if (currentUrl.includes('/catalog')) {
         window.location.href = `${currentUrl}?${params.toString()}`;
       } else {
-        window.location.href = `/catalog`;
+        window.location.href = withLangPrefix('/catalog');
       }
       return;
     }
 
-
-    const currentUrl = window.location.pathname;
-    const params = new URLSearchParams(window.location.search);
-
     params.set('search', query);
 
     if (currentUrl.includes('/catalog')) {
-      // Уже на странице каталога — просто обновим URL с сохранением других фильтров
       window.location.href = `${currentUrl}?${params.toString()}`;
     } else {
-      // На другой странице — переход на каталог
-      window.location.href = `/catalog/?search=${encodeURIComponent(query)}`;
+      window.location.href = withLangPrefix(`/catalog/?search=${encodeURIComponent(query)}`);
     }
   });
 
@@ -732,5 +710,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   applyTranslations(lang);
 
-
+  setupLangSwitcher();
 })

@@ -2,13 +2,9 @@ import { createProductCard } from '/productCard.js';
 import { revealOnScroll } from '/scrollReveal.js';
 import { getFavorites, setFavorites, toggleFavorite } from '/favorites.js';
 import { disableScroll, enableScroll } from '/openMenu.js';
+import { getCurrentLang, getLangLabel, withLangPrefix, setupLangSwitcher } from '/langUtils.js';
 
-const path = window.location.pathname;
-let lang = 'ua'; // язык по умолчанию
-
-if (path.startsWith('/ru')) lang = 'ru';
-else if (path.startsWith('/en')) lang = 'en';
-
+let lang = getCurrentLang();
 
 const i18n = {
   ua: {
@@ -921,7 +917,5 @@ updateFiltersCountBadge();
   revealOnScroll();
 
   updateFiltersHeaderVisibility();
-
-
 
 });

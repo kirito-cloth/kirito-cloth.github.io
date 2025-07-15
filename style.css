@@ -17,7 +17,6 @@ body {
 }
 
 body.no-scroll {
-    overflow: hidden;
     touch-action: none;
     padding-right: 15.1px;
     /* Для мобильных */
@@ -252,7 +251,7 @@ header {
     height: 70px;
     z-index: 50;
     background-color: white;
-    transition: transform 0.5s, padding-right 0s;
+    transition: transform 0.3s, padding-right 0s;
 
     .content {
         position: relative;
@@ -274,7 +273,7 @@ header {
             flex-direction: row;
             gap: 23px;
             align-items: center;
-            transition: 0.5s ease-in-out;
+            transition: 0.3s ease-in-out;
         }
 
         a {
@@ -381,7 +380,7 @@ header {
         display: flex;
         gap: 20px;
         align-items: center;
-        transition: 0.5s ease-in-out;
+        transition: 0.3s ease-in-out;
 
         .labelforsearch {
             display: flex;
@@ -506,9 +505,6 @@ header.search {
 }
 
 header.filters-opened {
-    .content {
-        margin-right: 15.1px;
-    }
 
     nav {
         opacity: 0;
@@ -1522,6 +1518,7 @@ footer {
                 h4 {
                     color: white;
                     font-size: 18px;
+                    text-transform: uppercase;
                 }
 
                 a {
@@ -1615,6 +1612,9 @@ footer {
         border-radius: 5px;
         border: 1px solid var(--light-grey);
         text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
 
@@ -1644,6 +1644,10 @@ footer {
     }
 }
 
+a[data-lang] {
+    cursor: pointer;
+}
+
 @media (hover: none) {
     .product-img:hover img:first-of-type {
         opacity: 1;
@@ -1652,17 +1656,6 @@ footer {
     .product-img:hover img:last-of-type {
         opacity: 0;
         transform: scale(1.5);
-    }
-
-    body.no-scroll {
-        padding-right: 0px;
-    }
-
-
-    header.filters-opened {
-        .content {
-            margin-right: 0px;
-        }
     }
 }
 

@@ -1,4 +1,6 @@
 import { getFavorites, setFavorites, toggleFavorite } from '/favorites.js';
+import { getCurrentLang, getLangLabel, withLangPrefix, setupLangSwitcher } from '/langUtils.js';
+
 export function createProductCard(product) {
   const dollarPrice = Math.ceil(product.price * 0.024);
   const sizesStr = Object.keys(product.sizes).map(s => s.toUpperCase()).join(', ');
@@ -11,13 +13,13 @@ export function createProductCard(product) {
   card.className = 'card loading';
 
   card.innerHTML = `
-    <a href="/product/?id=${product.id}" class="product-img">
+    <a href="${withLangPrefix(`/product/?id=${product.id}`)}" class="product-img">
       <img src="${product.images[0] || ''}" alt="${product.name}">
       ${product.images[1] ? `<img src="${product.images[1]}" alt="${product.name}">` : ''}
       <div class="loader"></div>
     </a>
     <div class="product-info">
-      <a href="/product/?id=${product.id}" class="product-title outfit-card-title">${product.name}</a>
+      <a href="${withLangPrefix(`/product/?id=${product.id}`)}" class="product-title outfit-card-title">${product.name}</a>
       <span class="product-sizes outfit-card-sizes">${sizesStr}</span>
       <p class="product-price outfit-card-price">${dollarPrice} $ / ${product.price} ₴</p>
       <label class="favorite-checkbox">

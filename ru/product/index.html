@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
-    <title>Product Page</title>
+    <title>Страница товара</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,56 +20,54 @@
         <section class="item">
             <div class="item-img-wrap"></div>
             <div class="item-info-wrap">
-                <span class="ready-deliver noto-sans-item-details-content">Готове до відправлення</span>
+                <span class="ready-deliver noto-sans-item-details-content">Готово к отправке</span>
                 <h1 class="clash-grotesk-item-title" id="item-title"></h1>
                 <p class="outfit-item-price" id="item-price"></p>
                 <p class="outfit-item-size" id="item-sizes"></p>
-                <a target="_blank" href="https://t.me/kirito_ls" class="main-btn noto-sans-header animated">Придбати</a>
+                <a target="_blank" href="https://t.me/kirito_ls" class="main-btn noto-sans-header animated">Купить</a>
                 <div class="item-details-wrap">
                     <div class="item-details">
                         <div class="item-details-title noto-sans-item-details-title">
-                            <p>Заміри</p>
+                            <p>Размеры</p>
                             <img src="/img/arrow.svg" alt="">
                         </div>
                         <div class="item-details-content noto-sans-item-details-content">
                             <table id="sizes-tee" class="sizes-table" style="display:none;">
                                 <tr>
                                     <th></th>
-                                    <th>Довжина</th>
-                                    <th>Обхват грудей</th>
-                                    <th>Ширина плечей</th>
+                                    <th>Длина</th>
+                                    <th>Обхват груди</th>
+                                    <th>Ширина плеч</th>
                                 </tr>
                             </table>
 
                             <table id="sizes-shorts" class="sizes-table" style="display:none;">
                                 <tr>
                                     <th></th>
-                                    <th>Довжина</th>
-                                    <th>Талія</th>
-                                    <th>Стегна</th>
+                                    <th>Длина</th>
+                                    <th>Талия</th>
+                                    <th>Бёдра</th>
                                 </tr>
                             </table>
 
                             <table id="sizes-tank" class="sizes-table" style="display:none;">
                                 <tr>
                                     <th></th>
-                                    <th>Довжина</th>
+                                    <th>Длина</th>
                                     <th>Ширина</th>
-                                    <th>Плечі</th>
+                                    <th>Плечи</th>
                                 </tr>
                             </table>
-
-
                         </div>
                     </div>
                     <div class="item-details">
                         <div class="item-details-title noto-sans-item-details-title">
-                            <p>Як замовити</p>
+                            <p>Как заказать</p>
                             <img src="/img/arrow.svg" alt="">
                         </div>
                         <div class="item-details-content noto-sans-item-details-content">
-                            <p>На даний момент усі замовлення приймаються виключно через <a
-                                    href="https://t.me/kirito_ls" target="_blank">Telegram</a> або в <a
+                            <p>На данный момент все заказы принимаются исключительно через <a
+                                    href="https://t.me/kirito_ls" target="_blank">Telegram</a> или в <a
                                     href="https://www.instagram.com/kirito_sneakers?igsh=MTB1bzNheTJoaXZvMg%3D%3D&amp;utm_source=qr"
                                     target="_blank">директ Instagram</a>.</p>
                         </div>
@@ -80,32 +78,31 @@
                             <img src="/img/arrow.svg" alt="">
                         </div>
                         <div class="item-details-content noto-sans-item-details-content">
-                            <p>Безкоштовна доставка по всьому світу.</p><br>
-                            <p>Доставка до відділення Нової пошти в Україні — від 70 грн.</p><br>
-                            <p>Оформлення замовлення триває від 12 до 14 робочих днів.</p>
+                            <p>Бесплатная доставка по всему миру.</p><br>
+                            <p>Доставка до отделения Новой почты по Украине — от 70 грн.</p><br>
+                            <p>Оформление заказа занимает от 12 до 14 рабочих дней.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <section class="same-products-container">
-            <h2 class="noto-sans-h2">Інші кольори цієї моделі</h2>
+            <h2 class="noto-sans-h2">Другие цвета этой модели</h2>
             <div class="cards-container" id="another-colors"></div>
         </section>
 
         <section class="like-products-container">
-            <h2 class="noto-sans-h2">Вам може сподобатись</h2>
+            <h2 class="noto-sans-h2">Вам может понравиться</h2>
             <div class="cards-container" id="another-colors"></div>
         </section>
-
     </main>
+
     <div id="img-modal" class="img-modal">
         <span class="close">&times;</span>
         <div class="zoom-swiper swiper">
             <div id="modal-swiper-wrapper" class="swiper-wrapper">
-                <!-- Слайды динамически создаются -->
+                <!-- Слайды создаются динамически -->
             </div>
-            <!-- Добавляем сюда пагинацию и стрелки для zoomSwiper -->
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
