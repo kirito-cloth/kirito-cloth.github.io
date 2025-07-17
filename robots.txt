@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /admin/
+Disallow: /search-history/
+Disallow: /*?*debug=
+
+Sitemap: https://kirito-cloth.com/sitemap.xml

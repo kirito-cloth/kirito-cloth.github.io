@@ -25,6 +25,8 @@ fetch('/products.json')
       return;
     }
 
+    updateHeadForProduct(product);
+
     // Функция для добавления в recently viewed
     function addToRecentlyViewed(productId) {
       if (!productId) return;
@@ -170,11 +172,118 @@ fetch('/products.json')
       });
     }
 
+    function updateHeadForProduct(product) {
+      // Заголовок страницы
+      document.title = `${product.name} — Kirito Cloth | Репліки кросівок і одягу`;
+
+      // Функция для создания или обновления метатега
+      function setMeta(property, content, attr = 'name') {
+        let meta = document.querySelector(`meta[${attr}="${property}"]`);
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.setAttribute(attr, property);
+          document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', content);
+      }
+
+      // Обычные метатеги
+      setMeta('description', `Купуй репліку ${product.name} від бренду ${product.brand}. Висока якість, доставка по всьому світу.`);
+
+      // Open Graph
+      setMeta('og:title', `${product.name} — Kirito Cloth | Репліки люкс-брендів`, 'property');
+      setMeta('og:description', `Купуй репліку ${product.name} від бренду ${product.brand}. Висока якість, доставка по всьому світу.`, 'property');
+      setMeta('og:image', product.images[0], 'property');
+      setMeta('og:image:width', '1200', 'property');
+      setMeta('og:image:height', '630', 'property');
+      setMeta('og:url', window.location.href, 'property');
+      setMeta('og:type', 'product', 'property');
+
+      // Twitter Card
+      setMeta('twitter:title', `${product.name} — Kirito Cloth | Репліки люкс-брендів`);
+      setMeta('twitter:description', `Купуй репліку ${product.name} від бренду ${product.brand}. Висока якість, доставка по всьому світу.`);
+      setMeta('twitter:image', product.images[0]);
+      setMeta('twitter:image:alt', `Kirito Cloth - ${product.name}`);
+
+      // Канонический URL
+      let linkCanonical = document.querySelector('link[rel="canonical"]');
+      if (!linkCanonical) {
+        linkCanonical = document.createElement('link');
+        linkCanonical.rel = 'canonical';
+        document.head.appendChild(linkCanonical);
+      }
+      linkCanonical.href = window.location.href;
+
+      // JSON-LD Product
+      const productLD = {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": product.name,
+        "image": product.images,
+        "description": product.description || `Репліка ${product.name} від бренду ${product.brand}.`,
+        "sku": product.sku || '',
+        "mpn": product.mpn || '',
+        "brand": {
+          "@type": "Brand",
+          "name": product.brand
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": window.location.href,
+          "priceCurrency": "USD", // Можно подставить динамически, если есть
+          "price": (Math.ceil(product.price * 0.024)).toString(),
+          "availability": "https://schema.org/InStock",
+          "itemCondition": "https://schema.org/NewCondition"
+        }
+      };
+
+      // JSON-LD BreadcrumbList
+      const breadcrumbLD = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Головна",
+            "item": "https://kirito-cloth.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Каталог",
+            "item": "https://kirito-cloth.com/catalog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": product.name,
+            "item": window.location.href
+          }
+        ]
+      };
+
+      // Добавляем или обновляем JSON-LD скрипты
+      function setJsonLd(id, data) {
+        let script = document.getElementById(id);
+        if (!script) {
+          script = document.createElement('script');
+          script.type = 'application/ld+json';
+          script.id = id;
+          document.head.appendChild(script);
+        }
+        script.textContent = JSON.stringify(data);
+      }
+
+      setJsonLd('jsonld-product', productLD);
+      setJsonLd('jsonld-breadcrumb', breadcrumbLD);
+    }
+
+
     // Статус готовности товара
     readyDelver.classList.toggle('active', product.ready);
 
     // Заголовок, цена, размеры
-    document.title = product.name;
     document.getElementById('item-title').textContent = product.name;
     document.getElementById('item-price').textContent = `${dollarPrice} $ / ${product.price} ₴`;
     document.getElementById('item-sizes').textContent = Object.keys(sizesObj).map(s => s.toUpperCase()).join(', ');
@@ -339,10 +448,11 @@ fetch('/products.json')
             }
           }
         });
-
-
       }
+
     });
+
+
   })
   .catch(() => {
     document.body.innerHTML = '<h2>Error loading product</h2>';
