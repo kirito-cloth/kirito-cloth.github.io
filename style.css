@@ -1999,3 +1999,9 @@ a[data-lang] {
         }
     }
 }
+
+@media (max-width: 400px) {
+    :root {
+        --orbitron-h1: 35px;
+    }
+}
