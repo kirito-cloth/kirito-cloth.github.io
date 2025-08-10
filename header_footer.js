@@ -620,7 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeMenu();
   })
 
-  let lastScroll = 0;
+  let lastScroll = 0; 
 
   window.addEventListener('scroll', () => {
 
